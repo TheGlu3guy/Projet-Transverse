@@ -1,0 +1,155 @@
+<!doctype>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>TshirtTime</title>
+        <!-- Load Vue followed by Vue Router -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/http-vue-loader/src/httpVueLoader.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <style>
+            html, body {
+                margin: 0;
+                padding: 0;
+                font-family: 'Roboto', sans-serif;
+            }
+            header #logo{
+                width: 100px;
+                height:100px;
+                border-radius: 50%;
+                margin: auto;
+                filter : drop-shadow(2px 3px 4px black);
+            }
+            header #backgroundlogo{
+                background-color: rgb(141, 218, 207);
+                height: 200px;
+                width: auto;
+                display: flex;
+            }
+            header #barreOutils {
+                display: flex;
+                padding: 12px ;
+                background-color: #333;
+                justify-content: center;
+            }
+            header a{
+                color: #fff;
+                background-color: #333;
+                width: 100px;
+                border: 1px solid #fff;
+                border-radius: 18px;
+                outline: 0;
+                padding: 8px 12px ;
+                text-align: center ;
+                text-decoration: none;
+                font: bold 12px Verdana;
+
+                transition: all 1s ease-out;
+            }
+            header a:hover {
+                color: #333;
+                background-color: #fff;
+            }
+            header a:not(:last-child) {
+                margin-right: 12px;
+            }
+            header nav #actif{
+                background-color: white;
+                color: #333;
+            }
+            footer{
+                width: auto;
+                background-color: #1c1a1a;
+                color: white;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+            }
+            footer div{
+                margin: 50px 20px;
+                height: 250px;
+            }
+            footer a{
+                text-decoration: none;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <header>
+                <div id="backgroundlogo">
+                    <img id="logo"src="img/logo.png">
+                </div>
+                <nav id="barreOutils">
+                    <router-link id="actif" to='/'>Accueil</router-link>
+                    <router-link to='/achat'>Achat</router-link>
+                    <router-link to='/'>Mon Profil</router-link>
+                </nav>
+            </header>
+            <main>
+                <router-view
+                    :prop="prop"
+                    @recup-emit="RecupEmit"
+                ></router-view>
+            </main>
+            <footer>
+                <div>
+                    <h3>Mon Compte :</h3>
+                    <p>Connexion</p>
+                    <p>Créer un compte</p>
+                </div>
+                <div>
+                    <h3>A propos :</h3>
+                    <p>Notre histoire</p>
+                    <p>Durabilité</p>
+                </div>
+                <div>
+                    <h3><router-link to='/mention_legales'>Mentions Légales :</router-link></h3>
+                    <p>Termes d'utilisation</p>
+                    <p>Politique de confidentialité</p>
+                </div>
+                <div>
+                    <h3>Partager :</h3>
+                    <p>Facebook</p>
+                    <p>Instagram</p>
+                </div>
+            </footer>
+        </div>
+        
+        <script>
+            const Acceuil = window.httpVueLoader('./components/Acceuil.vue')
+            const Achat = window.httpVueLoader('./components/Achat.vue')
+            const MentionLegales = window.httpVueLoader('./components/MentionLegales.vue')
+
+            const routes = [
+                { path: '/', component: Acceuil },
+                { path: '/achat', component: Achat },
+                { path: '/mention_legales', component: MentionLegales },
+            ]
+
+            const router = new VueRouter({
+                routes
+            })
+
+            var app = new Vue({
+                router,
+                el: '#app',
+                data: {
+                    variable: "variable"
+                },
+                async mounted () {
+                    /*const res = await axios.get('/api/articles')
+                    this.articles = res.data*/
+                },
+                methods: {
+                    /*async addToPanier (articleId) {
+                        const res = await axios.post('/api/panier', { articleId, quantity: 1 })
+                        this.panier.articles.push(res.data)
+                    }*/
+                }
+            })
+        </script>
+    </body>
+</html>

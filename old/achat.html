@@ -1,0 +1,138 @@
+<html lang="fr">
+<head>
+    <title>Achat</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="achat.css">
+</head>
+<body>
+    <header>
+        <div id="backgroundlogo">
+            <img id="logo"src="logo.png">
+        </div>
+        <nav id="barreOutils">
+            <a href="acceuil.html">Acceuil</a>
+            <a id="actif" href="#">Achat</a>
+            <a href="#">Mon Profil</a>
+          </nav>
+    </header>
+    <div id="vm">
+        <div id="option_recherche">
+            <form action="" method="post" id="options">
+                <select name="fruit_legume" id="fruit_legume">
+                    <option value="">--Cherchez vous quelque chose en particulier ?--</option>
+                    <optgroup label="Fruits">
+                        <option value="banane">Banane</option>
+                        <option value="fraise">Fraise</option>
+                        <option value="framboise">Framboise</option>
+                    </optgroup>
+                    <optgroup label="Légumes">
+                        <option value="carrote">Carrote</option>
+                        <option value="haricot">Haricot</option>
+                        <option value="courgette">Courgette</option>
+                    </optgroup>
+                </select>
+                <input type="text" id="titre" name="titre" placeholder="Titre de l'annnonce">
+                <input type="text" id="localisation" name="localisation" placeholder="Localisation">
+                <input type="text" id="max" name="max" placeholder="prix max">
+                <input type="text" id="min" name="min" placeholder="prix min">
+                <button>Rechercher</button>
+            </form>
+        </div>
+        <div id="les_annonces">
+            <div class="annonce">
+                <img src="logo.png">
+                <div class="annonce_contenu">
+                    <h3>Vend Carrotte de qualité première en vrai</h1>
+                    <div class="annonce_texte">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                            Donec sed odio nec justo tempus consequat. Nunc sapien 
+                            orci, faucibus non ex eu, congue gravida augue. Maecenas
+                             bibendum ante sit amet tellus suscipit sollicitudin. 
+                             Sed tincidunt ut leo vitae mattis. Nunc sollicitudin 
+                             non purus at ultrices. Cras a neque sit amet lorem 
+                             laoreet vestibulum. Mauris consequat nibh volutpat, 
+                             molestie sem ac, ultricies felis...</p>
+                        <p class="annonce_localisation">
+                            Localisation : 15 rue du truc, Machin 55600
+                        </p>
+                    </div>
+                    <button>En savoir plus</button>
+                </div>
+            </div>
+            <div class="annonce">
+                <img src="logo.png">
+                <div class="annonce_contenu">
+                    <h3>Vend Carrotte de qualité première en vrai</h1>
+                    <div class="annonce_texte">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                            Donec sed odio nec justo tempus consequat. Nunc sapien 
+                            orci, faucibus non ex eu, congue gravida augue. Maecenas
+                             bibendum ante sit amet tellus suscipit sollicitudin. 
+                             Sed tincidunt ut leo vitae mattis. Nunc sollicitudin 
+                             non purus at ultrices. Cras a neque sit amet lorem 
+                             laoreet vestibulum. Mauris consequat nibh volutpat, 
+                             molestie sem ac, ultricies felis...</p>
+                        <p class="annonce_localisation">
+                            Localisation : 15 rue du truc, Machin 55600
+                        </p>
+                    </div>
+                    <button>En savoir plus</button>
+                </div>
+            </div>
+            <div class="annonce">
+                <img src="logo.png">
+                <div class="annonce_contenu">
+                    <h3>Vend Carrotte de qualité première en vrai</h1>
+                    <div class="annonce_texte">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                            Donec sed odio nec justo tempus consequat. Nunc sapien 
+                            orci, faucibus non ex eu, congue gravida augue. Maecenas
+                             bibendum ante sit amet tellus suscipit sollicitudin. 
+                             Sed tincidunt ut leo vitae mattis. Nunc sollicitudin 
+                             non purus at ultrices. Cras a neque sit amet lorem 
+                             laoreet vestibulum. Mauris consequat nibh volutpat, 
+                             molestie sem ac, ultricies felis...</p>
+                        <p class="annonce_localisation">
+                            Localisation : 15 rue du truc, Machin 55600
+                        </p>
+                    </div>
+                    <button>En savoir plus</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div>
+            <h3>Mon Compte :</h3>
+            <p>Connexion</p>
+            <p>Créer un compte</p>
+        </div>
+        <div>
+            <h3>A propos :</h3>
+            <p>Notre histoire</p>
+            <p>Durabilité</p>
+        </div>
+        <div>
+            <h3>Mentions Légales :</h3>
+            <p>Termes d'utilisation</p>
+            <p>Politique de confidentialité</p>
+        </div>
+        <div>
+            <h3>Partager :</h3>
+            <p>Facebook</p>
+            <p>Instagram</p>
+        </div>
+    </footer>
+    <script>
+        var vm = new Vue({
+            el: "#vm",
+            data : {
+                
+            },
+            methods : {
+            }
+        });
+    </script>
+</body>
+
+</html>

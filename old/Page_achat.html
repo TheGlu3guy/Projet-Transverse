@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Interface vendeur</title>
+        <meta charset="utf-8">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <link rel="stylesheet" href="achat.css">
+    </head>
+    <body>
+        <header>
+            <div id="backgroundlogo">
+                <img id="logo"src="logo.png">
+            </div>
+            <nav id="barreOutils">
+                <a href="#">Fil d'actualité</a>
+                <a href="#">Acceuil</a>
+                <a href="#">Achat</a>
+                <a href="#">Vente</a>
+                <a href="#">Mon Profil</a>
+              </nav>
+        </header>
+        <h1>Mettre un produit en vente</h1>
+        <h2>Ajouter un nouveau produit à la vente</h2>
+        <form action="Ajouter un produit" method="post" onsubmit="return false" id="mon_form">
+            <div class="top">
+                <div>
+                    <label for="produit">Produit(s) :</label>
+                    <select id="Produit" name="produit">
+                        <option value="none" selected disabled hidden>Produit</option>
+                        <optgroup label="Fruits">
+                            <option value="Poire">Poire</option>
+                            <option value="Pomme">Pomme</option>
+                            <option value="Fraise">Fraise</option>
+                            <option value="Framboise">Framboise</option>
+                            <option value="Banane">Banane</option>
+                            <option value="Clémentine">Clémentine</option>
+                            <option value="Mandarine">Mandarine</option>
+                            <option value="Citron">Citron</option>
+                            <option value="Citron Vert">Citron Vert</option>
+                            <option value="Orange">Orange</option>
+                            <option value="Abricot">Abricot</option>
+                            <option value="Pêche">Pêche</option>
+                            <option value="Prune">Prune</option>
+                            <option value="Cerise">Cerise</option>
+                            <option value="Nectarine">Nectarine</option>
+                            <option value="Mirabelle">Mirabelle</option>
+                            <option value="Melon">Melon</option>
+                            <option value="Myrtille">Myrtille</option>
+                            <option value="Cassis">Cassis</option>
+                            <option value="Groseille">Groseille</option>
+                            <option value="Mûre">Melon</option>
+                            <option value="Pastèque">Pastèque</option>
+                            <option value="Figue">Figue</option>
+                            <option value="Raisin">Raisin</option>
+                            <option value="Kiwi">Kiwi</option>
+                            <option value="Ananas">Ananas</option>
+                        </optgroup>
+                        <optgroup label="Légumes">
+                            <option value="Salade">Salade</option>
+                            <option value="Courgette">Courgette</option>
+                            <option value="Concombre">Concombre</option>
+                            <option value="Carotte">Carotte</option>
+                            <option value="Poivron">Poivron</option>
+                            <option value="Piment">Piment</option>
+                            <option value="Aubergine">Aubergine</option>
+                            <option value="Epinard">Epinard</option>
+                            <option value="Poireau">Poireau</option>
+                            <option value="Chou-fleur">Chou-fleur</option>
+                            <option value="Brocoli">Brocoli</option>
+                            <option value="Persil">Persil</option>
+                        </optgroup>
+                        <optgroup label="Fromages">
+                            <option value="Salade">Salade</option>
+                            <option value="Courgette">Courgette</option>
+                            <option value="Concombre">Concombre</option>
+                            <option value="Carotte">Carotte</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div>
+                    <label for="label">Label(s) :</label>
+                    <select id="Label" name="Label">
+                        <option value="none" selected disabled hidden>Label</option>
+                        <option value="AOC">Appellation d'Origine Contrôlée</option>
+                        <option value="AOP">Appellation d'Origine Protégée</option>
+                        <option value="IGP">Indication Géographique Protégée</option>
+                        <option value="LR">Label Rouge</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="prix">Prix :</label>
+                    <input type="text" id="prix" name="prix" placeholder="Veuillez saisir un prix" required>
+                    <select id="Prix" name="Prix" required>
+                        <option value="none" selected disabled hidden>Prix</option>
+                        <option value="Prix">Prix/kg</option>
+                        <option value="Prix">Prix/unité</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="photo">Photo(s) :</label>
+                    <input type="file" id="photo" name="photo" placeholder="Photo" accept="image/png, image/jpeg">
+                </div>
+                <div>
+                    <label for="quantité">Quantité disponible :</label>
+                    <input type="text" id="quantité" name="quantité" placeholder="Veuillez saisir une quantité" required>
+                    <select id="quantité" name="quantité" required>
+                        <option value="none" selected disabled hidden>Quantité</option>
+                        <option value="Quantité">/kg</option>
+                        <option value="Quantité">/unité</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="disponibilité">Date de disponibilité :</label>
+                    <input type="date" id="date_disponibilité" name="disponibilité" required>
+                </div>
+            </div>
+            <div class="bottom">
+                <button id='ajouter'>Ajouter mon produit à la vente</button>
+                <button id='supprimer' onclick="supprimer_element()">Tout supprimer</button>
+            </div>
+        </form>
+        <h2>Mes produits en vente</h2>
+    </body>
+</html>
