@@ -1,4 +1,4 @@
-<!doctype>
+<!DOCTYPE html>
 <html lang="fr">
     <head>
         <meta charset="utf-8">
@@ -31,7 +31,7 @@
                 display: flex;
                 padding: 12px ;
                 background-color: #333;
-                justify-content: center;
+                justify-content: flex-end;
             }
             header a{
                 color: #fff;
@@ -44,7 +44,6 @@
                 text-align: center ;
                 text-decoration: none;
                 font: bold 12px Verdana;
-
                 transition: all 1s ease-out;
             }
             header a:hover {
@@ -74,6 +73,10 @@
                 text-decoration: none;
                 color: white;
             }
+            footer #fb, #insta{
+                height: 20px;
+                width: 20px;
+            }
         </style>
     </head>
     <body>
@@ -83,16 +86,17 @@
                     <img id="logo"src="img/logo.png">
                 </div>
                 <nav id="barreOutils">
+                    <router-link to='/rechercher'>Rechercher</router-link>
                     <router-link id="actif" to='/'>Accueil</router-link>
                     <router-link to='/achat'>Achat</router-link>
                     <router-link to='/'>Mon Profil</router-link>
                 </nav>
             </header>
             <main>
-                <router-view
+                <router-view>
                     :prop="prop"
                     @recup-emit="RecupEmit"
-                ></router-view>
+                </router-view>
             </main>
             <footer>
                 <div>
@@ -112,27 +116,25 @@
                 </div>
                 <div>
                     <h3>Partager :</h3>
-                    <p>Facebook</p>
-                    <p>Instagram</p>
+                    <p><img src="img/fb.png" id="fb"> Facebook</p>
+                    <p><img src="img/insta.png" id=insta> Instagram</p>
                 </div>
             </footer>
         </div>
-        
         <script>
             const Acceuil = window.httpVueLoader('./components/Acceuil.vue')
             const Achat = window.httpVueLoader('./components/Achat.vue')
             const MentionLegales = window.httpVueLoader('./components/MentionLegales.vue')
-
+            const Rechercher = window.httpVueLoader('./components/Rechercher.vue')
             const routes = [
                 { path: '/', component: Acceuil },
                 { path: '/achat', component: Achat },
                 { path: '/mention_legales', component: MentionLegales },
+                { path: '/rechercher', component: Rechercher}
             ]
-
             const router = new VueRouter({
                 routes
             })
-
             var app = new Vue({
                 router,
                 el: '#app',
@@ -153,3 +155,4 @@
         </script>
     </body>
 </html>
+
