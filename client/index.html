@@ -127,12 +127,16 @@
             const MentionLegales = window.httpVueLoader('./components/MentionLegales.vue')
             const Rechercher = window.httpVueLoader('./components/Rechercher.vue')
             const Register = window.httpVueLoader('./components/Register.vue')
+            const Register_producteur = window.httpVueLoader('./components/Register_producteur.vue')
+            const Register_acheteur = window.httpVueLoader('./components/Register_acheteur.vue')
             const routes = [
                 { path: '/', component: Acceuil },
                 { path: '/achat', component: Achat },
                 { path: '/mention_legales', component: MentionLegales },
                 { path: '/rechercher', component: Rechercher},
-                { path: '/register', component: Register}
+                { path: '/register', component: Register},
+                { path: '/register_producteur', component: Register_producteur},
+                { path: '/register_producteur', component: Register_acheteur}
             ]
             const router = new VueRouter({
                 routes
