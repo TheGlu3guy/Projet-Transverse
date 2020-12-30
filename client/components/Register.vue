@@ -85,21 +85,4 @@
     const router = new VueRouter({
         routes
     })
-    var app = new Vue({
-        router,
-        el: '#app',
-        data: {
-            variable: "variable"
-        },
-        async mounted () {
-            /*const res = await axios.get('/api/articles')
-            this.articles = res.data*/
-        },
-        methods: {
-            /*async addToPanier (articleId) {
-                const res = await axios.post('/api/panier', { articleId, quantity: 1 })
-                this.panier.articles.push(res.data)
-            }*/
-        }
-    })
 </script>
