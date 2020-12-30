@@ -89,14 +89,14 @@
                     <router-link to='/rechercher'>Rechercher</router-link>
                     <router-link id="actif" to='/'>Accueil</router-link>
                     <router-link to='/achat'>Achat</router-link>
-                    <router-link to='/'>Mon Profil</router-link>
+                    <router-link to='/register'>Mon compte</router-link>
                 </nav>
             </header>
             <main>
-                <router-view>
+                <router-view
                     :prop="prop"
                     @recup-emit="RecupEmit"
-                </router-view>
+                ></router-view>
             </main>
             <footer>
                 <div>
@@ -126,11 +126,13 @@
             const Achat = window.httpVueLoader('./components/Achat.vue')
             const MentionLegales = window.httpVueLoader('./components/MentionLegales.vue')
             const Rechercher = window.httpVueLoader('./components/Rechercher.vue')
+            const Register = window.httpVueLoader('./components/Register.vue')
             const routes = [
                 { path: '/', component: Acceuil },
                 { path: '/achat', component: Achat },
                 { path: '/mention_legales', component: MentionLegales },
-                { path: '/rechercher', component: Rechercher}
+                { path: '/rechercher', component: Rechercher},
+                { path: '/register', component: Register}
             ]
             const router = new VueRouter({
                 routes
