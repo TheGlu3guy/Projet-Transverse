@@ -1,39 +1,41 @@
 <template>
-    <div id=login>
+    <div>
         <h2>Vous avez déjà un compte</h2>
-        <form @submit.prevent="loginUser()">
-            <div>
-                <label for="mail">Adresse email*</label>
-                <div class="field_mail">
-                    <input id="mail" v-model="email" placeholder="email">
+        <div id=login>
+            <form @submit.prevent="loginUser()">
+                <div>
+                    <label for="mail">Adresse email*</label>
+                    <div class="field_mail">
+                        <input id="mail" v-model="email" placeholder="email">
+                    </div>
                 </div>
-            </div>
-            <div>
-                <label for="password">Mot de passe*</label>
-                <div class="field_password">
-                    <input type="password" id="password" v-model="password" placeholder="Mot de passe">
+                <div>
+                    <label for="password">Mot de passe*</label>
+                    <div class="field_password">
+                        <input type="password" id="password" v-model="password" placeholder="Mot de passe">
+                    </div>
+                </div> 
+                <div id="bouton_se_connecter">
+                    <button type="submit">Se connecter</button>
                 </div>
-            </div> 
-            <div id="bouton_se_connecter">
-                <button type="submit">Se connecter</button>
-            </div>
-        </form>
-    </div>
-    <div id="register">
+            </form>
+        </div>
         <h2>Vous n'avez pas encore de compte</h2>
-        <div class="producteur">
-            <router-link to='/register_producteur'>Créer un compte producteur</router-link>
+        <div id="register">
+            <div class="producteur">
+                <router-link to='/register_producteur'>Créer un compte producteur</router-link>
+            </div>
+            <div class="acheteur">
+                <router-link to='/register_acheteur'>Créer un compte acheteur</router-link>
+            </div>
         </div>
-        <div class="acheteur">
-            <router-link to='/register_acheteur'>Créer un compte acheteur</router-link>
-        </div>
+        <main>
+            <router-view>
+                :prop="prop"
+                @recup-emit="RecupEmit"
+            </router-view>
+        </main>
     </div>
-    <main>
-        <router-view>
-            :prop="prop"
-            @recup-emit="RecupEmit"
-        </router-view>
-    </main>
 </template>
 
 <style scoped>
