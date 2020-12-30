@@ -1,51 +1,53 @@
 <template>
-    <h2>Créer votre compte</h2>
-    <div id="register">
-        <form @submit.prevent="createUser()">
-            <div>
-                <label for="civilité">Civilité*</label>
-                <div class="select_civilité">
-                    <select id="civilité" name="civilité">
-                        <option value="none" selected disabled hidden>Civilité</option>
-                        <option value="mme">Mme</option>
-                        <option value="m">M</option>
-                    </select>
-                </div>
-            </div>
-            <div>
-                <label for="lastname">Nom*</label>
-                <div class="field_lastname"> 
-                    <input type="texte" id="lastname" v-model="text" placeholder="Nom">
-                </div>
-            </div>
-            <div>
-                <label for="name">Prénom*</label>
-                <div class="field_firstname"> 
-                    <input type="texte" id="name" v-model="text" placeholder="Prénom">
-                </div>
-            </div>
-            <div>
-                <label for="mail">Email*</label>   
-                    <div class="field_mail">
-                        <input type="text" id="mail" v-model="email" placeholder="Email">
+    <div>
+        <h2>Créer votre compte</h2>
+        <div id="register">
+            <form @submit.prevent="createUser()">
+                <div>
+                    <label for="civilité">Civilité*</label>
+                    <div class="select_civilité">
+                        <select id="civilité" name="civilité">
+                            <option value="none" selected disabled hidden>Civilité</option>
+                            <option value="mme">Mme</option>
+                            <option value="m">M</option>
+                        </select>
                     </div>
-            </div>    
-            <div>
-                <label for="password">Mot de passe*</label>
-                <div class="field_password"> 
-                    <input type="password" id="password" v-model="password" placeholder="Mot de passe">
                 </div>
-            </div>
-            <div>
-                <label for="cpassword">Confirmation du mot de passe*</label>
-                <div class="field_cpassword">
-                    <input type="password" id="cpassword" v-model="c-password" placeholder="Confirmation du mot de passe">
-                </div> 
-            </div>
-            <div id="bouton_créer">                   
-                <button type="submit">Créer un compte</button>
-            </div>
-        </form>
+                <div>
+                    <label for="lastname">Nom*</label>
+                    <div class="field_lastname"> 
+                        <input type="texte" id="lastname" v-model="text" placeholder="Nom">
+                    </div>
+                </div>
+                <div>
+                    <label for="name">Prénom*</label>
+                    <div class="field_firstname"> 
+                        <input type="texte" id="name" v-model="text" placeholder="Prénom">
+                    </div>
+                </div>
+                <div>
+                    <label for="mail">Email*</label>   
+                        <div class="field_mail">
+                            <input type="text" id="mail" v-model="email" placeholder="Email">
+                        </div>
+                </div>    
+                <div>
+                    <label for="password">Mot de passe*</label>
+                    <div class="field_password"> 
+                        <input type="password" id="password" v-model="password" placeholder="Mot de passe">
+                    </div>
+                </div>
+                <div>
+                    <label for="cpassword">Confirmation du mot de passe*</label>
+                    <div class="field_cpassword">
+                        <input type="password" id="cpassword" v-model="c-password" placeholder="Confirmation du mot de passe">
+                    </div> 
+                </div>
+                <div id="bouton_créer">                   
+                    <button type="submit">Créer un compte</button>
+                </div>
+            </form>
+        </div>
     </div>
 </template>
 

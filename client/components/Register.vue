@@ -43,6 +43,7 @@
         margin :auto;
         width: max-content;
         margin-top: 2em;
+        margin-bottom : 2em;
     }
 
     .field_mail, .field_password{
@@ -75,8 +76,8 @@
 </style>
 
 <script>
-    const Register_producteur = window.httpVueLoader('./components/Register_producteur.vue')
-    const Register_acheteur = window.httpVueLoader('./components/Register_acheteur.vue')
+    const Register_producteur = window.httpVueLoader('./Register_producteur.vue')
+    const Register_acheteur = window.httpVueLoader('./Register_acheteur.vue')
     const routes = [
         { path: '/register_producteur', component: Register_producteur},
         { path: '/register_acheteur', component: Register_acheteur}
@@ -84,3 +85,21 @@
     const router = new VueRouter({
         routes
     })
+    var app = new Vue({
+        router,
+        el: '#app',
+        data: {
+            variable: "variable"
+        },
+        async mounted () {
+            /*const res = await axios.get('/api/articles')
+            this.articles = res.data*/
+        },
+        methods: {
+            /*async addToPanier (articleId) {
+                const res = await axios.post('/api/panier', { articleId, quantity: 1 })
+                this.panier.articles.push(res.data)
+            }*/
+        }
+    })
+</script>
