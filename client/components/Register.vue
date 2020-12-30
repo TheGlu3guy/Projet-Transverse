@@ -1,6 +1,6 @@
 <template>
-    <h2>Vous avez déjà un compte</h2>
     <div id=login>
+        <h2>Vous avez déjà un compte</h2>
         <form @submit.prevent="loginUser()">
             <div>
                 <label for="mail">Adresse email*</label>
@@ -19,8 +19,8 @@
             </div>
         </form>
     </div>
-    <h2>Vous n'avez pas encore de compte</h2>
     <div id="register">
+        <h2>Vous n'avez pas encore de compte</h2>
         <div class="producteur">
             <router-link to='/register_producteur'>Créer un compte producteur</router-link>
         </div>
