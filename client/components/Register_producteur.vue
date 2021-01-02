@@ -1,7 +1,10 @@
 <template>
     <div>
+        
         <h2>Créer votre compte</h2>
+        
         <div id="register">
+            
             <form @submit.prevent="createUser()">
                 <div>
                     <label for="civilité">Civilité*</label>
@@ -13,6 +16,7 @@
                         </select>
                     </div>
                 </div>
+                
                 <div>
                     <label for="lastname">Nom*</label>
                     <div class="field_lastname"> 
@@ -46,14 +50,16 @@
                 <div>
                     <label for="cpassword">Confirmation du mot de passe*</label>
                     <div class="field_cpassword">
-                        <input type="password" id="cpassword" v-model="c-password" placeholder="Confirmation du mot de passe">
+                        <input type="password" id="cpassword" v-model="c_password" placeholder="Confirmation du mot de passe">
                     </div> 
                 </div>
                 <div id="bouton_créer">                   
                     <button type="submit">Créer un compte</button>
                 </div>
             </form>
+           
         </div>
+        
     </div>
 </template>
 
@@ -89,32 +95,30 @@
 
 <script>
     module.exports = {
-        props: {
-        articles: { type: Array, default: [] },
-        panier: { type: Object }
-        },
         data () {
-        return {
-            nom: '',
-            prénom:'',
-            adresse:'',
-            email: '',
-            password: ''
-        }
+            return {
+                text: '',
+                nom: '',
+                prénom:'',
+                adresse:'',
+                email: '',
+                password: '',
+                c_password: ''
+            }
         },
         async mounted () {
         },
         methods: {
-        async createUser() {
-            await axios.post('/api/register', {
-            nom: this.nom,
-            prénom: this.prénom,
-            adresse: this.adresse,
-            email: this.email,
-            password: this.password
-            })
-            this.$router.push('/')
-        }
+            async createUser() {
+                await axios.post('/api/register', {
+                nom: this.nom,
+                prénom: this.prénom,
+                adresse: this.adresse,
+                email: this.email,
+                password: this.password
+                })
+                this.$router.push('/')
+            }
         }
     }
 </script>

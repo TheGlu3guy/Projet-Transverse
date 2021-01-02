@@ -94,8 +94,6 @@
             </header>
             <main>
                 <router-view
-                    :prop="prop"
-                    @recup-emit="RecupEmit"
                 ></router-view>
             </main>
             <footer>
@@ -129,6 +127,7 @@
             const Register = window.httpVueLoader('./components/Register.vue')
             const Register_producteur = window.httpVueLoader('./components/Register_producteur.vue')
             const Register_acheteur = window.httpVueLoader('./components/Register_acheteur.vue')
+
             const routes = [
                 { path: '/', component: Acceuil },
                 { path: '/achat', component: Achat },
