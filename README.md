@@ -15,9 +15,7 @@ Alors comme vous pouvez le constater y'a plein de dossier du coup je vais les r�
         fichiers d'arrivé du client, j'ai mis le header et le footer dedans vu que c'est commun à toute les pages, y'a un router view qui en fonction de l'url demandé par le navigateur va affiché une certaine vue par ex : url_site/ -> Acceuil, url_site/ -> Acceuil, url_site/achat -> Achat (et c'est tout pour le moment il manque plein de trucs)
         C'est ici qu'il faut ajouter votre page, vous créer le composant .vue dans components/ et vous le "connecter" à un url dans index.html pour pouvoir le voir en allant à l'url que vous aurez choisit.
     - components/
-        C'est ici qu'il faut mettre les composants .vue suivez les exemple déjà réalisé mais en gros il faut un <template><div>ici l'html</div></template>
-        <style scoped>ici le css</style>
-        <script>ici le js de vuejs</script> 
+        C'est ici qu'il faut mettre les composants .vue suivez les exemple déjà réalisé
     - img/
         Les images hein
 - server
@@ -25,6 +23,14 @@ Alors comme vous pouvez le constater y'a plein de dossier du coup je vais les r�
     - routes
         - api.js
             C'est ici qu'est l'api avec les get, post, update, delete etc
+            A faire :
+                - inscription normale --FAIT--
+                - inscription producteur
+                - connexion --FAIT--
+                - ajout d'une annonce
+                - recupération des annonces dispo (en fonction des dates etc... donc plusieurs routes)
+                - récup annonce favoris
+                - ajout annonce favoris
     - app.js
         aussi un fichiers copié collé en relation avec le comportement du serveur, les modules etc
 

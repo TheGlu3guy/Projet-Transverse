@@ -16,8 +16,8 @@ client.connect()
 const users = []
 
 /* Route à faire :
-  - inscription --FAIT, à tester--
-  - connexion --FAIT, à tester--
+  - inscription --FAIT--
+  - connexion --FAIT--
   - ajout d'une annonce
   - recupération des annonces dispo (en fonction des dates etc... donc plusieurs routes)
   - récup annonce favoris
@@ -31,7 +31,7 @@ router.post('/login', async (req, res) => {
   const password = req.body.password
 
   const result = await client.query({
-    text: 'SELECT * FROM user WHERE email=$1',
+    text: 'SELECT * FROM users WHERE email=$1',
     values: [email]
   })
 
