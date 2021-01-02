@@ -2335,6 +2335,19 @@
 							"width": 249,
 							"height": 64,
 							"text": "Une annonce est posté par un user mais il faut vérifier si l'user est un producteur ou pas, ce qui est fait à la connexion"
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAF2w2hxQrI5FGM=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"font": "Arial;13;0",
+							"left": 64,
+							"top": 549,
+							"width": 153,
+							"height": 103,
+							"text": "Visiblement d'ailleurs faut pas faire d'attribut avec des majuscule sinon ça marche pas, j'ai chercher sur internet personne sait pk "
 						}
 					]
 				},
