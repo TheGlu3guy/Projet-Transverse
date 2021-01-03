@@ -27,8 +27,10 @@ Alors comme vous pouvez le constater y'a plein de dossier du coup je vais les r�
                 - inscription normale --FAIT--
                 - inscription producteur --FAIT--
                 - connexion --FAIT--
-                - ajout d'une annonce
-                - recupération des annonces dispo (en fonction des dates etc... donc plusieurs routes)
+                - recupération des produits (carrotes etc...) --FAIT--
+                - ajout d'une annonce --FAIT--
+                - recupération des annonces --FAIT--
+                - recup des annonces avec filtres
                 - récup annonce favoris
                 - ajout annonce favoris
     - app.js

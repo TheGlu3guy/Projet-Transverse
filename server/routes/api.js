@@ -62,6 +62,7 @@ router.post('/login', async (req, res) => {
 
     res.json({
       id: user.id_user,
+      isProducteur: user.isProducteur,
       email: user.email
     })
   } else {
@@ -160,42 +161,84 @@ router.post('/annonce', async (req, res) => {
   const titre = req.body.titre
   const prix = req.body.prix
   const localisation = req.body.localisation
+  const id_produit = req.body.id_produit
+  const quantite = req.body.quantite
+  const in_kg = req.body.quantite
+  //un bolean qui dit si la quantite et le prix est en kilo (true) ou par piece (false)
   
   if(typeof description === 'undefined'
     || typeof titre === 'undefined'
     || typeof prix === 'undefined'
-    || typeof localisation === 'undefined'){
+    || typeof localisation === 'undefined'
+    || typeof id_produit === 'undefined'
+    || typeof quantite === 'undefined'
+    || typeof in_kg === 'undefined'){
     res.status(401).json({
       message: 'annonce incomplete'
     })
     return
   }
-  if(typeof req.session.userId === 'undefined'){
+  /*if(typeof req.session.userId === 'undefined'){
     res.status(401).json({
       message: 'user not connected'
     })
     return
-  }
+  }*/
   await client.query({
-    text: `INSERT INTO annonces (id_user, description, titre, prix, location)
-    VALUES ($1, $2, $3, $4, $5)
+    text: `INSERT INTO annonces (id_user, description, titre, prix, localisation, id_produit, quantite, in_kg)
+    VALUES ($1, $2, $3, $4, $5, $6, $7)
     `,
-    values: [req.session.userId, description, titre, prix, localisation]
+    values: [req.session.userId, description, titre, prix, localisation, id_produit, quantite, in_kg]
   })
   res.send('ok')
 })
 
-router.post('/annonce', async (req, res) => {
+router.get('/annonce', async (req, res) => {
   const result = await client.query({
     text: 'SELECT * FROM annonces'
   })
 
-  if (result.rows.length > 0) {
+  if (result.rows.length <= 0) {
     res.status(401).json({
       message: 'il n\'y a pas encore d\'annonces'
     })
     return
   }
+
+  res.send(result.rows)
 })
 
+router.get('/produits', async(req, res)=> {
+  const id_produit = req.body.id_produit
+  
+  if(typeof id_produit === 'undefined'){
+    const result = await client.query({
+      text : 'SELECT * from produits'
+    })
+  
+    if (result.rows.length <= 0) {
+      res.status(401).json({
+        message: 'il n\'y a pas encore de produits'
+      })
+      return
+    }
+  
+    res.send(result.rows)
+  } else {
+    const result = await client.query({
+      text : 'SELECT * from produits WHERE id_produit = $1',
+      values : [id_produit]
+    })
+
+    if (result.rows.length <= 0) {
+      res.status(401).json({
+        message: 'Ce produit n\'existe pas.'
+      })
+      return
+    }
+
+    res.send(result.rows[0])
+  }
+  
+})
 module.exports = router
