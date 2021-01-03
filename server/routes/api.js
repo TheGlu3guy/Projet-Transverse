@@ -22,8 +22,6 @@ const users = []
   - ajout annonce favoris
 */
 
-
-
 router.post('/login', async (req, res) => {
   const email = req.body.email
   const password = req.body.password
@@ -39,15 +37,31 @@ router.post('/login', async (req, res) => {
     })
     return
   }
-  // si on a pas trouvé l'utilisateur
-  // alors on le crée
+
   const user = result.rows[0]
 
+  //verifions le mot de passe
   if (await bcrypt.compare(password, user.password)) {
-    // alors connecter l'utilisateur
-    req.session.userId = user.id
+    req.session.userId = user.id_user
+    req.session.email = user.email
+    req.session.pseudo = user.pseudo
+    
+    //verifions si l'utilisateur est un producteur
+    const result2 = await client.query({
+      text: 'SELECT * FROM producteur WHERE id_user=$1',
+      values: [user.id_user]
+    })
+    
+    if(result2.rowCount>0){
+      const producteur = result2.rows[0]
+      req.session.isProducteur = true
+      req.session.description = producteur.description
+    }else{
+      req.session.isProducteur = false
+    }
+
     res.json({
-      id: user.id,
+      id: user.id_user,
       email: user.email
     })
   } else {
@@ -87,6 +101,7 @@ router.post('/register', async (req, res) => {
   })
   res.send('ok')
 })
+
 router.post('/registerProducteur', async (req, res) => {
   const email = req.body.email
   const password = req.body.password
@@ -139,4 +154,48 @@ router.post('/registerProducteur', async (req, res) => {
   
   res.send('ok')
 })
+
+router.post('/annonce', async (req, res) => {
+  const description = req.body.description
+  const titre = req.body.titre
+  const prix = req.body.prix
+  const localisation = req.body.localisation
+  
+  if(typeof description === 'undefined'
+    || typeof titre === 'undefined'
+    || typeof prix === 'undefined'
+    || typeof localisation === 'undefined'){
+    res.status(401).json({
+      message: 'annonce incomplete'
+    })
+    return
+  }
+  if(typeof req.session.userId === 'undefined'){
+    res.status(401).json({
+      message: 'user not connected'
+    })
+    return
+  }
+  await client.query({
+    text: `INSERT INTO annonces (id_user, description, titre, prix, location)
+    VALUES ($1, $2, $3, $4, $5)
+    `,
+    values: [req.session.userId, description, titre, prix, localisation]
+  })
+  res.send('ok')
+})
+
+router.post('/annonce', async (req, res) => {
+  const result = await client.query({
+    text: 'SELECT * FROM annonces'
+  })
+
+  if (result.rows.length > 0) {
+    res.status(401).json({
+      message: 'il n\'y a pas encore d\'annonces'
+    })
+    return
+  }
+})
+
 module.exports = router

@@ -25,7 +25,7 @@ Alors comme vous pouvez le constater y'a plein de dossier du coup je vais les r√
             C'est ici qu'est l'api avec les get, post, update, delete etc
             A faire :
                 - inscription normale --FAIT--
-                - inscription producteur
+                - inscription producteur --FAIT--
                 - connexion --FAIT--
                 - ajout d'une annonce
                 - recup√©ration des annonces dispo (en fonction des dates etc... donc plusieurs routes)

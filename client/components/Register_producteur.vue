@@ -1,10 +1,7 @@
 <template>
     <div>
-        
         <h2>Créer votre compte</h2>
-        
         <div id="register">
-            
             <form @submit.prevent="createUser()">
                 <div>
                     <label for="civilité">Civilité*</label>
