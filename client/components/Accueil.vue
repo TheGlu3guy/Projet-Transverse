@@ -2,9 +2,8 @@
     <div id="vm">
         <div id="bienvenue">
             <h1>Bonjour "Nom d'utilisateur"</h1>
-            <p>Instrutions sur comment utiliser le site :<br>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ac mi vel nibh pretium posuere. Integer tempor lorem justo, et aliquam turpis aliquet in. Pellentesque blandit pellentesque risus quis interdum. Sed vitae cursus sem. Duis ac orci ut nulla blandit vestibulum ac id leo. Integer luctus eros in dolor vestibulum sollicitudin. Nullam et quam pellentesque, convallis nunc vel, sollicitudin felis. Suspendisse sollicitudin leo sit amet ex gravida, id viverra eros ornare. Nunc libero tellus, efficitur non auctor faucibus, porta vitae magna. Aenean vel orci metus. Sed ut ligula ornare, ultricies tortor eu, porttitor nisi.
-                </p>
+            <p>Bienvenue sur notre site!<br>
+                Vous pourrez y trouvez des producteurs vendant des fruits et légumes bio et frais !<p>
         </div>
         <div class="actualites">
             <div>
@@ -66,10 +65,15 @@
 
 <style scoped>
     #bienvenue{
+        margin-left: auto;
+        margin-right: auto;
         width: 800px;
-        background: #E9E9E9;
-        padding: 20px;
-        margin: 0 auto;
+        height: 350px;
+        margin-bottom: 2em;
+        background-color: #ECF0F3;
+        border-radius: 10px;
+        box-shadow: 10px 10px 20px 0px #cdd3dd;
+        padding: 10px;
     }
     #bienvenue h1{
         text-align: center;

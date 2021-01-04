@@ -1,110 +1,202 @@
 <template>
     <div>
-        <h1>Mettre un produit en vente</h1>
-        <h2>Ajouter un nouveau produit à la vente</h2>
-        <form action="Ajouter un produit" method="post" onsubmit="return false" id="mon_form">
-            <div class="top">
+        <div class="nouveau_produit">
+            <h2>Ajouter un nouveau produit à la vente</h2>
+            <form action="Ajouter un produit" method="post" onsubmit="return false" id="mon_form">
+                <div class="ajouter_produit">
+                    <div class="field_produit">
+                        <label for="produit">Produit(s) :</label>
+                        <select id="Produit" name="produit">
+                            <option value="none" selected disabled hidden>Produit</option>
+                            <optgroup label="Fruits">
+                                <option value="Poire">Poire</option>
+                                <option value="Pomme">Pomme</option>
+                                <option value="Fraise">Fraise</option>
+                                <option value="Framboise">Framboise</option>
+                                <option value="Banane">Banane</option>
+                                <option value="Clémentine">Clémentine</option>
+                                <option value="Mandarine">Mandarine</option>
+                                <option value="Citron">Citron</option>
+                                <option value="Citron Vert">Citron Vert</option>
+                                <option value="Orange">Orange</option>
+                                <option value="Abricot">Abricot</option>
+                                <option value="Pêche">Pêche</option>
+                                <option value="Prune">Prune</option>
+                                <option value="Cerise">Cerise</option>
+                                <option value="Nectarine">Nectarine</option>
+                                <option value="Mirabelle">Mirabelle</option>
+                                <option value="Melon">Melon</option>
+                                <option value="Myrtille">Myrtille</option>
+                                <option value="Cassis">Cassis</option>
+                                <option value="Groseille">Groseille</option>
+                                <option value="Mûre">Melon</option>
+                                <option value="Pastèque">Pastèque</option>
+                                <option value="Figue">Figue</option>
+                                <option value="Raisin">Raisin</option>
+                                <option value="Kiwi">Kiwi</option>
+                                <option value="Ananas">Ananas</option>
+                            </optgroup>
+                            <optgroup label="Légumes">
+                                <option value="Salade">Salade</option>
+                                <option value="Courgette">Courgette</option>
+                                <option value="Concombre">Concombre</option>
+                                <option value="Carotte">Carotte</option>
+                                <option value="Poivron">Poivron</option>
+                                <option value="Piment">Piment</option>
+                                <option value="Aubergine">Aubergine</option>
+                                <option value="Epinard">Epinard</option>
+                                <option value="Poireau">Poireau</option>
+                                <option value="Chou-fleur">Chou-fleur</option>
+                                <option value="Brocoli">Brocoli</option>
+                                <option value="Persil">Persil</option>
+                            </optgroup>
+                            <optgroup label="Fromages">
+                                <option value="Salade">Salade</option>
+                                <option value="Courgette">Courgette</option>
+                                <option value="Concombre">Concombre</option>
+                                <option value="Carotte">Carotte</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="field_label">
+                        <label for="label">Label(s) :</label>
+                        <select id="Label" name="Label">
+                            <option value="none" selected disabled hidden>Label</option>
+                            <option value="AOC">Appellation d'Origine Contrôlée</option>
+                            <option value="AOP">Appellation d'Origine Protégée</option>
+                            <option value="IGP">Indication Géographique Protégée</option>
+                            <option value="LR">Label Rouge</option>
+                        </select>
+                    </div>
+                    <div class="field_prix">
+                        <label for="prix">Prix :</label>
+                        <input type="text" id="prix" name="prix" placeholder="Veuillez saisir un prix" required>
+                        <select id="Prix" name="Prix" required>
+                            <option value="none" selected disabled hidden>Prix</option>
+                            <option value="Prix">Prix/kg</option>
+                            <option value="Prix">Prix/unité</option>
+                        </select>
+                    </div>
+                    <div class="field_photo">
+                        <label for="photo">Photo(s) :</label>
+                        <input type="file" id="photo" name="photo" placeholder="Photo" accept="image/png, image/jpeg">
+                    </div>
+                    <div class="field_quantité">
+                        <label for="quantité">Quantité disponible :</label>
+                        <input type="text" id="quantité" name="quantité" placeholder="Veuillez saisir une quantité" required>
+                        <select id="quantité" name="quantité" required>
+                            <option value="none" selected disabled hidden>Quantité</option>
+                            <option value="Quantité">/kg</option>
+                            <option value="Quantité">/unité</option>
+                        </select>
+                    </div>
+                    <div class="field_disponibilité">
+                        <label for="disponibilité">Date de disponibilité :</label>
+                        <input type="date" id="date_disponibilité" name="disponibilité" required>
+                    </div>
+                    <div class="field_adresse">
+                        <label for="adresse">Adresse de retrait :</label>
+                        <input type="text" id="adresse" name="adresse" placeholder="Veuillez saisir une adresse" required>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <button id='ajouter'>Ajouter mon produit à la vente</button>
+                    <button id='supprimer' onclick="supprimer_element()">Tout supprimer</button>
+                </div>
+            </form>
+        </div>
+        <hr>
+        <div class="mes_produits">
+            <h2>Mes produits en vente</h2>
+            <div class="produits_en_vente">
                 <div>
-                    <label for="produit">Produit(s) :</label>
-                    <select id="Produit" name="produit">
-                        <option value="none" selected disabled hidden>Produit</option>
-                        <optgroup label="Fruits">
-                            <option value="Poire">Poire</option>
-                            <option value="Pomme">Pomme</option>
-                            <option value="Fraise">Fraise</option>
-                            <option value="Framboise">Framboise</option>
-                            <option value="Banane">Banane</option>
-                            <option value="Clémentine">Clémentine</option>
-                            <option value="Mandarine">Mandarine</option>
-                            <option value="Citron">Citron</option>
-                            <option value="Citron Vert">Citron Vert</option>
-                            <option value="Orange">Orange</option>
-                            <option value="Abricot">Abricot</option>
-                            <option value="Pêche">Pêche</option>
-                            <option value="Prune">Prune</option>
-                            <option value="Cerise">Cerise</option>
-                            <option value="Nectarine">Nectarine</option>
-                            <option value="Mirabelle">Mirabelle</option>
-                            <option value="Melon">Melon</option>
-                            <option value="Myrtille">Myrtille</option>
-                            <option value="Cassis">Cassis</option>
-                            <option value="Groseille">Groseille</option>
-                            <option value="Mûre">Melon</option>
-                            <option value="Pastèque">Pastèque</option>
-                            <option value="Figue">Figue</option>
-                            <option value="Raisin">Raisin</option>
-                            <option value="Kiwi">Kiwi</option>
-                            <option value="Ananas">Ananas</option>
-                        </optgroup>
-                        <optgroup label="Légumes">
-                            <option value="Salade">Salade</option>
-                            <option value="Courgette">Courgette</option>
-                            <option value="Concombre">Concombre</option>
-                            <option value="Carotte">Carotte</option>
-                            <option value="Poivron">Poivron</option>
-                            <option value="Piment">Piment</option>
-                            <option value="Aubergine">Aubergine</option>
-                            <option value="Epinard">Epinard</option>
-                            <option value="Poireau">Poireau</option>
-                            <option value="Chou-fleur">Chou-fleur</option>
-                            <option value="Brocoli">Brocoli</option>
-                            <option value="Persil">Persil</option>
-                        </optgroup>
-                        <optgroup label="Fromages">
-                            <option value="Salade">Salade</option>
-                            <option value="Courgette">Courgette</option>
-                            <option value="Concombre">Concombre</option>
-                            <option value="Carotte">Carotte</option>
-                        </optgroup>
-                    </select>
+                    <div class="produit_en_vente">
+                    </div>
+                    <p>Produit2</p>
                 </div>
                 <div>
-                    <label for="label">Label(s) :</label>
-                    <select id="Label" name="Label">
-                        <option value="none" selected disabled hidden>Label</option>
-                        <option value="AOC">Appellation d'Origine Contrôlée</option>
-                        <option value="AOP">Appellation d'Origine Protégée</option>
-                        <option value="IGP">Indication Géographique Protégée</option>
-                        <option value="LR">Label Rouge</option>
-                    </select>
+                    <div class="produit_en_vente">
+                    </div>
+                    <p>Produit2</p>
                 </div>
-                <div>
-                    <label for="prix">Prix :</label>
-                    <input type="text" id="prix" name="prix" placeholder="Veuillez saisir un prix" required>
-                    <select id="Prix" name="Prix" required>
-                        <option value="none" selected disabled hidden>Prix</option>
-                        <option value="Prix">Prix/kg</option>
-                        <option value="Prix">Prix/unité</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="photo">Photo(s) :</label>
-                    <input type="file" id="photo" name="photo" placeholder="Photo" accept="image/png, image/jpeg">
-                </div>
-                <div>
-                    <label for="quantité">Quantité disponible :</label>
-                    <input type="text" id="quantité" name="quantité" placeholder="Veuillez saisir une quantité" required>
-                    <select id="quantité" name="quantité" required>
-                        <option value="none" selected disabled hidden>Quantité</option>
-                        <option value="Quantité">/kg</option>
-                        <option value="Quantité">/unité</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="disponibilité">Date de disponibilité :</label>
-                    <input type="date" id="date_disponibilité" name="disponibilité" required>
+                                <div>
+                    <div class="produit_en_vente">
+                    </div>
+                    <p>Produit3</p>
                 </div>
             </div>
-            <div class="bottom">
-                <button id='ajouter'>Ajouter mon produit à la vente</button>
-                <button id='supprimer' onclick="supprimer_element()">Tout supprimer</button>
-            </div>
-        </form>
-        <h2>Mes produits en vente</h2>
+        </div>
     </div>
 </template>
 
 <style scoped>
+    select{
+        border: none;
+        height: 25px;
+    }
+    .nouveau_produit{
+        margin-left: auto;
+        margin-right: auto;
+        width: 520px;
+        height: 420px;
+        margin-bottom: 2em;
+        background-color: #ECF0F3;
+        border-radius: 10px;
+        box-shadow: 10px 10px 20px 0px #cdd3dd;
+        padding: 10px;
+    }
+    .mes_produits{
+        margin-left: auto;
+        margin-right: auto;
+        width: 520px;
+        height: 310px;
+        margin-bottom: 2em;
+        margin-top: 2em;
+        background-color: #ECF0F3;
+        border-radius: 10px;
+        box-shadow: 10px 10px 20px 0px #cdd3dd;
+        padding: 10px;
+    }
+    h2{
+        text-align: center;
+    }
+    .bottom{
+        margin-left: auto;
+        margin-right: auto;
+        width: max-content;
+    }
+    .field_disponibilité, .field_label, .field_prix, .field_quantité, .field_photo, .field_produit, .field_adresse{
+        margin-bottom: .9em;
+    }
+    .produits_en_vente{
+        display: flex;
+        flex-direction: row;
+    }
+    .produit_en_vente{
+        display: flex;
+        height: 150px;
+        width: 150px;
+        border: 1px solid gray;
+        margin: auto 10px;
+        background: white;
+    }
+    .produits_en_vente p{
+        text-align: center;
+        font-weight: bold;
+    }
+    input{
+        background-color: white;
+        border: none;
+        border-bottom: 1px solid black;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: .5em;
+        height: 25px;
+    }
+    hr{
+        width: 520px;
+        margin: 0 auto;
+    }
 </style>
 
 <script>

@@ -1,9 +1,9 @@
 <template>
     <div>
-        <h2>Créer votre compte</h2>
         <div id="register">
+            <h2>Créer votre compte acheteur</h2>
             <form @submit.prevent="createUser()">
-                <div>
+                <div class="signup">
                     <label for="civilité">Civilité*</label>
                     <div class="select_civilité">
                         <select id="civilité" name="civilité">
@@ -13,34 +13,34 @@
                         </select>
                     </div>
                 </div>
-                <div>
+                <div class="signup">
                     <label for="lastname">Nom*</label>
                     <div class="field_lastname"> 
                         <input type="texte" id="lastname" v-model="text" placeholder="Nom">
                     </div>
                 </div>
-                <div>
+                <div class="signup">
                     <label for="name">Prénom*</label>
                     <div class="field_firstname"> 
                         <input type="texte" id="name" v-model="text" placeholder="Prénom">
                     </div>
                 </div>
-                <div>
+                <div class="signup">
                     <label for="mail">Email*</label>   
                         <div class="field_mail">
                             <input type="text" id="mail" v-model="email" placeholder="Email">
                         </div>
                 </div>    
-                <div>
+                <div class="signup">
                     <label for="password">Mot de passe*</label>
                     <div class="field_password"> 
                         <input type="password" id="password" v-model="password" placeholder="Mot de passe">
                     </div>
                 </div>
-                <div>
+                <div class="signup">
                     <label for="cpassword">Confirmation du mot de passe*</label>
                     <div class="field_cpassword">
-                        <input type="password" id="cpassword" v-model="c_password" placeholder="Confirmation du mot de passe">
+                        <input type="password" id="cpassword" v-model="c_password" placeholder="Mot de passe">
                     </div> 
                 </div>
                 <div id="bouton_créer">                   
@@ -53,31 +53,54 @@
 
 <style scoped>
     #register{
-        margin: 0 auto;
-        width : 200px;
-        margin-bottom: 2em;
+        width: 400px;
+        height: 545px;
+        background-color: #DFDFDF;
+        padding: 10px;
+        box-shadow: 10px 10px 20px 0px #cdd3dd;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 10px;
     }
-
     label{
-        color: #004079;
+        color: black;
         font-size: 14px;
         margin-bottom: .9em;
     }
-
     #bouton_créer{
-        margin: 0 auto;
-        width: 150px;
+        text-align: center;
     }
-
+    button{
+        border-radius: 50px;
+        border: none;
+        background-color: #C4C4C4;
+        width: 150px;
+        height: 40px;
+    }
     h2{
         text-align: center;
-        color: #004079;
+        color: black;
     }
-
     .select_civilité, .field_lastname, .field_firstname, .field_mail, .field_password, .field_cpassword{
         display: block;
         margin-bottom: .9em;
         margin-top: .2em;
+    }
+    .signup{
+        text-align: center;
+    }
+    input{
+        background-color: white;
+        border: none;
+        border-bottom: 1px solid black;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: .5em;
+        height: 25px;
+    }
+    select{
+        border: none;
+        height: 25px;
     }
 </style>
 
