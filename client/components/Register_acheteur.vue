@@ -40,7 +40,7 @@
                 <div>
                     <label for="cpassword">Confirmation du mot de passe*</label>
                     <div class="field_cpassword">
-                        <input type="password" id="cpassword" v-model="c-password" placeholder="Confirmation du mot de passe">
+                        <input type="password" id="cpassword" v-model="c_password" placeholder="Confirmation du mot de passe">
                     </div> 
                 </div>
                 <div id="bouton_créer">                   
