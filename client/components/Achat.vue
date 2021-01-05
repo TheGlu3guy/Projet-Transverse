@@ -54,7 +54,7 @@
                             Localisation : 15 rue du truc, Machin 55600
                         </p>
                     </div>
-                    <button>En savoir plus</button>
+                    <button @click="$router.push('/annonce_produit')">En savoir plus</button>
                 </div>
             </div>
             <div class="annonce">
@@ -74,7 +74,7 @@
                             Localisation : 15 rue du truc, Machin 55600
                         </p>
                     </div>
-                    <button>En savoir plus</button>
+                    <button @click="$router.push('/annonce_produit')">En savoir plus</button>
                 </div>
             </div>
             <div class="annonce">
@@ -94,7 +94,7 @@
                             Localisation : 15 rue du truc, Machin 55600
                         </p>
                     </div>
-                    <button>En savoir plus</button>
+                    <button @click="$router.push('/annonce_produit')">En savoir plus</button>
                 </div>
             </div>
         </div>
@@ -218,4 +218,11 @@
 </style>
 
 <script>
+    const Annonce_produit = window.httpVueLoader('./Annonce_produit.vue')
+    const routes = [
+        { path: '/annonce_produit', component: Annonce_produit, meta: {title: 'Produit'} },
+    ]
+    const router = new VueRouter({
+        routes
+    })
 </script>

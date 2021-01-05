@@ -135,6 +135,8 @@
             const Register_acheteur = window.httpVueLoader('./components/Register_acheteur.vue')
             const Vente = window.httpVueLoader('./components/Vente.vue')
             const Notre_histoire = window.httpVueLoader('./components/Notre_histoire.vue')
+            const Annonce_produit = window.httpVueLoader('./components/Annonce_produit.vue')
+            const Profil_producteur = window.httpVueLoader('./components/Profil_producteur.vue')
             const routes = [
                 { path: '/accueil', component: Accueil, meta: {title: 'Accueil'} },
                 { path: '/vente', component: Vente, meta: {title: 'Vente'} },
@@ -144,7 +146,9 @@
                 { path: '/register', component: Register, meta: {title: 'Mon compte'}},
                 { path: '/register_producteur', component: Register_producteur, meta: {title: 'Créer un compte producteur'}},
                 { path: '/register_acheteur', component: Register_acheteur, meta: {title: 'Créer un compte acheteur'}},
-                { path: '/notre_histoire', component: Notre_histoire, meta: {title: 'Notre histoire'}}
+                { path: '/notre_histoire', component: Notre_histoire, meta: {title: 'Notre histoire'}},
+                { path: '/annonce_produit', component: Annonce_produit, meta: {title: 'Produit'}},
+                { path: '/profil_producteur', component: Profil_producteur, meta: {title: 'Profil producteur'}}
             ]
             const router = new VueRouter({
                 routes
