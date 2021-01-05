@@ -136,6 +136,7 @@
     select{
         border: none;
         height: 25px;
+        width: 250px;
     }
     .bouton{
         text-align: center

@@ -126,6 +126,7 @@
         margin-left: auto;
         margin-right: auto;
         margin-bottom: .5em;
+        width: 350px;
     }
     form input{
         background-color: white;

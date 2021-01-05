@@ -61,7 +61,9 @@
         height: 30px;
     }
     .login_mail, .login_password{
-        text-align: center;
+        width: 200px;
+        margin-left: auto;
+        margin-right: auto;
     }
     #mail_icon{
         width: 20px;
@@ -118,6 +120,7 @@
         margin-right: auto;
         margin-bottom: .5em;
         height: 25px;
+        width: 200px;
     }
 </style>
 

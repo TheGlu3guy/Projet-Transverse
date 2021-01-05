@@ -33,6 +33,7 @@
                 </div>    
                 <div class="signup">
                     <label for="password">Mot de passe*</label>
+                    <p id="consigne">Votre mot de passe doit contenir 8 caractères, dont au moins une minuscule, une majuscule et un chiffre.</p>
                     <div class="field_password"> 
                         <input type="password" id="password" v-model="password" placeholder="Mot de passe">
                     </div>
@@ -42,6 +43,9 @@
                     <div class="field_cpassword">
                         <input type="password" id="cpassword" v-model="c_password" placeholder="Mot de passe">
                     </div> 
+                </div>
+                <div class="required">
+                    <p>*Champs obligatoires</p>
                 </div>
                 <div id="bouton_créer">                   
                     <button type="submit">Créer un compte</button>
@@ -54,8 +58,8 @@
 <style scoped>
     #register{
         width: 400px;
-        height: 545px;
-        background-color: #DFDFDF;
+        height: 660px;
+        background-color: #ECF0F3;
         padding: 10px;
         box-shadow: 10px 10px 20px 0px #cdd3dd;
         margin-left: auto;
@@ -87,7 +91,24 @@
         margin-top: .2em;
     }
     .signup{
-        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        width: 200px;
+    }
+    #consigne{
+        color: #6C6B6C;
+        font-size: smaller;
+        text-align: justify;
+    }
+    .required{
+        margin-left: auto;
+        margin-right: auto;
+        width: 200px;
+        color: #6C6B6C;
+        font-size: smaller;
+        text-align: justify;
+        margin-bottom: .9em;
+        margin-top: .2em;
     }
     input{
         background-color: white;
@@ -97,10 +118,12 @@
         margin-right: auto;
         margin-bottom: .5em;
         height: 25px;
+        width: 200px;
     }
     select{
         border: none;
         height: 25px;
+        width: 200px;
     }
 </style>
 
