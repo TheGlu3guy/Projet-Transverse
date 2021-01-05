@@ -110,7 +110,7 @@
                 </div>
                 <div>
                     <h3>A propos :</h3>
-                    <p>Notre histoire</p>
+                    <router-link to='/notre_histoire'>Notre histoire</router-link>
                     <p>Durabilité</p>
                 </div>
                 <div>
@@ -134,16 +134,17 @@
             const Register_producteur = window.httpVueLoader('./components/Register_producteur.vue')
             const Register_acheteur = window.httpVueLoader('./components/Register_acheteur.vue')
             const Vente = window.httpVueLoader('./components/Vente.vue')
-
+            const Notre_histoire = window.httpVueLoader('./components/Notre_histoire.vue')
             const routes = [
-                { path: '/accueil', component: Accueil },
-                { path: '/vente', component: Vente },
-                { path: '/achat', component: Achat },
-                { path: '/mention_legales', component: MentionLegales },
-                { path: '/rechercher', component: Rechercher},
-                { path: '/register', component: Register},
-                { path: '/register_producteur', component: Register_producteur},
-                { path: '/register_acheteur', component: Register_acheteur}
+                { path: '/accueil', component: Accueil, meta: {title: 'Accueil'} },
+                { path: '/vente', component: Vente, meta: {title: 'Vente'} },
+                { path: '/achat', component: Achat, meta: {title: 'Achat'} },
+                { path: '/mention_legales', component: MentionLegales, meta: {title: 'Mentions légales'} },
+                { path: '/rechercher', component: Rechercher, meta: {title: 'Rechercher'}},
+                { path: '/register', component: Register, meta: {title: 'Mon compte'}},
+                { path: '/register_producteur', component: Register_producteur, meta: {title: 'Créer un compte producteur'}},
+                { path: '/register_acheteur', component: Register_acheteur, meta: {title: 'Créer un compte acheteur'}},
+                { path: '/notre_histoire', component: Notre_histoire, meta: {title: 'Notre histoire'}}
             ]
             const router = new VueRouter({
                 routes
