@@ -53,7 +53,7 @@
                 <div class="required">
                     <p>*Champs obligatoires</p>
                 </div>
-                <div id="bouton_créer">                   
+                <div id="bouton_créer">
                     <button type="submit">Créer un compte</button>
                 </div>
             </form>
