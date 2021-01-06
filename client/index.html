@@ -91,7 +91,7 @@
                     <img id="logo"src="img/logo.png">
                 </div>
                 <nav id="barreOutils">
-                    <router-link to='/accueil'><img id="accueil_icon" src="img/accueil.png"> Accueil</router-link>
+                    <router-link to='/'><img id="accueil_icon" src="img/accueil.png"> Accueil</router-link>
                     <router-link to='/rechercher'><img id="search_icon" src="img/search.png"> Rechercher</router-link>
                     <router-link to='/achat'><img id="achat_icon" src="img/achat.png"> Achat</router-link>
                     <router-link to='/vente'><img id="vente_icon" src="img/vente.png"> Vente</router-link>
@@ -138,7 +138,7 @@
             const Annonce_produit = window.httpVueLoader('./components/Annonce_produit.vue')
             const Profil_producteur = window.httpVueLoader('./components/Profil_producteur.vue')
             const routes = [
-                { path: '/accueil', component: Accueil, meta: {title: 'Accueil'} },
+                { path: '/', component: Accueil, meta: {title: 'Accueil'} },
                 { path: '/vente', component: Vente, meta: {title: 'Vente'} },
                 { path: '/achat', component: Achat, meta: {title: 'Achat'} },
                 { path: '/mention_legales', component: MentionLegales, meta: {title: 'Mentions légales'} },
