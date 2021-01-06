@@ -123,7 +123,7 @@ router.post('/registerProducteur', async (req, res) => {
     return
   }
   // si on a pas trouvé l'utilisateur
-  // alors on le crée
+  // alors on le crée .
 
   const hash = await bcrypt.hash(password, 10)
 
