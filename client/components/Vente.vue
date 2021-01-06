@@ -8,54 +8,7 @@
                         <label for="produit">Produit(s) :</label>
                         <select id="Produit" name="produit">
                             <option value="none" selected disabled hidden>Produit</option>
-                            <optgroup label="Fruits">
-                                <option value="Poire">Poire</option>
-                                <option value="Pomme">Pomme</option>
-                                <option value="Fraise">Fraise</option>
-                                <option value="Framboise">Framboise</option>
-                                <option value="Banane">Banane</option>
-                                <option value="Clémentine">Clémentine</option>
-                                <option value="Mandarine">Mandarine</option>
-                                <option value="Citron">Citron</option>
-                                <option value="Citron Vert">Citron Vert</option>
-                                <option value="Orange">Orange</option>
-                                <option value="Abricot">Abricot</option>
-                                <option value="Pêche">Pêche</option>
-                                <option value="Prune">Prune</option>
-                                <option value="Cerise">Cerise</option>
-                                <option value="Nectarine">Nectarine</option>
-                                <option value="Mirabelle">Mirabelle</option>
-                                <option value="Melon">Melon</option>
-                                <option value="Myrtille">Myrtille</option>
-                                <option value="Cassis">Cassis</option>
-                                <option value="Groseille">Groseille</option>
-                                <option value="Mûre">Melon</option>
-                                <option value="Pastèque">Pastèque</option>
-                                <option value="Figue">Figue</option>
-                                <option value="Raisin">Raisin</option>
-                                <option value="Kiwi">Kiwi</option>
-                                <option value="Ananas">Ananas</option>
-                            </optgroup>
-                            <optgroup label="Légumes">
-                                <option value="Salade">Salade</option>
-                                <option value="Courgette">Courgette</option>
-                                <option value="Concombre">Concombre</option>
-                                <option value="Carotte">Carotte</option>
-                                <option value="Poivron">Poivron</option>
-                                <option value="Piment">Piment</option>
-                                <option value="Aubergine">Aubergine</option>
-                                <option value="Epinard">Epinard</option>
-                                <option value="Poireau">Poireau</option>
-                                <option value="Chou-fleur">Chou-fleur</option>
-                                <option value="Brocoli">Brocoli</option>
-                                <option value="Persil">Persil</option>
-                            </optgroup>
-                            <optgroup label="Fromages">
-                                <option value="Salade">Salade</option>
-                                <option value="Courgette">Courgette</option>
-                                <option value="Concombre">Concombre</option>
-                                <option value="Carotte">Carotte</option>
-                            </optgroup>
+                            <option v-for="produit in produits" :key="produit.id_produit">{{produit.nom}}</option>
                         </select>
                     </div>
                     <div class="field_label">
@@ -200,4 +153,28 @@
 </style>
 
 <script>
+    module.exports = {
+        data () {
+            return {
+                produits: [],
+                prix: 0,
+                en_kg: false,
+                labels: []
+            }
+        },
+        async mounted () {
+        },
+        async created(){
+            const result = await axios.get('/api/produits', {})
+            console.log(result)
+            this.produits = result.data
+
+            const result2 = await axios.get('/api/labels', {})
+            console.log(result2)
+            this.labels = result2.data
+        },
+        methods: {
+            
+        }
+    }
 </script>

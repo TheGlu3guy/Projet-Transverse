@@ -3,6 +3,7 @@
         <div id="register">
             <h2>Créer votre compte acheteur</h2>
             <form @submit.prevent="createUser()">
+                <p v-for="error in errors" :key="error"> {{error}} </p>
                 <div class="signup">
                     <label for="civilité">Civilité*</label>
                     <div class="select_civilité">
@@ -16,19 +17,19 @@
                 <div class="signup">
                     <label for="lastname">Nom*</label>
                     <div class="field_lastname"> 
-                        <input type="texte" id="lastname" v-model="text" placeholder="Nom">
+                        <input type="texte" id="lastname" v-model="nom" placeholder="nom">
                     </div>
                 </div>
                 <div class="signup">
-                    <label for="name">Prénom*</label>
+                    <label for="name">prenom*</label>
                     <div class="field_firstname"> 
-                        <input type="texte" id="name" v-model="text" placeholder="Prénom">
+                        <input type="texte" id="name" v-model="prenom" placeholder="prenom">
                     </div>
                 </div>
                 <div class="signup">
                     <label for="mail">Email*</label>   
                         <div class="field_mail">
-                            <input type="text" id="mail" v-model="email" placeholder="Email">
+                            <input type="text" id="mail" v-model="email" placeholder="email">
                         </div>
                 </div>    
                 <div class="signup">
@@ -129,30 +130,32 @@
 
 <script>
     module.exports = {
-        props: {
-        articles: { type: Array, default: [] },
-        panier: { type: Object }
-        },
         data () {
-        return {
-            nom: '',
-            prénom:'',
-            email: '',
-            password: ''
-        }
+            return {
+                nom: '',
+                prenom:'',
+                email: '',
+                password: '',
+                c_password: '',
+                errors : []
+            }
         },
         async mounted () {
         },
         methods: {
-        async createUser() {
-            await axios.post('/api/register', {
-            nom: this.nom,
-            prénom: this.prénom,
-            email: this.email,
-            password: this.password
-            })
-            this.$router.push('/')
-        }
+            async createUser() {
+                if(this.c_password === this.password){
+                    await axios.post('/api/register', {
+                        nom: this.nom,
+                        prenom: this.prenom,
+                        email: this.email,
+                        password: this.password
+                    })
+                    this.$router.push('/')
+                }else {
+                    this.errors.push('password do not match')
+                }
+            }
         }
     }
 </script>

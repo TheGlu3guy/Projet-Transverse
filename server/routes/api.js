@@ -76,7 +76,8 @@ router.post('/login', async (req, res) => {
 router.post('/register', async (req, res) => {
   const email = req.body.email
   const password = req.body.password
-  const pseudo = req.body.pseudo
+  const nom = req.body.nom
+  const prenom = req.body.prenom
 
   const result = await client.query({
     text: 'SELECT * FROM users WHERE email=$1',
@@ -95,10 +96,10 @@ router.post('/register', async (req, res) => {
   const hash = await bcrypt.hash(password, 10)
 
   await client.query({
-    text: `INSERT INTO users(email, password, pseudo)
-    VALUES ($1, $2, $3)
+    text: `INSERT INTO users(email, password, nom, prenom)
+    VALUES ($1, $2, $3, $4)
     `,
-    values: [email, hash, pseudo]
+    values: [email, hash, nom, prenom]
   })
   res.send('ok')
 })
@@ -106,8 +107,9 @@ router.post('/register', async (req, res) => {
 router.post('/registerProducteur', async (req, res) => {
   const email = req.body.email
   const password = req.body.password
-  const pseudo = req.body.pseudo
-  const description = req.body.descripton
+  const nom = req.body.nom
+  const prenom = req.body.prenom
+  const description = req.body.description
 
   const result = await client.query({
     text: 'SELECT * FROM users WHERE email=$1',
@@ -126,10 +128,10 @@ router.post('/registerProducteur', async (req, res) => {
   const hash = await bcrypt.hash(password, 10)
 
   await client.query({
-    text: `INSERT INTO users(email, password, pseudo)
-    VALUES ($1, $2, $3)
+    text: `INSERT INTO users(email, password, nom, prenom)
+    VALUES ($1, $2, $3, $4)
     `,
-    values: [email, hash, pseudo]
+    values: [email, hash, nom, prenom]
   })
 
   const result2 = await client.query({
@@ -139,10 +141,10 @@ router.post('/registerProducteur', async (req, res) => {
   const idUser = result2.rows[0].lastval
   if(typeof description === 'undefined'){
     await client.query({
-      text: `INSERT INTO producteur(id_user)
-      VALUES ($1)
+      text: `INSERT INTO producteur(id_user, description)
+      VALUES ($1, $2)
       `,
-      values: [idUser]
+      values: [idUser, description]
     })
   }else {
     await client.query({
@@ -196,6 +198,21 @@ router.post('/annonce', async (req, res) => {
 router.get('/annonce', async (req, res) => {
   const result = await client.query({
     text: 'SELECT * FROM annonces'
+  })
+
+  if (result.rows.length <= 0) {
+    res.status(401).json({
+      message: 'il n\'y a pas encore d\'annonces'
+    })
+    return
+  }
+
+  res.send(result.rows)
+})
+
+router.get('/labels', async (req, res) => {
+  const result = await client.query({
+    text: 'SELECT * FROM labels'
   })
 
   if (result.rows.length <= 0) {

@@ -16,19 +16,19 @@
                 <div class="signup">
                     <label for="lastname">Nom*</label>
                     <div class="field_lastname"> 
-                        <input type="texte" id="lastname" v-model="text" placeholder="Nom">
+                        <input type="texte" id="lastname" v-model="nom" placeholder="Nom">
                     </div>
                 </div>
                 <div class="signup">
                     <label for="name">Prénom*</label>
                     <div class="field_firstname"> 
-                        <input type="texte" id="name" v-model="text" placeholder="Prénom">
+                        <input type="texte" id="name" v-model="prenom" placeholder="Prénom">
                     </div>
                 </div>
                 <div class="signup">
-                    <label for="adresse">Adresse*</label>
+                    <label for="adresse">Description des ventes*</label>
                         <div class="field_adress">
-                            <input type="texte" id="adress" v-model="text" placeholder="Adresse de l'exploitation">
+                            <input type="texte" id="adress" v-model="description" placeholder="Description">
                         </div>
                 </div>
                 <div class="signup">
@@ -137,10 +137,9 @@
     module.exports = {
         data () {
             return {
-                text: '',
                 nom: '',
-                prénom:'',
-                adresse:'',
+                prenom:'',
+                description:'',
                 email: '',
                 password: '',
                 c_password: ''
@@ -150,14 +149,17 @@
         },
         methods: {
             async createUser() {
-                await axios.post('/api/register', {
-                nom: this.nom,
-                prénom: this.prénom,
-                adresse: this.adresse,
-                email: this.email,
-                password: this.password
-                })
-                this.$router.push('/')
+                if(this.c_password === this.password){
+                    await axios.post('/api/registerProducteur', {
+                        nom: this.nom,
+                        prenom: this.prenom,
+                        description: this.adresse,
+                        email: this.email,
+                        password: this.password,
+                        description: this.description
+                    })
+                    this.$router.push('/')
+                }
             }
         }
     }
