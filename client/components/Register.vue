@@ -2,7 +2,7 @@
     <div>
         <div id=login>
             <h2>Vous avez déjà un compte ? Connectez-vous</h2>
-            <form @submit.prevent="loginUser()">
+            <form @submit.prevent="login()">
                 <div class=login_mail>
                     <label for="mail">Adresse email*</label>
                     <div class="field_mail">
@@ -30,12 +30,6 @@
                 <router-link to='/register_acheteur'>Créer un compte acheteur</router-link>
             </div>
         </div>
-        <main>
-            <router-view>
-                :prop="prop"
-                @recup-emit="RecupEmit"
-            </router-view>
-        </main>
     </div>
 </template>
 
@@ -125,13 +119,22 @@
 </style>
 
 <script>
-    const Register_producteur = window.httpVueLoader('./Register_producteur.vue')
-    const Register_acheteur = window.httpVueLoader('./Register_acheteur.vue')
-    const routes = [
-        { path: '/register_producteur', component: Register_producteur},
-        { path: '/register_acheteur', component: Register_acheteur}
-    ]
-    const router = new VueRouter({
-        routes
-    })
+    module.exports = {
+        data () {
+            return {
+                email: '',
+                password: ''
+            }
+        },
+        async mounted () {
+        },
+        methods: {
+            async login() {
+                this.$emit('login', {
+                    email: this.email,
+                    password: this.password
+                })
+            }
+        }
+    }
 </script>

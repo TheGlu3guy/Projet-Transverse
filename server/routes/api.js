@@ -162,16 +162,15 @@ router.post('/annonce', async (req, res) => {
   const description = req.body.description
   const titre = req.body.titre
   const prix = req.body.prix
-  const localisation = req.body.localisation
   const id_produit = req.body.id_produit
   const quantite = req.body.quantite
-  const in_kg = req.body.quantite
+  const in_kg = req.body.in_kg
+  const id_label = req.body.id_label
   //un bolean qui dit si la quantite et le prix est en kilo (true) ou par piece (false)
   
   if(typeof description === 'undefined'
     || typeof titre === 'undefined'
     || typeof prix === 'undefined'
-    || typeof localisation === 'undefined'
     || typeof id_produit === 'undefined'
     || typeof quantite === 'undefined'
     || typeof in_kg === 'undefined'){
@@ -180,17 +179,18 @@ router.post('/annonce', async (req, res) => {
     })
     return
   }
-  /*if(typeof req.session.userId === 'undefined'){
+  if(typeof req.session.userId === 'undefined'){
+    console.log("pas connecté")
     res.status(401).json({
       message: 'user not connected'
     })
     return
-  }*/
+  }
   await client.query({
-    text: `INSERT INTO annonces (id_user, description, titre, prix, localisation, id_produit, quantite, in_kg)
+    text: `INSERT INTO annonces (id_user, description, titre, prix, id_produit, quantite, in_kg)
     VALUES ($1, $2, $3, $4, $5, $6, $7)
     `,
-    values: [req.session.userId, description, titre, prix, localisation, id_produit, quantite, in_kg]
+    values: [req.session.userId, description, titre, prix, id_produit, quantite, in_kg]
   })
   res.send('ok')
 })

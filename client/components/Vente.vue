@@ -4,6 +4,11 @@
             <h2>Ajouter un nouveau produit à la vente</h2>
             <form @submit.prevent="createPost()" id="mon_form">
                 <div class="ajouter_produit">
+                    <div class="field_quantité">
+                        <label for="quantité">Titre</label>
+                        <input type="text" id="quantité" name="quantité" placeholder="Titre" required v-model="titre">
+                    </div>
+
                     <div class="field_produit">
                         <label for="produit">Produit(s) :</label>
                         <select id="Produit" name="produit" v-model="produit">
@@ -36,6 +41,11 @@
                     <div class="field_quantité">
                         <label for="quantité">Quantité disponible :</label>
                         <input type="text" id="quantité" name="quantité" placeholder="Veuillez saisir une quantité" required v-model="quantite">
+                    </div>
+
+                    <div class="field_quantité">
+                        <label for="quantité">Description</label>
+                        <input type="text" id="quantité" name="quantité" placeholder="Description" required v-model="description">
                     </div>
                     <!--
                     <div class="field_disponibilité">
@@ -150,6 +160,9 @@
 
 <script>
     module.exports = {
+        props: {
+            isConnected: { type: Boolean }
+        },
         data () {
             return {
                 produits: [],
@@ -157,11 +170,14 @@
                 en_kg: false,
                 labels: [],
                 quantite: 0,
-                produit: "",
-                label: "",
+                produit: 0,
+                label: 0,
+                description: "",
+                titre: ""
             }
         },
         async mounted () {
+            console.log(this.isConnected)
         },
         async created(){
             const result = await axios.get('/api/produits', {})
@@ -175,17 +191,20 @@
                 console.log(this.label +'\n'+ this.produit)
                 console.log(this.prix +" "+this.quantite)
                 console.log(this.en_kg)
-                /*
-                await axios.post('/api/registerProducteur', {
-                    nom: this.nom,
-                    prenom: this.prenom,
-                    description: this.adresse,
-                    email: this.email,
-                    password: this.password,
-                    description: this.description
-                })
-                this.$router.push('/')
-                */
+                if(this.isConnected){
+                    const result = await axios.post('/api/annonce', {
+                        titre: this.titre,
+                        description: this.description,
+                        prix: this.prix,
+                        id_produit: this.produit,
+                        in_kg: this.en_kg,
+                        quantite: this.quantite,
+                        id_label: this.label
+                    })
+                }else{
+                    console.log('user pas connecté')
+                }
+                
             }
         }
     }

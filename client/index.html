@@ -100,6 +100,8 @@
             </header>
             <main>
                 <router-view
+                :is-connected="isConnected"
+                @login="login"
                 ></router-view>
             </main>
             <footer>
@@ -157,17 +159,21 @@
                 router,
                 el: '#app',
                 data: {
-                    variable: "variable"
+                    variable: "variable",
+                    isConnected: false,
                 },
                 async mounted () {
                     /*const res = await axios.get('/api/articles')
                     this.articles = res.data*/
                 },
                 methods: {
-                    /*async addToPanier (articleId) {
-                        const res = await axios.post('/api/panier', { articleId, quantity: 1 })
-                        this.panier.articles.push(res.data)
-                    }*/
+                    async login (user) {
+                        const res = await axios.post('/api/login', user)
+                        this.user = res.data
+                        this.isConnected = true
+                        this.$router.push('/')
+                        console.log(this.user)
+                    }
                 }
             })
         </script>

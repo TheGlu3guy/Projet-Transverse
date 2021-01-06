@@ -5,29 +5,22 @@
             <div>
                 <form action="" method="post" id="options">
                     <div>
-                        <select name="fruit_legume" id="fruit_legume">
-                            <option value="">Cherchez vous quelque chose en particulier ?</option>
-                            <optgroup label="Fruits">
-                                <option value="banane">Banane</option>
-                                <option value="fraise">Fraise</option>
-                                <option value="framboise">Framboise</option>
-                            </optgroup>
-                            <optgroup label="Légumes">
-                                <option value="carrote">Carrote</option>
-                                <option value="haricot">Haricot</option>
-                                <option value="courgette">Courgette</option>
-                            </optgroup>
+                        <select name="fruit_legume" id="fruit_legume" v-model="produit">
+                            <option selected hidden>Cherchez vous quelque chose en particulier ?</option>
+                            <option v-for="produit in produits" :key="produit.id_produit" :value="produit.id_produit">{{produit.nom}}</option>
                         </select>
                     </div>
                     <div>
-                        <input type="text" id="titre" name="titre" placeholder="Titre de l'annnonce">
+                        <input v-model="titre" type="text" id="titre" name="titre" placeholder="Titre de l'annnonce">
                     </div>
+                    <!--
                     <div>
                         <input type="text" id="localisation" name="localisation" placeholder="Localisation">
                     </div>
+                    -->
                     <div>
-                        <input type="text" id="max" name="max" placeholder="Prix maximum">
-                        <input type="text" id="min" name="min" placeholder="Prix minimum">
+                        <input v-model="min" type="text" id="max" name="max" placeholder="Prix maximum">
+                        <input v-model="max" type="text" id="min" name="min" placeholder="Prix minimum">
                     </div>
                     <div id="bouton">
                         <button>Rechercher</button>
@@ -37,46 +30,6 @@
         </div>
         <hr>
         <div id="les_annonces">
-            <div class="annonce">
-                <img src="img/logo.png">
-                <div class="annonce_contenu">
-                    <h3>Vend Carrotte de qualité première en vrai</h3>
-                    <div class="annonce_texte">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            Donec sed odio nec justo tempus consequat. Nunc sapien 
-                            orci, faucibus non ex eu, congue gravida augue. Maecenas
-                             bibendum ante sit amet tellus suscipit sollicitudin. 
-                             Sed tincidunt ut leo vitae mattis. Nunc sollicitudin 
-                             non purus at ultrices. Cras a neque sit amet lorem 
-                             laoreet vestibulum. Mauris consequat nibh volutpat, 
-                             molestie sem ac, ultricies felis...</p>
-                        <p class="annonce_localisation">
-                            Localisation : 15 rue du truc, Machin 55600
-                        </p>
-                    </div>
-                    <button @click="$router.push('/annonce_produit')">En savoir plus</button>
-                </div>
-            </div>
-            <div class="annonce">
-                <img src="img/logo.png">
-                <div class="annonce_contenu">
-                    <h3>Vend Carrotte de qualité première en vrai</h3>
-                    <div class="annonce_texte">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            Donec sed odio nec justo tempus consequat. Nunc sapien 
-                            orci, faucibus non ex eu, congue gravida augue. Maecenas
-                             bibendum ante sit amet tellus suscipit sollicitudin. 
-                             Sed tincidunt ut leo vitae mattis. Nunc sollicitudin 
-                             non purus at ultrices. Cras a neque sit amet lorem 
-                             laoreet vestibulum. Mauris consequat nibh volutpat, 
-                             molestie sem ac, ultricies felis...</p>
-                        <p class="annonce_localisation">
-                            Localisation : 15 rue du truc, Machin 55600
-                        </p>
-                    </div>
-                    <button @click="$router.push('/annonce_produit')">En savoir plus</button>
-                </div>
-            </div>
             <div class="annonce">
                 <img src="img/logo.png">
                 <div class="annonce_contenu">
@@ -218,11 +171,46 @@
 </style>
 
 <script>
-    const Annonce_produit = window.httpVueLoader('./Annonce_produit.vue')
-    const routes = [
-        { path: '/annonce_produit', component: Annonce_produit, meta: {title: 'Produit'} },
-    ]
-    const router = new VueRouter({
-        routes
-    })
+    module.exports = {
+        data () {
+            return {
+                produits: [],
+                produit: 0,
+                titre:'',
+                min: '',
+                max: ''
+            }
+        },
+        async mounted () {
+            console.log(this.isConnected)
+        },
+        async created(){
+            const result = await axios.get('/api/produits', {})
+            this.produits = result.data
+
+            const result2 = await axios.get('/api/labels', {})
+            this.labels = result2.data
+        },
+        methods: {
+            async createPost() {
+                console.log(this.label +'\n'+ this.produit)
+                console.log(this.prix +" "+this.quantite)
+                console.log(this.en_kg)
+                if(this.isConnected){
+                    const result = await axios.post('/api/annonce', {
+                        titre: this.titre,
+                        description: this.description,
+                        prix: this.prix,
+                        id_produit: this.produit,
+                        in_kg: this.en_kg,
+                        quantite: this.quantite,
+                        id_label: this.label
+                    })
+                }else{
+                    console.log('user pas connecté')
+                }
+                
+            }
+        }
+    }
 </script>
