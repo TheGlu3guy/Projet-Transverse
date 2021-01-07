@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="body">
-            <img id="image_annonce" src="./img/image.png">
+            <img id="image_annonce" src="img/image.png">
             <div id="titre">
                 <h2 id="titre_annonce">Titre de l'annonce</h2>
             </div>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="body">
-            <img id="image_créateur" src="./img/young1pact.jpeg">
+            <img id="image_créateur" src="img/young1pact.jpeg">
             <div id="nom_note">
                 <h2 id="nom_créateur">M.Michel</h2>
                 <div class="note_créateur">
@@ -62,11 +62,11 @@
                 <div id="commentaires">
                     <div id="form_commentaire">
                         <div id="stars">
-                            <img class="star" src="img/star.svg">
-                            <img class="star" src="img/star.svg">
-                            <img class="star" src="img/star.svg">
-                            <img class="star" src="img/star.svg">
-                            <img class="star" src="img/star.svg">
+                            <img class="star" src="client/img/star.svg">
+                            <img class="star" src="client/img/star.svg">
+                            <img class="star" src="client/img/star.svg">
+                            <img class="star" src="client/img/star.svg">
+                            <img class="star" src="client/img/star.svg">
                         </div>
                         <input id="titre_form" type="text" placeholder="Titre">
                         <textarea id="description_form" type="text" placeholder="Description"></textarea>
@@ -74,15 +74,15 @@
                     </div>
                     <div class="commentaire">
                         <div class="profil">
-                            <img src="./img/user.png" alt="">
+                            <img src="img/user.png" alt="">
                             <p>Mmme Siffert</p>
                         </div>
                         <div id="stars">
-                            <img class="star" src="img/star.svg">
-                            <img class="star" src="img/star.svg">
-                            <img class="star" src="img/star.svg">
-                            <img class="star" src="img/star.svg">
-                            <img class="star" src="img/star.svg">
+                            <img class="star" src="client/img/star.svg">
+                            <img class="star" src="client/img/star.svg">
+                            <img class="star" src="client/img/star.svg">
+                            <img class="star" src="client/img/star.svg">
+                            <img class="star" src="client/img/star.svg">
                             <h4>Produits de très bonne qualité</h4>
                         </div>
                         <p>M.Michel a été très cordial lorsque je suis venue chercher mes tomates, et ces dernières étaient très bonnes !</p>

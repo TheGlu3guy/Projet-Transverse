@@ -8,6 +8,8 @@
         <script src="https://cdn.jsdelivr.net/npm/http-vue-loader/src/httpVueLoader.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v9.0" nonce="xHI6EQgj"></script>
         <style>
             html, body {
                 margin: 0;
@@ -78,9 +80,9 @@
                 text-decoration: none;
                 color: white;
             }
-            footer #fb_icon, #insta_icon{
-                height: 20px;
-                width: 20px;
+            footer #fb_icon, #tw_icon{
+                height: 18px;
+                width: 18px;
             }
         </style>
     </head>
@@ -106,24 +108,19 @@
             </main>
             <footer>
                 <div>
-                    <h3>Mon Compte :</h3>
+                    <h3>Mon compte</h3>
                     <p><router-link to='/register'>Connexion</router-link></p>
                     <p><router-link to='/register'>Créer un compte</router-link></p>
                 </div>
                 <div>
-                    <h3>A propos :</h3>
-                    <router-link to='/notre_histoire'>Notre histoire</router-link>
-                    <p>Durabilité</p>
+                    <h3>A propos</h3>
+                    <p><router-link to='/mention_legales'>Mentions Légales</router-link></p>
+                    <p><router-link to='/notre_histoire'>Notre histoire</router-link></p>
                 </div>
                 <div>
-                    <h3><router-link to='/mention_legales'>Mentions Légales :</router-link></h3>
-                    <p>Termes d'utilisation</p>
-                    <p>Politique de confidentialité</p>
-                </div>
-                <div>
-                    <h3>Partager :</h3>
-                    <img src="img/fb.png" id="fb_icon"><a href="http://facebook.com/share.php?localhost:3000/">Facebook</a>
-                    <p><img src="img/insta.png" id=insta_icon> Instagram</p>
+                    <h3>Partager</h3>
+                    <p><img src="img/fb.png" id="fb_icon"> <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fgroupe330.fr%2F%23%2F&amp;src=sdkpreparse">Facebook</a></p>
+                    <p><img src="img/tw.png" id="tw_icon"> <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" data-text="LocalEtFrais" data-url="http://groupe330.fr/#/" data-lang="fr" data-show-count="false">Twitter</a></p>
                 </div>
             </footer>
         </div>

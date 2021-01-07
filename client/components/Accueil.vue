@@ -1,9 +1,11 @@
 <template>
     <div id="vm">
         <div id="bienvenue">
-            <h1>Bonjour "Nom d'utilisateur"</h1>
+            <h1>Bonjour,</h1>
             <p>Bienvenue sur notre site!<br>
-                Vous pourrez y trouvez des producteurs vendant des fruits et légumes bio et frais !<p>
+                Vous pourrez y trouvez des producteurs vendant des fruits et légumes bio et frais dans toute la France!<br>
+                Si vous le souhaitez, vous pouvez même mettre vos propres produits en vente en créant un compte producteur.
+            <p>
         </div>
         <div class="actualites">
             <div>
