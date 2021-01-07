@@ -1,72 +1,34 @@
 <template>
     <div id="vm">
-        <div id="bienvenue">
+        <div class="bienvenue">
             <h1>Bonjour,</h1>
             <p>Bienvenue sur notre site!<br>
                 Vous pourrez y trouvez des producteurs vendant des fruits et légumes bio et frais dans toute la France!<br>
                 Si vous le souhaitez, vous pouvez même mettre vos propres produits en vente en créant un compte producteur.
             <p>
         </div>
-        <div class="actualites">
-            <div>
-                <h2>Des producteurs de votre région...</h2>
-                <div class="actus">
-                    <div>
-                        <div class="petite_actu"></div>
-                        <p>Actu1</p>
-                    </div>
-                    <div>
-                        <div class="petite_actu"></div>
-                        <p>Actu1</p>
-                    </div>
-                    <div>
-                        <div class="grande_actu"></div>
-                        <p>Actu1</p>
-                    </div>
-                    <div>
-                        <div class="petite_actu"></div>
-                        <p>Actu1</p>
-                    </div>
-                    <div>
-                        <div class="petite_actu"></div>
-                        <p>Actu1</p>
-                    </div>
-                </div>
-                <div class="barre"><div class="emplacement"></div></div>
-            </div>
-            
-            <div>
-                <h2 class="titre_gauche">...et d'ailleurs</h2>
-                    <div class="actus">
-                        <div>
-                            <div class="petite_actu"></div>
-                            <p>Actu1</p>
-                        </div>
-                        <div>
-                            <div class="petite_actu"></div>
-                            <p>Actu1</p>
-                        </div>
-                        <div>
-                            <div class="grande_actu"></div>
-                            <p>Actu1</p>
-                        </div>
-                        <div>
-                            <div class="petite_actu"></div>
-                            <p>Actu1</p>
-                        </div>
-                        <div>
-                            <div class="petite_actu"></div>
-                            <p>Actu1</p>
-                        </div>
-                    </div>
-                <div class="barre"><div class="emplacement"></div></div>
-            </div>
-        </div>
+        <Scroll class="bienvenue" />
+        
     </div>
 </template>
 
+<script>
+    const Scroll = window.httpVueLoader('./components/Scroll.vue')
+    
+    module.exports = {
+        components : {
+            Scroll
+        },
+        created :function(){
+            console.log("test")
+        }
+    }
+</script>
+
+
 <style scoped>
-    #bienvenue{
+    
+    .bienvenue{
         margin-left: auto;
         margin-right: auto;
         width: 800px;
@@ -124,5 +86,3 @@
     }
 </style>
 
-<script>
-</script>

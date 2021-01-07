@@ -1,0 +1,55 @@
+<div class="actualites">
+            <div>
+                <h2>Des producteurs de votre région...</h2>
+                <div class="actus">
+                    <div>
+                        <div class="petite_actu"></div>
+                        <p>Actu1</p>
+                    </div>
+                    <div>
+                        <div class="petite_actu"></div>
+                        <p>Actu1</p>
+                    </div>
+                    <div>
+                        <div class="grande_actu"></div>
+                        <p>Actu1</p>
+                    </div>
+                    <div>
+                        <div class="petite_actu"></div>
+                        <p>Actu1</p>
+                    </div>
+                    <div>
+                        <div class="petite_actu"></div>
+                        <p>Actu1</p>
+                    </div>
+                </div>
+                <div class="barre"><div class="emplacement"></div></div>
+            </div>
+            
+            <div>
+                <h2 class="titre_gauche">...et d'ailleurs</h2>
+                    <div class="actus">
+                        <div>
+                            <div class="petite_actu"></div>
+                            <p>Actu1</p>
+                        </div>
+                        <div>
+                            <div class="petite_actu"></div>
+                            <p>Actu1</p>
+                        </div>
+                        <div>
+                            <div class="grande_actu"></div>
+                            <p>Actu1</p>
+                        </div>
+                        <div>
+                            <div class="petite_actu"></div>
+                            <p>Actu1</p>
+                        </div>
+                        <div>
+                            <div class="petite_actu"></div>
+                            <p>Actu1</p>
+                        </div>
+                    </div>
+                <div class="barre"><div class="emplacement"></div></div>
+            </div>
+        </div>
