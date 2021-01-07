@@ -1,16 +1,25 @@
 <template>
+    
     <div>
-        ceci est la scrollbar
+        <p>Des producteurs de vos régions...</p>
+        <Annonce />
+       
     </div>
-  
+   
+        
 </template>
 
 <script>
+    const Annonce = window.httpVueLoader('./components/Annonce.vue');
+
     module.exports = {
-        name:"Scroll"
+        name:"Scroll" ,
+        components: {
+            Annonce
         }
+    }
 </script>
 
 <style>
-
+   
 </style>

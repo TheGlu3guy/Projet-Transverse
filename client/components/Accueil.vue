@@ -1,13 +1,13 @@
 <template>
     <div id="vm">
-        <div class="bienvenue">
+        <div id="bienvenue">
             <h1>Bonjour,</h1>
             <p>Bienvenue sur notre site!<br>
                 Vous pourrez y trouvez des producteurs vendant des fruits et légumes bio et frais dans toute la France!<br>
                 Si vous le souhaitez, vous pouvez même mettre vos propres produits en vente en créant un compte producteur.
             <p>
         </div>
-        <Scroll class="bienvenue" />
+        <Scroll id="scroll" />
         
     </div>
 </template>
@@ -16,23 +16,31 @@
     const Scroll = window.httpVueLoader('./components/Scroll.vue')
     
     module.exports = {
-        components : {
+        components: {
             Scroll
-        },
-        created :function(){
-            console.log("test")
         }
     }
 </script>
 
 
 <style scoped>
+    #scroll {
+        margin-left: auto;
+        margin-right: auto;
+        width: 1200px;
+        height: 300px;
+        margin-bottom: 2em;
+        background-color: #ECF0F3;
+        border-radius: 10px;
+        box-shadow: 10px 10px 20px 0px #cdd3dd;
+        padding: 10px;
+    }
     
-    .bienvenue{
+    #bienvenue{
         margin-left: auto;
         margin-right: auto;
         width: 800px;
-        height: 350px;
+        height: 150px;
         margin-bottom: 2em;
         background-color: #ECF0F3;
         border-radius: 10px;
