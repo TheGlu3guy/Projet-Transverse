@@ -15,7 +15,8 @@ client.connect()
 
 const users = []
 
-/* Route à faire :
+/*
+Route à faire :
   - ajout d'une annonce
   - recupération des annonces dispo (en fonction des dates etc... donc plusieurs routes)
   - récup annonce favoris
@@ -180,22 +181,60 @@ router.post('/annonce', async (req, res) => {
     return
   }
   if(typeof req.session.userId === 'undefined'){
-    console.log("pas connecté")
     res.status(401).json({
       message: 'user not connected'
     })
     return
   }
+  if(!req.session.isProducteur){
+    res.status(401).json({
+      message: 'user not a producteur'
+    })
+    return
+  }
   await client.query({
-    text: `INSERT INTO annonces (id_user, description, titre, prix, id_produit, quantite, in_kg)
+    text: `INSERT INTO annonces (id_user, description, titre, prix, id_produit, quantite, in_kg, id_label)
     VALUES ($1, $2, $3, $4, $5, $6, $7)
     `,
-    values: [req.session.userId, description, titre, prix, id_produit, quantite, in_kg]
+    values: [req.session.userId, description, titre, prix, id_produit, quantite, in_kg, id_label]
   })
   res.send('ok')
 })
 
 router.get('/annonce', async (req, res) => {
+  const result = await client.query({
+    text: 'SELECT * FROM annonces'
+  })
+
+  if (result.rows.length <= 0) {
+    res.status(401).json({
+      message: 'il n\'y a pas encore d\'annonces'
+    })
+    return
+  }
+
+  res.send(result.rows)
+})
+//Obtenir les annonces qui ont le label que l'on cherche
+router.get('/annonce/:id_label', async (req, res) => {
+  const id_label = parseInt(req.params.id_label)
+
+  const result = await client.query({
+    text: 'SELECT * FROM annonces WHERE id_label = $1',
+    values: [id_label]
+  })
+
+  if (result.rows.length <= 0) {
+    res.status(401).json({
+      message: 'il n\'y a pas encore d\'annonces'
+    })
+    return
+  }
+
+  res.send(result.rows)
+})
+//Obtenir les annonces qui ont le produit que l'on cherche
+router.get('/annonce/:id_produit', async (req, res) => {
   const result = await client.query({
     text: 'SELECT * FROM annonces'
   })
@@ -221,7 +260,8 @@ router.get('/labels', async (req, res) => {
     })
     return
   }
-
+  console.log("ça marche !")
+  console.log(result)
   res.send(result.rows)
 })
 
