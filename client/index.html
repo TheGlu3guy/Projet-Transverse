@@ -57,7 +57,10 @@
             header a:not(:last-child) {
                 margin-right: 12px;
             }
-            header #search_icon, #achat_icon, #profil_icon, #accueil_icon, #vente_icon{
+            header a:last-child{
+                width: 25px;
+            }
+            header #search_icon, #achat_icon, #profil_icon, #accueil_icon, #vente_icon, #login_icon{
                 width: 20px;
                 height: 20px; 
                 background-color: transparent;
@@ -90,14 +93,15 @@
         <div id="app">
             <header>
                 <div id="backgroundlogo">
-                    <img id="logo"src="img/logo.png">
+                    <img id="logo" src="img/logo.png">
                 </div>
                 <nav id="barreOutils">
                     <router-link to='/'><img id="accueil_icon" src="img/accueil.png"> Accueil</router-link>
                     <router-link to='/rechercher'><img id="search_icon" src="img/search.png"> Rechercher</router-link>
                     <router-link to='/achat'><img id="achat_icon" src="img/achat.png"> Achat</router-link>
                     <router-link to='/vente'><img id="vente_icon" src="img/vente.png"> Vente</router-link>
-                    <router-link to='/register'><img id= "profil_icon" src="img/profil.png"> Mon compte</router-link>
+                    <router-link to='/compte'><img id="profil_icon" src="img/profil.png"> Mon compte</router-link>
+                    <router-link to='/register'><img id="login_icon" src="img/login.png"></router-link>
                 </nav>
             </header>
             <main>
@@ -136,18 +140,20 @@
             const Notre_histoire = window.httpVueLoader('./components/Notre_histoire.vue')
             const Annonce_produit = window.httpVueLoader('./components/Annonce_produit.vue')
             const Profil_producteur = window.httpVueLoader('./components/Profil_producteur.vue')
+            const Mon_compte = window.httpVueLoader('./components/Mon_profil.vue')
             const routes = [
                 { path: '/', component: Accueil, meta: {title: 'Accueil'} },
                 { path: '/vente', component: Vente, meta: {title: 'Vente'} },
                 { path: '/achat', component: Achat, meta: {title: 'Achat'} },
                 { path: '/mention_legales', component: MentionLegales, meta: {title: 'Mentions légales'} },
                 { path: '/rechercher', component: Rechercher, meta: {title: 'Rechercher'}},
-                { path: '/register', component: Register, meta: {title: 'Mon compte'}},
+                { path: '/register', component: Register, meta: {title: 'Se connecter/S\'enregistrer'}},
                 { path: '/register_producteur', component: Register_producteur, meta: {title: 'Créer un compte producteur'}},
                 { path: '/register_acheteur', component: Register_acheteur, meta: {title: 'Créer un compte acheteur'}},
                 { path: '/notre_histoire', component: Notre_histoire, meta: {title: 'Notre histoire'}},
                 { path: '/annonce_produit', component: Annonce_produit, meta: {title: 'Produit'}},
-                { path: '/profil_producteur', component: Profil_producteur, meta: {title: 'Profil producteur'}}
+                { path: '/profil_producteur', component: Profil_producteur, meta: {title: 'Profil producteur'}},
+                { path: '/compte', component: Mon_compte, meta: {title: 'Mon compte'}}
             ]
             const router = new VueRouter({
                 routes
@@ -172,6 +178,12 @@
                         console.log(this.user)
                     }
                 }
+            })
+            const default_title = 'Some Default Title';
+            router.afterEach((to, from) => {
+                Vue.nextTick(() => {
+                    document.title = to.meta.title || default_title;
+                });
             })
         </script>
     </body>
