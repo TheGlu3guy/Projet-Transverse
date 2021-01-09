@@ -5,6 +5,8 @@
             <div class="select_produit">
                 <select id="Produit" name="produit">
                     <option value="none" selected disabled hidden>Produit</option>
+                    <option v-for="produit in produits" :key="produit.id_produit" :value="produit.id_produit">{{produit.nom}}</option>
+                    <!--
                     <optgroup label="Fruits">
                         <option value="Poire">Poire</option>
                         <option value="Pomme">Pomme</option>
@@ -53,17 +55,22 @@
                         <option value="Concombre">Concombre</option>
                         <option value="Carotte">Carotte</option>
                     </optgroup>
+                    -->
                 </select>
             </div>
             <div class="select_label">
                 <select id="Label" name="Label">
                     <option value="none" selected disabled hidden>Label</option>
+                    <option v-for="label in labels" :key="label.id_label" :value="label.id_label">{{label.nom}}</option>
+                    <!--
                     <option value="AOC">Appellation d'Origine Contrôlée</option>
                     <option value="AOP">Appellation d'Origine Protégée</option>
                     <option value="IGP">Indication Géographique Protégée</option>
                     <option value="LR">Label Rouge</option>
+                    -->
                 </select>
             </div>
+            <!--
             <div class="select_région">
                 <select id="Région" name="région">
                     <option value="none" selected disabled hidden>Région</option>
@@ -82,6 +89,7 @@
                     <option value="LR">Ile-de-France</option>
                 </select>
             </div>
+            -->
             <div class="bouton">
                 <button>Rechercher</button>
             </div>
@@ -192,4 +200,28 @@
 </style>
 
 <script>
+    module.exports = {
+        props: {
+            isConnected: { type: Boolean }
+        },
+        data () {
+            return {
+                produits: [],
+                prix: 0,
+                labels: [],
+                produit: 0,
+                label: 0,
+            }
+        },
+        async mounted () {
+            console.log(this.isConnected)
+        },
+        async created(){
+            const result = await axios.get('/api/produits', {})
+            this.produits = result.data
+
+            const result2 = await axios.get('/api/labels', {})
+            this.labels = result2.data
+        },
+    }
 </script>
