@@ -30,21 +30,17 @@
         </div>
         <hr>
         <div id="les_annonces">
-            <div class="annonce">
+            <div v-for="annonce in annonces" :key="annonce.id_annonce" class="annonce">
                 <img src="img/logo.png">
                 <div class="annonce_contenu">
-                    <h3>Vend Carrotte de qualité première en vrai</h3>
-                    <div class="annonce_texte">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            Donec sed odio nec justo tempus consequat. Nunc sapien 
-                            orci, faucibus non ex eu, congue gravida augue. Maecenas
-                             bibendum ante sit amet tellus suscipit sollicitudin. 
-                             Sed tincidunt ut leo vitae mattis. Nunc sollicitudin 
-                             non purus at ultrices. Cras a neque sit amet lorem 
-                             laoreet vestibulum. Mauris consequat nibh volutpat, 
-                             molestie sem ac, ultricies felis...</p>
-                        <p class="annonce_localisation">
-                            Localisation : 15 rue du truc, Machin 55600
+                    <h3>{{annonce.titre}}</h3>
+                    <div class="annonce_texte"> 
+                        <p><strong>Description : </strong>{{annonce.description}}</p>
+                        <p class="annonce_label">
+                            <strong>Labels du produit : </strong>{{labels.find(x => x.id_label === annonce.id_label).nom}}
+                        </p>
+                        <p class="annonce_label">
+                            <strong>Produit vendu : </strong>{{produits.find(x => x.id_produit === annonce.id_produit).nom}}
                         </p>
                     </div>
                     <button @click="$router.push('/annonce_produit')">En savoir plus</button>
@@ -144,21 +140,8 @@
         font-size: 1em;
         text-align: center;
     }
-    .annonce p{
-        font-size: 0.8em;
-        margin-left: 20px;
-    }
-    .annonce_texte{
-        display: flex;
-        flex-direction: row;
-    }
-    .annonce_texte .annonce_localisation{
-        width: 400px;
-        margin-right: 20px;
-    }
     .annonce_contenu{
-        display:flex;
-        flex-direction: column;
+
     }
     .annonce button{
         border-radius: 50px;
@@ -166,7 +149,6 @@
         background-color: #C4C4C4;
         width: 150px;
         height: 40px;
-        margin: 20px auto;
     }
 </style>
 
@@ -178,7 +160,8 @@
                 produit: 0,
                 titre:'',
                 min: '',
-                max: ''
+                max: '',
+                annonces: []
             }
         },
         async mounted () {
@@ -190,6 +173,9 @@
 
             const result2 = await axios.get('/api/labels', {})
             this.labels = result2.data
+
+            const result3 = await axios.get('/api/annonce', {})
+            this.annonces = result3.data
         },
         methods: {
             async createPost() {

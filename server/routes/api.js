@@ -184,17 +184,19 @@ router.post('/annonce', async (req, res) => {
     res.status(401).json({
       message: 'user not connected'
     })
+    console.log("not connected")
     return
   }
   if(!req.session.isProducteur){
     res.status(401).json({
       message: 'user not a producteur'
     })
+    console.log("not producteur")
     return
   }
   await client.query({
     text: `INSERT INTO annonces (id_user, description, titre, prix, id_produit, quantite, in_kg, id_label)
-    VALUES ($1, $2, $3, $4, $5, $6, $7)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
     `,
     values: [req.session.userId, description, titre, prix, id_produit, quantite, in_kg, id_label]
   })
@@ -226,7 +228,7 @@ router.get('/annonce/:id_label', async (req, res) => {
 
   if (result.rows.length <= 0) {
     res.status(401).json({
-      message: 'il n\'y a pas encore d\'annonces'
+      message: 'il n\'y a pas d\'annonces avec ce label'
     })
     return
   }
@@ -235,13 +237,15 @@ router.get('/annonce/:id_label', async (req, res) => {
 })
 //Obtenir les annonces qui ont le produit que l'on cherche
 router.get('/annonce/:id_produit', async (req, res) => {
+  const id_produit = parseInt(req.params.id_produit)
   const result = await client.query({
-    text: 'SELECT * FROM annonces'
+    text: 'SELECT * FROM annonces WHERE id_produit = $1',
+    values: [id_produit]
   })
 
   if (result.rows.length <= 0) {
     res.status(401).json({
-      message: 'il n\'y a pas encore d\'annonces'
+      message: 'il n\'y a pas d\'annonces avec ce produit'
     })
     return
   }
@@ -260,8 +264,6 @@ router.get('/labels', async (req, res) => {
     })
     return
   }
-  console.log("ça marche !")
-  console.log(result)
   res.send(result.rows)
 })
 
