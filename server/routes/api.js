@@ -167,6 +167,7 @@ router.post('/annonce', async (req, res) => {
   const quantite = req.body.quantite
   const in_kg = req.body.in_kg
   const id_label = req.body.id_label
+  const id_region = req.body.id_region
   //un bolean qui dit si la quantite et le prix est en kilo (true) ou par piece (false)
   
   if(typeof description === 'undefined'
@@ -195,10 +196,10 @@ router.post('/annonce', async (req, res) => {
     return
   }
   await client.query({
-    text: `INSERT INTO annonces (id_user, description, titre, prix, id_produit, quantite, in_kg, id_label)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+    text: `INSERT INTO annonces (id_user, description, titre, prix, id_produit, quantite, in_kg, id_label, id_region)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
     `,
-    values: [req.session.userId, description, titre, prix, id_produit, quantite, in_kg, id_label]
+    values: [req.session.userId, description, titre, prix, id_produit, quantite, in_kg, id_label, id_region]
   })
   res.send('ok')
 })
@@ -249,6 +250,20 @@ router.get('/annonce/:id_produit', async (req, res) => {
     })
     return
   }
+//Obtenir les annonces qui ont la région que l'on cherche
+router.get('/annonce/:id_region', async (req, res) => {
+  const id_region = parseInt(req.params.id_region)
+  const result = await client.query({
+    text: 'SELECT * FROM annonces WHERE id_region = $1',
+    values: [id_region]
+  })
+
+  if (result.rows.length <= 0) {
+    res.status(401).json({
+      message: 'il n\'y a pas d\'annonces avec cette region'
+    })
+    return
+  }
 
   res.send(result.rows)
 })
@@ -256,6 +271,20 @@ router.get('/annonce/:id_produit', async (req, res) => {
 router.get('/labels', async (req, res) => {
   const result = await client.query({
     text: 'SELECT * FROM labels'
+  })
+
+  if (result.rows.length <= 0) {
+    res.status(401).json({
+      message: 'il n\'y a pas encore d\'annonces'
+    })
+    return
+  }
+  res.send(result.rows)
+})
+
+router.get('/regions', async (req, res) => {
+  const result = await client.query({
+    text: 'SELECT * FROM regions'
   })
 
   if (result.rows.length <= 0) {

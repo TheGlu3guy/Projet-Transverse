@@ -70,26 +70,12 @@
                     -->
                 </select>
             </div>
-            <!--
             <div class="select_région">
                 <select id="Région" name="région">
                     <option value="none" selected disabled hidden>Région</option>
-                    <option value="AOC">Auvergne-Rhône-Alpes</option>
-                    <option value="AOP">Bourgogne-Franche-Compté</option>
-                    <option value="IGP">Corse</option>
-                    <option value="LR">Bretagne</option>
-                    <option value="AOC">Grand-Est</option>
-                    <option value="AOP">Provence-Alpes-Côte-d'Azur</option>
-                    <option value="IGP">Occitanie</option>
-                    <option value="LR">Pays-de-la-Loire</option>
-                    <option value="LR">Normandie</option>
-                    <option value="AOC">Hauts-de-France</option>
-                    <option value="AOP">Centre-Val-de-Loire</option>
-                    <option value="IGP">Nouvelle-Aquitaine</option>
-                    <option value="LR">Ile-de-France</option>
+                    <option v-for="region in regions" :key="region.id_region" :value="region.id_region">{{region.nom}}</option>
                 </select>
             </div>
-            -->
             <div class="bouton">
                 <button>Rechercher</button>
             </div>
@@ -211,6 +197,8 @@
                 labels: [],
                 produit: 0,
                 label: 0,
+                regions: [],
+                region: 0,
             }
         },
         async mounted () {
@@ -222,6 +210,9 @@
 
             const result2 = await axios.get('/api/labels', {})
             this.labels = result2.data
+
+            const result3 = await axios.get('/api/regions', {})
+            this.regions = result3.data
         },
     }
 </script>
