@@ -4,10 +4,22 @@
             <h2>Recherche rapide</h2>
             <div>
                 <form action="" method="post" id="options">
-                    <div>
-                        <select name="fruit_legume" id="fruit_legume" v-model="produit">
-                            <option selected hidden>Cherchez vous quelque chose en particulier ?</option>
+                    <div class="select_produit">
+                        <select id="Produit" name="produit">
+                            <option value="none" selected disabled hidden>Produit</option>
                             <option v-for="produit in produits" :key="produit.id_produit" :value="produit.id_produit">{{produit.nom}}</option>
+                        </select>
+                    </div>
+                    <div class="select_label">
+                        <select id="Label" name="Label">
+                            <option value="none" selected disabled hidden>Label</option>
+                            <option v-for="label in labels" :key="label.id_label" :value="label.id_label">{{label.nom}}</option>
+                            <!--
+                            <option value="AOC">Appellation d'Origine Contrôlée</option>
+                            <option value="AOP">Appellation d'Origine Protégée</option>
+                            <option value="IGP">Indication Géographique Protégée</option>
+                            <option value="LR">Label Rouge</option>
+                            -->
                         </select>
                     </div>
                     <div>
@@ -161,7 +173,9 @@
                 titre:'',
                 min: '',
                 max: '',
-                annonces: []
+                annonces: [],
+                labels: [],
+                label: 0
             }
         },
         async mounted () {
