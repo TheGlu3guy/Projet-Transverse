@@ -270,7 +270,7 @@ router.get('/annonce/produit/:id_produit', async (req, res) => {
   }
 })
 //Obtenir les annonces qui ont la région que l'on cherche
-router.get('/annonce/:id_region', async (req, res) => {
+router.get('/annonce/region/:id_region', async (req, res) => {
   const id_region = parseInt(req.params.id_region)
   const result = await client.query({
     text: 'SELECT * FROM annonces WHERE id_region = $1',

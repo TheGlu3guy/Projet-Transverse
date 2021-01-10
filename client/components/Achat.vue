@@ -199,7 +199,7 @@
             const result3 = await axios.get('/api/annonce', {})
             this.annonces = result3.data
 
-            const result4 = await axios.get('/api/region', {})
+            const result4 = await axios.get('/api/regions', {})
             this.regions = result4.data
         },
     }
