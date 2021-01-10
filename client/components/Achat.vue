@@ -22,6 +22,12 @@
                             -->
                         </select>
                     </div>
+                    <div class="select_région">
+                        <select id="Région" name="région">
+                            <option value="none" selected disabled hidden>Région</option>
+                            <option v-for="region in regions" :key="region.id_region" :value="region.id_region">{{region.nom}}</option>
+                        </select>
+                    </div>
                     <div>
                         <input v-model="titre" type="text" id="titre" name="titre" placeholder="Titre de l'annnonce">
                     </div>
@@ -175,7 +181,9 @@
                 max: '',
                 annonces: [],
                 labels: [],
-                label: 0
+                label: 0,
+                regions: [],
+                region: 0,
             }
         },
         async mounted () {
@@ -190,27 +198,9 @@
 
             const result3 = await axios.get('/api/annonce', {})
             this.annonces = result3.data
+
+            const result4 = await axios.get('/api/region', {})
+            this.regions = result4.data
         },
-        methods: {
-            async createPost() {
-                console.log(this.label +'\n'+ this.produit)
-                console.log(this.prix +" "+this.quantite)
-                console.log(this.en_kg)
-                if(this.isConnected){
-                    const result = await axios.post('/api/annonce', {
-                        titre: this.titre,
-                        description: this.description,
-                        prix: this.prix,
-                        id_produit: this.produit,
-                        in_kg: this.en_kg,
-                        quantite: this.quantite,
-                        id_label: this.label
-                    })
-                }else{
-                    console.log('user pas connecté')
-                }
-                
-            }
-        }
     }
 </script>

@@ -23,6 +23,13 @@
                             <option v-for="label in labels" :key="label.id_label" :value="label.id_label">{{label.nom}}</option>
                         </select>
                     </div>
+                    <div class="field_region">
+                        <label for="region">Région :</label>
+                        <select id="Region" name="Region" v-model="region">
+                            <option value="none" selected disabled hidden>Région</option>
+                            <option v-for="region in regions" :key="region.id_region" :value="region.id_region">{{region.nom}}</option>
+                        </select>
+                    </div>
                     <div class="field_prix">
                         <label for="prix">Prix :</label>
                         <input type="text" id="prix" name="prix" placeholder="Veuillez saisir un prix" required v-model="prix">
@@ -124,7 +131,7 @@
         margin-right: auto;
         width: max-content;
     }
-    .field_disponibilité, .field_label, .field_prix, .field_quantité, .field_photo, .field_produit, .field_adresse{
+    .field_disponibilité, .field_label, .field_prix, .field_quantité, .field_photo, .field_produit, .field_adresse, .field_region{
         margin-bottom: .9em;
     }
     .produits_en_vente{
@@ -173,7 +180,9 @@
                 produit: 0,
                 label: 0,
                 description: "",
-                titre: ""
+                titre: "",
+                regions: [],
+                region: 0,
             }
         },
         async mounted () {
@@ -185,6 +194,9 @@
 
             const result2 = await axios.get('/api/labels', {})
             this.labels = result2.data
+
+            const result3 = await axios.get('/api/regions', {})
+            this.regions = result3.data
         },
         methods: {
             async createPost() {
@@ -199,7 +211,8 @@
                         id_produit: this.produit,
                         in_kg: this.en_kg,
                         quantite: this.quantite,
-                        id_label: this.label
+                        id_label: this.label,
+                        id_region: this.id_region,
                     })
                 }else{
                     console.log('user pas connecté')
