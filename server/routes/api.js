@@ -217,8 +217,26 @@ router.get('/annonce', async (req, res) => {
 
   res.send(result.rows)
 })
+
+router.get('/annonce/:id_annonce', async (req, res) => {
+  const id_annonce = parseInt(req.params.id_annonce)
+
+  const result = await client.query({
+    text: 'SELECT * FROM annonces WHERE id_annonce = $1',
+    values: [id_annonce]
+  })
+
+  if (result.rows.length <= 0) {
+    res.status(401).json({
+      message: 'il n\'y a pas d\'annonces avec ce label'
+    })
+    return
+  }
+
+  res.send(result.rows[0])
+})
 //Obtenir les annonces qui ont le label que l'on cherche
-router.get('/annonce/:id_label', async (req, res) => {
+router.get('/annonce/label/:id_label', async (req, res) => {
   const id_label = parseInt(req.params.id_label)
 
   const result = await client.query({
@@ -236,7 +254,7 @@ router.get('/annonce/:id_label', async (req, res) => {
   res.send(result.rows)
 })
 //Obtenir les annonces qui ont le produit que l'on cherche
-router.get('/annonce/:id_produit', async (req, res) => {
+router.get('/annonce/produit/:id_produit', async (req, res) => {
   const id_produit = parseInt(req.params.id_produit)
   const result = await client.query({
     text: 'SELECT * FROM annonces WHERE id_produit = $1',

@@ -1,9 +1,9 @@
 <template>
     <div>
         <div id="body">
-            <img id="image_annonce" src="img/image.png">
+            <img id="image_annonce" src="img/logo.png">
             <div id="titre">
-                <h2 id="titre_annonce">Titre de l'annonce</h2>
+                <h2 id="titre_annonce">{{annonce.titre}}</h2>
             </div>
             <div id="informations_annonce">
                 <p>Producteur :</p><router-link to='/profil_producteur'>M.Michel</router-link>
@@ -15,12 +15,6 @@
             <hr>
             <h3 class="titre">Description de l'annonce :</h3>
             <p id="description">Je vends un panier de fruits composé de 2 pommes, 3 poires et 1 pastèque.</p>
-            <hr>
-            <div id="form_commentaire">
-                <input id="titre_form" type="text" placeholder="Objet">
-                <textarea id="description_form" type="text" placeholder="Message"></textarea>
-                <button>Contacter le producteur</button>
-            </div>
         </div>
     </div>
 </template>
@@ -163,11 +157,19 @@
 </style>
 
 <script>
-    const Profil_producteur = window.httpVueLoader('./Profil_producteur.vue')
-    const routes = [
-        { path: '/profil_producteur', component: Profil_producteur, meta: {title: 'Profil producteur'} },
-    ]
-    const router = new VueRouter({
-        routes
-    })
+    module.exports = {
+        data () {
+            return {
+                annonce: {}
+            }
+        },
+        async mounted () {
+        },
+        async created(){
+            const result = await axios.get('/api/annonce/' + this.$route.query.id_annonce)
+            this.annonce = result.data
+        },
+        methods: {
+        }
+    }
 </script>

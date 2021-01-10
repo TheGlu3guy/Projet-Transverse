@@ -94,7 +94,6 @@
                 </div>
                 <nav id="barreOutils">
                     <router-link to='/'><img id="accueil_icon" src="img/accueil.png"> Accueil</router-link>
-                    <router-link to='/rechercher'><img id="search_icon" src="img/search.png"> Rechercher</router-link>
                     <router-link to='/achat'><img id="achat_icon" src="img/achat.png"> Achat</router-link>
                     <router-link to='/vente'><img id="vente_icon" src="img/vente.png"> Vente</router-link>
                     <router-link to='/register'><img id= "profil_icon" src="img/profil.png"> Mon compte</router-link>
@@ -128,7 +127,7 @@
             const Accueil = window.httpVueLoader('./components/Accueil.vue')
             const Achat = window.httpVueLoader('./components/Achat.vue')
             const MentionLegales = window.httpVueLoader('./components/MentionLegales.vue')
-            const Rechercher = window.httpVueLoader('./components/Rechercher.vue')
+            //const Rechercher = window.httpVueLoader('./components/Rechercher.vue')
             const Register = window.httpVueLoader('./components/Register.vue')
             const Register_producteur = window.httpVueLoader('./components/Register_producteur.vue')
             const Register_acheteur = window.httpVueLoader('./components/Register_acheteur.vue')
@@ -141,7 +140,7 @@
                 { path: '/vente', component: Vente, meta: {title: 'Vente'} },
                 { path: '/achat', component: Achat, meta: {title: 'Achat'} },
                 { path: '/mention_legales', component: MentionLegales, meta: {title: 'Mentions légales'} },
-                { path: '/rechercher', component: Rechercher, meta: {title: 'Rechercher'}},
+                //{ path: '/rechercher', component: Rechercher, meta: {title: 'Rechercher'}},
                 { path: '/register', component: Register, meta: {title: 'Mon compte'}},
                 { path: '/register_producteur', component: Register_producteur, meta: {title: 'Créer un compte producteur'}},
                 { path: '/register_acheteur', component: Register_acheteur, meta: {title: 'Créer un compte acheteur'}},

@@ -43,7 +43,7 @@
                             <strong>Produit vendu : </strong>{{produits.find(x => x.id_produit === annonce.id_produit).nom}}
                         </p>
                     </div>
-                    <button @click="$router.push('/annonce_produit')">En savoir plus</button>
+                    <button @click="$router.push('/annonce_produit/?id_annonce='+annonce.id_annonce)">En savoir plus</button>
                 </div>
             </div>
         </div>
