@@ -348,4 +348,22 @@ router.get('/produits', async(req, res)=> {
   }
   
 })
+
+router.get('/users/:id_user', async (req, res) => {
+  const id_user = parseInt(req.params.id_user)
+
+  const result = await client.query({
+    text: 'SELECT * FROM users WHERE id_user = $1',
+    values: [id_user]
+  })
+
+  if (result.rows.length <= 0) {
+    res.status(401).json({
+      message: 'il n\'y a pas d\'annonces avec ce label'
+    })
+    return
+  }
+
+  res.send(result.rows[0])
+})
 module.exports = router

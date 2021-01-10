@@ -14,7 +14,7 @@
             </div>
             <hr>
             <h3 class="titre">Description de l'annonce :</h3>
-            <p id="description">Je vends un panier de fruits composé de 2 pommes, 3 poires et 1 pastèque.</p>
+            <p id="description">{{annonce.description}}</p>
         </div>
     </div>
 </template>
@@ -168,6 +168,7 @@
         async created(){
             const result = await axios.get('/api/annonce/' + this.$route.query.id_annonce)
             this.annonce = result.data
+            console.log(this.annonce)
         },
         methods: {
         }
