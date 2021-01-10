@@ -268,6 +268,7 @@ router.get('/annonce/produit/:id_produit', async (req, res) => {
     })
     return
   }
+})
 //Obtenir les annonces qui ont la région que l'on cherche
 router.get('/annonce/:id_region', async (req, res) => {
   const id_region = parseInt(req.params.id_region)
