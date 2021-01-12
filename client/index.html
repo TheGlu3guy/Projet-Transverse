@@ -66,6 +66,25 @@
                 background-color: transparent;
                 vertical-align: middle;
             }
+            #deconnect_icon{
+                width: 20px;
+                height: 20px;
+                color: #fff;
+                background-color: #333;
+                border: 1px solid #fff;
+                border-radius: 10px;
+                outline: 0;
+                padding: 8px 12px ;
+                text-align: center ;
+                text-decoration: none;
+                font: bold 12px Verdana;
+                transition: all 1s ease-out;
+                vertical-align: middle;
+            }
+            #deconnect_icon:hover{
+                color: #333;
+                background-color: #fff;
+            }
             footer{
                 width: auto;
                 background-color: #1c1a1a;
@@ -98,9 +117,16 @@
                 <nav id="barreOutils">
                     <router-link to='/'><img id="accueil_icon" src="img/accueil.png"> Accueil</router-link>
                     <router-link to='/achat'><img id="achat_icon" src="img/achat.png"> Achat</router-link>
+
                     <router-link to='/vente'><img id="vente_icon" src="img/vente.png"> Vente</router-link>
                     <router-link to='/profil'><img id="profil_icon" src="img/profil.png"> Mon compte</router-link>
                     <router-link to='/register'><img id="login_icon" src="img/login.png"></router-link>
+
+                    <router-link v-if="isConnected" to='/vente'><img id="vente_icon" src="img/vente.png"> Vente</router-link>
+                    <router-link to='/compte'><img id="profil_icon" src="img/profil.png"> Mon compte</router-link>
+                    <router-link v-if="!isConnected" to='/register'><img id="login_icon" src="img/login.png"></router-link>
+                    <img v-if="isConnected" id="deconnect_icon" src="img/logout.png" v-on:click="deconnect()">
+
                 </nav>
             </header>
             <main>
@@ -166,8 +192,17 @@
                     isConnected: false,
                 },
                 async mounted () {
-                    /*const res = await axios.get('/api/articles')
-                    this.articles = res.data*/
+                    try {
+                        const res = await axios.get('/api/me')
+                        this.user = res.data
+                        this.isConnected = true
+                    } catch (err) {
+                        if (err.response?.status === 401) {
+                            this.isConnected = false
+                        } else {
+                            console.log('error', err)
+                        }
+                    }
                 },
                 methods: {
                     async login (user) {
@@ -176,6 +211,11 @@
                         this.isConnected = true
                         this.$router.push('/')
                         console.log(this.user)
+                    },
+                    async deconnect() {
+                        await axios.delete('/api/me')
+                        this.isConnected = false
+                        this.user = {}
                     }
                 }
             })

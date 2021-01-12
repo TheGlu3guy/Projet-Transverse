@@ -13,6 +13,30 @@ const client = new Client({
 
 client.connect()
 
+router.delete('/me', async (req, res) => {
+  if (typeof req.session.userId === 'undefined') {
+    res.send('non connecté')
+    return
+  }
+
+  delete req.session.userId
+
+  res.send('ok')
+})
+router.get('/me', async (req, res) => {
+  if (typeof req.session.userId === 'undefined') {
+    res.status(401).json({ message: 'not connected' })
+    return
+  }
+
+  const result = await client.query({
+    text: 'SELECT id_user, email FROM users WHERE id_user=$1',
+    values: [req.session.userId]
+  })
+
+  res.json(result.rows[0])
+})
+
 const users = []
 
 /*
