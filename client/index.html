@@ -117,11 +117,6 @@
                 <nav id="barreOutils">
                     <router-link to='/'><img id="accueil_icon" src="img/accueil.png"> Accueil</router-link>
                     <router-link to='/achat'><img id="achat_icon" src="img/achat.png"> Achat</router-link>
-
-                    <router-link to='/vente'><img id="vente_icon" src="img/vente.png"> Vente</router-link>
-                    <router-link to='/profil'><img id="profil_icon" src="img/profil.png"> Mon compte</router-link>
-                    <router-link to='/register'><img id="login_icon" src="img/login.png"></router-link>
-
                     <router-link v-if="isConnected" to='/vente'><img id="vente_icon" src="img/vente.png"> Vente</router-link>
                     <router-link to='/compte'><img id="profil_icon" src="img/profil.png"> Mon compte</router-link>
                     <router-link v-if="!isConnected" to='/register'><img id="login_icon" src="img/login.png"></router-link>
@@ -165,7 +160,7 @@
             const Notre_histoire = window.httpVueLoader('./components/Notre_histoire.vue')
             const Annonce_produit = window.httpVueLoader('./components/Annonce_produit.vue')
             const Profil_producteur = window.httpVueLoader('./components/Profil_producteur.vue')
-            const Profil = window.httpVueLoader('./components/Profil.vue')
+            const Mon_compte = window.httpVueLoader('./components/Mon_profil.vue')
             const routes = [
                 { path: '/', component: Accueil, meta: {title: 'Accueil'} },
                 { path: '/vente', component: Vente, meta: {title: 'Vente'} },
@@ -178,7 +173,7 @@
                 { path: '/notre_histoire', component: Notre_histoire, meta: {title: 'Notre histoire'}},
                 { path: '/annonce_produit', component: Annonce_produit, meta: {title: 'Produit'}},
                 { path: '/profil_producteur', component: Profil_producteur, meta: {title: 'Profil producteur'}},
-                { path: '/profil', component: Profil, meta: {title: 'Mon profil'} },
+                { path: '/compte', component: Mon_compte, meta: {title: 'Mon compte'}}
                 
             ]
             const router = new VueRouter({
