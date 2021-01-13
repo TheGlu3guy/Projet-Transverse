@@ -3,7 +3,7 @@
         <div id="body">
             <img id="image_créateur" src="img/young1pact.jpeg">
             <div id="nom_note">
-                <h2 id="nom_créateur">M.Michel</h2>
+                <h2 id="nom_créateur">{{user.prenom}} {{user.nom}}</h2>
                 <div class="note_créateur">
                     <h3>4.2 </h3><img class="star" src="img/star.svg" alt="little star">
                 </div>
@@ -11,15 +11,13 @@
             <p>Actif depuis le : 11/12/2020</p>
             <hr>
             <h3 class="titre">Description du producteur:</h3>
-            <p id="description">Je suis un petit producteur du sud de la France qui vend de superbes tomates.</p>
+            <p id="description">{{user.description}}</p>
             <hr>
-            <div id="créations">
+            <div id="produits_producteur">
                 <h3 class="titre">Ses différentes produits :</h3>
-                <div id="création1">
-                    <button>Voir le produit</button>
-                </div>
-                <div id="création2">
-                    <button>Voir le produit</button>
+                <div v-for="annonce in annonces" :key="annonce.id_user" class="produit">
+                    <img src="./img/young1pact.jpg" alt="une annonce du producteur" @click="ouvrirAnnonce(creation.id_annonce)">
+                    <h3>{{annonce.titre}}</h3>
                 </div>
             <hr>
             <div class="row">
@@ -59,33 +57,39 @@
                         <p>81%</p>
                     </div>
                 </div>
-                <div id="commentaires">
-                    <div id="form_commentaire">
-                        <div id="stars">
-                            <img class="star" src="client/img/star.svg">
-                            <img class="star" src="client/img/star.svg">
-                            <img class="star" src="client/img/star.svg">
-                            <img class="star" src="client/img/star.svg">
-                            <img class="star" src="client/img/star.svg">
-                        </div>
-                        <input id="titre_form" type="text" placeholder="Titre">
-                        <textarea id="description_form" type="text" placeholder="Description"></textarea>
-                        <button>Poster l'avis</button>
+            </div>
+            <div id="avis">
+                <div id="form_avis">
+                    <div id="note">
+                        <img @click="setNote(1)" class="clickable star" :src="'img/'+isEmpty(1)">
+                        <img @click="setNote(2)" class="clickable star" :src="'img/'+isEmpty(2)">
+                        <img @click="setNote(3)" class="clickable star" :src="'img/'+isEmpty(3)">
+                        <img @click="setNote(4)" class="clickable star" :src="'img/'+isEmpty(4)">
+                        <img @click="setNote(5)" class="clickable star" :src="'img/'+isEmpty(5)">
                     </div>
-                    <div class="commentaire">
-                        <div class="profil">
-                            <img src="img/user.png" alt="">
-                            <p>Mmme Siffert</p>
+                    <input id="titre_form" type="text" placeholder="Titre" v-model="titre">
+                    <textarea id="description_form" type="text" placeholder="Description" v-model="contenu"></textarea>
+                    <button @click="posterAvis">Poster l'avis</button>
+                </div>
+                <div v-for="avi in avis" :key="avi.id_avis" class="commentaire">
+                    <div id="user_note">
+                        <div class="user_commentaire">
+                            <img src="./img/user.png" alt="">
+                            <p>{{avi.pseudo}}</p>
                         </div>
-                        <div id="stars">
-                            <img class="star" src="client/img/star.svg">
-                            <img class="star" src="client/img/star.svg">
-                            <img class="star" src="client/img/star.svg">
-                            <img class="star" src="client/img/star.svg">
-                            <img class="star" src="client/img/star.svg">
-                            <h4>Produits de très bonne qualité</h4>
+                        <div id="note">
+                            <img class="star" :src="'img/'+isEmptyCommentaire(avi.note, 1)">
+                            <img class="star" :src="'img/'+isEmptyCommentaire(avi.note, 2)">
+                            <img class="star" :src="'img/'+isEmptyCommentaire(avi.note, 3)">
+                            <img class="star" :src="'img/'+isEmptyCommentaire(avi.note, 4)">
+                            <img class="star" :src="'img/'+isEmptyCommentaire(avi.note, 5)">
                         </div>
-                        <p>M.Michel a été très cordial lorsque je suis venue chercher mes tomates, et ces dernières étaient très bonnes !</p>
+                    </div>
+                    <div id="titre_commentaire">
+                        <h4>{{avi.titre}}</h4>
+                    </div>
+                    <div id="contenu_commentaire">
+                        <p>{{avi.contenu}}</p>
                     </div>
                 </div>
             </div>
@@ -230,4 +234,60 @@
 </style>
 
 <script>
+    module.exports = {
+        data() {
+            return{
+                user: {},
+                annonces: [],
+                avis: [],
+            }
+        },
+        async mounted() {
+        },
+        async created(){
+            const result = await axios.get('api/users/'+this.$route.query.id_user)
+            this.user = result.data
+
+            const result2 = await axios.get('api/annonce/users/' + this.id_user)
+            this.annonces = result2.data
+
+            const result3 = await axios.get('api/avis/users' + this.id_user)
+            this.avis = result3.data
+
+            const result4 = await axios.get('/api/average/avis/users/'+this.id_user)
+            var avg = result4.data.avg
+            if(avg === null){
+                this.average_avis = "0.00"
+            }else{
+                this.average_avis = avg.slice(0, 3)
+            }
+        },
+        methods: {
+            ouvrirAnnonce(id_annonce){
+                this.$router.push('/produits/?id_produit='+id_produit)
+            },
+            async posterAvis() {
+                if(this.isConnected && this.contenu!=="" && this.titre!=="" && this.note!==0){
+                    const result = await axios.post('/api/avis', {
+                        note: this.note,
+                        contenu: this.contenu,
+                        titre: this.titre,
+                        id_user: this.id_user
+                    }).catch(function (error) {
+                        console.log(error.response.data)
+                    })
+                }
+            },
+            setNote(note){
+                this.note = note
+            },
+            isEmpty(note){
+                if(note>this.note){
+                    return 'star_none.png'
+                }else{
+                    return 'star.png'
+                }
+            },
+        },
+    }
 </script>
