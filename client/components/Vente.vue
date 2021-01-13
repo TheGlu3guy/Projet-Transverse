@@ -4,16 +4,6 @@
             <h2>Ajouter un nouveau produit à la vente</h2>
             <form @submit.prevent="createPost()" id="mon_form">
                 <div class="ajouter_produit">
-                    <div class="informations_generales">
-                        <div class="field_titre">
-                            <label for="titre">Titre :</label>
-                            <input type="text" id="titre" name="titre" placeholder="Titre" required v-model="titre">
-                        </div>
-                        <div class="field_description">
-                            <label for="description">Description :</label>
-                            <input type="text" id="description" name="description" placeholder="Description" required v-model="description">
-                        </div>
-                    </div>
                     <div class="informations_produit">
                         <p>Caractéristiques du produit</p>
                         <div class="field_produit">
@@ -69,11 +59,22 @@
                             <input type="text" id="adresse" name="adresse" placeholder="Veuillez saisir une adresse" required v-model="adresse">
                         </div>
                     </div>
-                    <!--
-                    <div class="field_photo">
-                        <label for="photo">Photo(s) :</label>
-                        <input type="file" id="photo" name="photo" placeholder="Photo" accept="image/png, image/jpeg">
+                    <div class="informations_generales">
+                        <p> Informations générales de l'annonce</p>
+                        <div class="field_titre">
+                            <label for="titre">Titre :</label>
+                            <input type="text" id="titre" name="titre" placeholder="Titre" required v-model="titre">
+                        </div>
+                        <div class="field_description">
+                            <label for="description">Description :</label>
+                            <input type="text" id="description" name="description" placeholder="Description" required v-model="description">
+                        </div>
+                        <div class="field_photo">
+                            <label for="photo">Photo :</label>
+                            <input @change="processFile($event)" type="file" id="photo" name="photo" placeholder="Photo" accept="image/png, image/jpeg">
+                        </div>
                     </div>
+                    <!--
                     <div class="field_disponibilité">
                         <label for="disponibilité">Date de disponibilité :</label>
                         <input type="date" id="date_disponibilité" name="disponibilité" required>
@@ -119,7 +120,7 @@
         margin-left: auto;
         margin-right: auto;
         width: 520px;
-        height: 620px;
+        height: 710px;
         margin-bottom: 2em;
         background-color: #ECF0F3;
         border-radius: 10px;
@@ -148,6 +149,12 @@
     }
     .field_titre, .field_label, .field_prix, .field_quantité, .field_photo, .field_produit, .field_adresse, .field_region, .field_departement, .field_description, .field_ville{
         margin-bottom: .9em;
+    }
+    .ajouter_produit p{
+        font-weight: bold;
+    }
+    .ajouter_produit{
+        margin-top: .3em;
     }
     .produits_en_vente{
         display: flex;
@@ -196,6 +203,7 @@
                 label: 0,
                 description: "",
                 titre: "",
+                adresse: "",
                 regions: [],
                 region: 0,
                 departements: [],
@@ -204,6 +212,9 @@
         },
         async mounted () {
             console.log(this.isConnected)
+        },
+        processFile(e) {
+            console.log(e.target.files[0])
         },
         async created(){
             const result = await axios.get('/api/produits', {})
@@ -234,6 +245,7 @@
                         id_label: this.label,
                         id_region: this.id_region,
                         id_departement: this.id_departement,
+                        adresse: this.adresse,
                     })
                 }else{
                     console.log('user pas connecté')
