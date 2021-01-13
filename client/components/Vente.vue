@@ -4,64 +4,80 @@
             <h2>Ajouter un nouveau produit à la vente</h2>
             <form @submit.prevent="createPost()" id="mon_form">
                 <div class="ajouter_produit">
-                    <div class="field_quantité">
-                        <label for="quantité">Titre</label>
-                        <input type="text" id="quantité" name="quantité" placeholder="Titre" required v-model="titre">
+                    <div class="informations_produit">
+                        <p>Caractéristiques du produit</p>
+                        <div class="field_produit">
+                            <label for="produit">Produit :</label>
+                            <select id="Produit" name="Produit" v-model="produit">
+                                <option value="none" selected disabled hidden>Produit</option>
+                                <option v-for="produit in produits" :key="produit.id_produit" :value="produit.id_produit">{{produit.nom}}</option>
+                            </select>
+                        </div>
+                        <div class="field_label">
+                            <label for="label">Label :</label>
+                            <select id="Label" name="Label" v-model="label">
+                                <option value="none" selected disabled hidden>Label</option>
+                                <option v-for="label in labels" :key="label.id_label" :value="label.id_label">{{label.nom}}</option>
+                            </select>
+                        </div>
+                        <div class="field_prix">
+                            <label for="prix">Prix :</label>
+                            <input type="text" id="prix" name="prix" placeholder="Veuillez saisir un prix" required v-model="prix">
+                            <select id="Prix" name="Prix" required v-model="en_kg">
+                                <option value="none" selected disabled hidden>Prix</option>
+                                <option :value="true">Prix/kg</option>
+                                <option :value="false">Prix/unité</option>
+                            </select>
+                        </div>
+                        <div class="field_quantité">
+                            <label for="quantité">Quantité disponible :</label>
+                            <input type="text" id="quantité" name="quantité" placeholder="Veuillez saisir une quantité" required v-model="quantite">
+                        </div>
                     </div>
-
-                    <div class="field_produit">
-                        <label for="produit">Produit(s) :</label>
-                        <select id="Produit" name="produit" v-model="produit">
-                            <option value="none" selected disabled hidden>Produit</option>
-                            <option v-for="produit in produits" :key="produit.id_produit" :value="produit.id_produit">{{produit.nom}}</option>
-                        </select>
+                    <div id="informations_localisation">
+                        <p>Localisation</p>
+                        <div class="field_region">
+                            <label for="region">Région :</label>
+                            <select id="Region" name="Region" v-model="region">
+                                <option value="none" selected disabled hidden>Région</option>
+                                <option v-for="region in regions" :key="region.id_region" :value="region.id_region">{{region.nom}}</option>
+                            </select>
+                        </div>
+                        <div class="field_departement">
+                            <label for="departement">Département :</label>
+                            <select id="departement" name="departement" v-model="departement">
+                                <option value="none" selected disabled hidden>Département</option>
+                                <option v-for="departement in departements" :key="departement.id_departement" :value="departement.id_departement">{{departement.nom}}</option>
+                            </select>
+                        </div>
+                        <div class="field_ville">
+                            <label for="code_postal">Code postal :</label>
+                            <input type="number" id="code_postal" name="quantité" placeholder="Code postal" required v-model="code_postal">
+                        </div>
+                        <div class="field_adresse">
+                            <label for="adresse">Adresse de retrait :</label>
+                            <input type="text" id="adresse" name="adresse" placeholder="Veuillez saisir une adresse" required v-model="adresse">
+                        </div>
                     </div>
-                    <div class="field_label">
-                        <label for="label">Label(s) :</label>
-                        <select id="Label" name="Label" v-model="label">
-                            <option value="none" selected disabled hidden>Label</option>
-                            <option v-for="label in labels" :key="label.id_label" :value="label.id_label">{{label.nom}}</option>
-                        </select>
-                    </div>
-                    <div class="field_region">
-                        <label for="region">Région :</label>
-                        <select id="Region" name="Region" v-model="region">
-                            <option value="none" selected disabled hidden>Région</option>
-                            <option v-for="region in regions" :key="region.id_region" :value="region.id_region">{{region.nom}}</option>
-                        </select>
-                    </div>
-                    <div class="field_prix">
-                        <label for="prix">Prix :</label>
-                        <input type="text" id="prix" name="prix" placeholder="Veuillez saisir un prix" required v-model="prix">
-                        <select id="Prix" name="Prix" required v-model="en_kg">
-                            <option value="none" selected disabled hidden>Prix</option>
-                            <option :value="true">Prix/kg</option>
-                            <option :value="false">Prix/unité</option>
-                        </select>
-                    </div>
-                    <!--
-                    <div class="field_photo">
-                        <label for="photo">Photo(s) :</label>
-                        <input type="file" id="photo" name="photo" placeholder="Photo" accept="image/png, image/jpeg">
-                    </div>
-                    -->
-                    <div class="field_quantité">
-                        <label for="quantité">Quantité disponible :</label>
-                        <input type="text" id="quantité" name="quantité" placeholder="Veuillez saisir une quantité" required v-model="quantite">
-                    </div>
-
-                    <div class="field_quantité">
-                        <label for="quantité">Description</label>
-                        <input type="text" id="quantité" name="quantité" placeholder="Description" required v-model="description">
+                    <div class="informations_generales">
+                        <p> Informations générales de l'annonce</p>
+                        <div class="field_titre">
+                            <label for="titre">Titre :</label>
+                            <input type="text" id="titre" name="titre" placeholder="Titre" required v-model="titre">
+                        </div>
+                        <div class="field_description">
+                            <label for="description">Description :</label>
+                            <input type="text" id="description" name="description" placeholder="Description" required v-model="description">
+                        </div>
+                        <div class="field_photo">
+                            <label for="photo">Photo :</label>
+                            <input @change="processFile($event)" type="file" id="photo" name="photo" placeholder="Photo" accept="image/png, image/jpeg">
+                        </div>
                     </div>
                     <!--
                     <div class="field_disponibilité">
                         <label for="disponibilité">Date de disponibilité :</label>
                         <input type="date" id="date_disponibilité" name="disponibilité" required>
-                    </div>
-                    <div class="field_adresse">
-                        <label for="adresse">Adresse de retrait :</label>
-                        <input type="text" id="adresse" name="adresse" placeholder="Veuillez saisir une adresse" required>
                     </div>
                     -->
                 </div>
@@ -104,7 +120,7 @@
         margin-left: auto;
         margin-right: auto;
         width: 520px;
-        height: 420px;
+        height: 710px;
         margin-bottom: 2em;
         background-color: #ECF0F3;
         border-radius: 10px;
@@ -131,8 +147,14 @@
         margin-right: auto;
         width: max-content;
     }
-    .field_disponibilité, .field_label, .field_prix, .field_quantité, .field_photo, .field_produit, .field_adresse, .field_region{
+    .field_titre, .field_label, .field_prix, .field_quantité, .field_photo, .field_produit, .field_adresse, .field_region, .field_departement, .field_description, .field_ville{
         margin-bottom: .9em;
+    }
+    .ajouter_produit p{
+        font-weight: bold;
+    }
+    .ajouter_produit{
+        margin-top: .3em;
     }
     .produits_en_vente{
         display: flex;
@@ -181,12 +203,18 @@
                 label: 0,
                 description: "",
                 titre: "",
+                adresse: "",
                 regions: [],
                 region: 0,
+                departements: [],
+                departement: 0,
             }
         },
         async mounted () {
             console.log(this.isConnected)
+        },
+        processFile(e) {
+            console.log(e.target.files[0])
         },
         async created(){
             const result = await axios.get('/api/produits', {})
@@ -197,6 +225,9 @@
 
             const result3 = await axios.get('/api/regions', {})
             this.regions = result3.data
+
+            const result4 = await axios.get('/api/departements', {})
+            this.departements = result4.data
         },
         methods: {
             async createPost() {
@@ -213,6 +244,8 @@
                         quantite: this.quantite,
                         id_label: this.label,
                         id_region: this.id_region,
+                        id_departement: this.id_departement,
+                        adresse: this.adresse,
                     })
                 }else{
                     console.log('user pas connecté')
