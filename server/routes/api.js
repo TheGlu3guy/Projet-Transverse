@@ -193,6 +193,7 @@ router.post('/annonce', async (req, res) => {
   const id_label = req.body.id_label
   const id_region = req.body.id_region
   const id_departement = req.body.id_departement
+  const adresse = req.body.adresse
   //un bolean qui dit si la quantite et le prix est en kilo (true) ou par piece (false)
   
   if(typeof description === 'undefined'
@@ -200,7 +201,8 @@ router.post('/annonce', async (req, res) => {
     || typeof prix === 'undefined'
     || typeof id_produit === 'undefined'
     || typeof quantite === 'undefined'
-    || typeof in_kg === 'undefined'){
+    || typeof in_kg === 'undefined'
+    || typeof adresse === 'undefined'){
     res.status(401).json({
       message: 'annonce incomplete'
     })
@@ -221,10 +223,10 @@ router.post('/annonce', async (req, res) => {
     return
   }
   await client.query({
-    text: `INSERT INTO annonces (id_user, description, titre, prix, id_produit, quantite, in_kg, id_label, id_region)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+    text: `INSERT INTO annonces (id_user, description, titre, prix, id_produit, quantite, in_kg, id_label, id_region, id_departement, adresse)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
     `,
-    values: [req.session.userId, description, titre, prix, id_produit, quantite, in_kg, id_label, id_region]
+    values: [req.session.userId, description, titre, prix, id_produit, quantite, in_kg, id_label, id_region, id_departement, adresse]
   })
   res.send('ok')
 })
