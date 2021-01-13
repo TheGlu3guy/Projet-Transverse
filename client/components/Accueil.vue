@@ -1,5 +1,5 @@
 <template>
-    <div id="vm">
+    <div id="body">
         <div id="bienvenue">
             <h1>Bonjour,</h1>
             <p>Bienvenue sur notre site!<br>
@@ -7,33 +7,86 @@
                 Si vous le souhaitez, vous pouvez même mettre vos propres produits en vente en créant un compte producteur.
             <p>
         </div>
-        <Scroll id="scroll" />
-        
+        <div class="actualites">
+            <h2>Des annonces proche de chez vous...</h2>
+            <div class="annonces">
+                    <div>
+                        <div class="an">
+                            <p>Actu1</p>
+                            <p>  </p>
+                        </div>
+                    </div>   
+                    <div>
+                        <div class="an">
+                            <p>Actu1</p>
+                        </div>
+                        
+                    </div>
+                     <div>
+                        <div class="an"></div>
+                        <p>Actu1</p>
+                    </div>
+                    <div>
+                        <div class="an"></div>
+                        <p>Actu1</p>
+                    </div>
+            </div>
+            <h2 class="titre_gauche">... et des producteurs locaux. </h2>
+            <div class="annonces">
+                    <div>
+                        <div class="prod"></div>
+                        <p>Actu1</p>
+                    </div>
+                    <div>
+                        <div class="prod"></div>
+                        <p>Actu1</p>
+                    </div>
+                    <div>
+                        <div class="prod"></div>
+                        <p>Actu1</p>
+                    </div>
+                    <div>
+                        <div class="prod"></div>
+                        <p>Actu1</p>
+                    </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-    const Scroll = window.httpVueLoader('./components/Scroll.vue')
     
-    module.exports = {
-        components: {
-            Scroll
+    module.export = {
+        props: {
+            annonces: { type: Array, default: [
+                {
+                    id: 1,
+                    title: 'annonce 1',
+                    date: 22+"/"+22+"/"+2222,
+                    image: 'img/logo.png',
+                    price: 1,
+                    qty: 3
+                },
+            ]},
+            producteurs: { type: Array, default: [
+                {
+                    id: 1,
+                    name: 'producteur 1',
+                    image: 'img/logo.png',
+                    location: '12 rue du col 85'
+                }
+            ]}
         }
     }
 </script>
 
 
 <style scoped>
-    #scroll {
-        margin-left: auto;
-        margin-right: auto;
-        width: 1200px;
-        height: 300px;
-        margin-bottom: 2em;
-        background-color: #ECF0F3;
-        border-radius: 10px;
-        box-shadow: 10px 10px 20px 0px #cdd3dd;
-        padding: 10px;
+
+    html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
     }
     
     #bienvenue{
@@ -50,40 +103,35 @@
     #bienvenue h1{
         text-align: center;
     }
-    .actus{
-        display: flex;
-        flex-direction: row;
-    }
-    .petite_actu{
-        height: 150px;
-        width: 150px;
-        border: 1px solid gray;
-        margin: auto 10px;
-        background: white;
-    }
-    .grande_actu{
-        height: 200px;
-        width: 200px;
-        border: 1px solid gray;
-        margin: auto 10px;
-        background: white;
-    }
+
     .actualites{
         width: 900px;
         padding: 20px;
         margin: 0 auto;
+        box-shadow: 10px 10px 20px 0px #cdd3dd;
     }
-    .barre{
-        width: 700px;
-        height: 5px;
-        background: #C4C4C4;
-        margin: 10px auto;
+
+    .annonces{
+        display: flex;
+        flex-direction: row;
+        overflow: auto;
     }
-    .emplacement{
-        background-color: black;
-        width: 100px;
-        height: 5px;
-        margin: 0 auto;
+    .an{
+        height: 150px;
+        width: 300px;
+        border: 1px solid gray;
+        margin: auto 10px;
+        padding: 10px;
+        background: white;
+    }
+
+    .prod{
+        height: 150px;
+        width: 300px;
+        border: 1px solid gray;
+        margin: auto 10px;
+        padding: 10px;
+        background: white;
     }
     .titre_gauche{
         text-align: right;
