@@ -28,6 +28,12 @@
                             <option v-for="region in regions" :key="region.id_region" :value="region.id_region">{{region.nom}}</option>
                         </select>
                     </div>
+                    <div class="select_departement">
+                        <select id="departement" name="departement">
+                            <option value="none" selected disabled hidden>Département</option>
+                            <option v-for="departement in departements" :key="departement.id_departement" :value="departement.id_departement">{{departement.nom}}</option>
+                        </select>
+                    </div>
                     <div>
                         <input v-model="titre" type="text" id="titre" name="titre" placeholder="Titre de l'annnonce">
                     </div>
@@ -78,7 +84,7 @@
     }
     .option_recherche{
         width: 900px;
-        height: 270px;
+        height: 330px;
         background-color: #DFDFDF;
         padding: 10px;
         box-shadow: 10px 10px 20px 0px #cdd3dd;
@@ -158,9 +164,6 @@
         font-size: 1em;
         text-align: center;
     }
-    .annonce_contenu{
-
-    }
     .annonce button{
         border-radius: 50px;
         border: none;
@@ -184,6 +187,8 @@
                 label: 0,
                 regions: [],
                 region: 0,
+                departements: [],
+                departement: 0,
             }
         },
         async mounted () {
@@ -201,6 +206,9 @@
 
             const result4 = await axios.get('/api/regions', {})
             this.regions = result4.data
+
+            const result5 = await axios.get('/api/departements', {})
+            this.departements = result5.data
         },
     }
 </script>
