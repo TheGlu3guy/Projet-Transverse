@@ -12,49 +12,166 @@
             <div class="annonces">
                     <div>
                         <div class="an">
-                            <p>Actu1</p>
-                            <p>  </p>
+                            
+                            <div class="titre">
+                                <img class="image_annonce" src="img/logo.png">
+                                <h3 class="titre_annonce">Titre de l'annonce</h3>
+                            </div>
+                            <div>
+                                <p>Producteur :</p><router-link to='/profil_producteur'>M.Michel</router-link>
+                                <p>Annonce mise en ligne le : 11/02/2020</p>
+                                <p>Produit : Pomme ; Poire ; Pastèque</p>
+                                <p>Quantité :</p>
+                                <p>Label :</p> 
+                                <hr>
+                                <p class="description">description de l'annonce de qualité uezbo    uvziubrizuvb    zbev    uib</p>
+                            </div>
+                            
                         </div>
-                    </div>   
+                    </div>
                     <div>
                         <div class="an">
-                            <p>Actu1</p>
+                            
+                            <div class="titre">
+                                <img class="image_annonce" src="img/logo.png">
+                                <h3 class="titre_annonce">Titre de l'annonce</h3>
+                            </div>
+                            <div>
+                                <p>Producteur :</p><router-link to='/profil_producteur'>M.Michel</router-link>
+                                <p>Annonce mise en ligne le : 11/02/2020</p>
+                                <p>Produit : Pomme ; Poire ; Pastèque</p>
+                                <p>Quantité :</p>
+                                <p>Label :</p> 
+                                <hr>
+                                <p class="description">description de l'annonce de qualité uezbo    uvziubrizuvb    zbev    uib</p>
+                            </div>
+                            
                         </div>
-                        
-                    </div>
-                     <div>
-                        <div class="an"></div>
-                        <p>Actu1</p>
                     </div>
                     <div>
-                        <div class="an"></div>
-                        <p>Actu1</p>
+                        <div class="an">
+                            
+                            <div class="titre">
+                                <img class="image_annonce" src="img/logo.png">
+                                <h3 class="titre_annonce">Titre de l'annonce</h3>
+                            </div>
+                            <div>
+                                <p>Producteur :</p><router-link to='/profil_producteur'>M.Michel</router-link>
+                                <p>Annonce mise en ligne le : 11/02/2020</p>
+                                <p>Produit : Pomme ; Poire ; Pastèque</p>
+                                <p>Quantité :</p>
+                                <p>Label :</p> 
+                                <hr>
+                                <p class="description">description de l'annonce de qualité uezbo    uvziubrizuvb    zbev    uib</p>
+                            </div>
+                            
+                        </div>
                     </div>
+                     <div>
+                        <div class="an">
+                            
+                            <div class="titre">
+                                <img class="image_annonce" src="img/logo.png">
+                                <h3 class="titre_annonce">Titre de l'annonce</h3>
+                            </div>
+                            <div>
+                                <p>Producteur :</p><router-link to='/profil_producteur'>M.Michel</router-link>
+                                <p>Annonce mise en ligne le : 11/02/2020</p>
+                                <p>Produit : Pomme ; Poire ; Pastèque</p>
+                                <p>Quantité :</p>
+                                <p>Label :</p> 
+                                <hr>
+                                <p class="description">description de l'annonce de qualité uezbo    uvziubrizuvb    zbev    uib</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                     <div>
+                        <div class="an">
+                            
+                            <div class="titre">
+                                <img class="image_annonce" src="img/logo.png">
+                                <h3 class="titre_annonce">Titre de l'annonce</h3>
+                            </div>
+                            <div>
+                                <p>Producteur :</p><router-link to='/profil_producteur'>M.Michel</router-link>
+                                <p>Annonce mise en ligne le : 11/02/2020</p>
+                                <p>Produit : Pomme ; Poire ; Pastèque</p>
+                                <p>Quantité :</p>
+                                <p>Label :</p> 
+                                <hr>
+                                <p class="description">description de l'annonce de qualité uezbo    uvziubrizuvb    zbev    uib</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                   
             </div>
             <h2 class="titre_gauche">... et des producteurs locaux. </h2>
             <div class="annonces">
                     <div>
-                        <div class="prod"></div>
-                        <p>Actu1</p>
+                        <div class="prod">
+                            <div class="prod_content">
+                                <img src="img/logo.png">
+                                <h3>Producteur</h3>
+                                <p>description du profil producteur</p>
+                            </div>
+                        </div>
                     </div>
                     <div>
-                        <div class="prod"></div>
-                        <p>Actu1</p>
+                        <div class="prod">
+                            <div class="prod_content">
+                                <img src="img/logo.png">
+                                <h3>Producteur</h3>
+                                <p>description du profil producteur</p>
+                            </div>
+                        </div>
                     </div>
                     <div>
-                        <div class="prod"></div>
-                        <p>Actu1</p>
+                        <div class="prod">
+                            <div class="prod_content">
+                                <img src="img/logo.png">
+                                <h3>Producteur</h3>
+                                <p>description du profil producteur</p>
+                            </div>
+                        </div>
                     </div>
                     <div>
-                        <div class="prod"></div>
-                        <p>Actu1</p>
+                        <div class="prod">
+                            <div class="prod_content">
+                                <img src="img/logo.png">
+                                <h3>Producteur</h3>
+                                <p>description du profil producteur</p>
+                            </div>
+                        </div>
                     </div>
+                    <div>
+                        <div class="prod">
+                            <div class="prod_content">
+                                <img src="img/logo.png">
+                                <h3>Producteur</h3>
+                                <p>description du profil producteur</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="prod">
+                            <div class="prod_content">
+                                <img src="img/logo.png">
+                                <h3>Producteur</h3>
+                                <p>description du profil producteur</p>
+                            </div>
+                        </div>
+                    </div>
+                    
             </div>
         </div>
     </div>
 </template>
 
 <script>
+
     
     module.export = {
         props: {
@@ -88,6 +205,7 @@
     padding: 0;
     font-family: 'Roboto', sans-serif;
     }
+
     
     #bienvenue{
         margin-left: auto;
@@ -105,10 +223,11 @@
     }
 
     .actualites{
-        width: 900px;
+        width: 1000px;
         padding: 20px;
         margin: 0 auto;
         box-shadow: 10px 10px 20px 0px #cdd3dd;
+
     }
 
     .annonces{
@@ -117,14 +236,45 @@
         overflow: auto;
     }
     .an{
-        height: 150px;
-        width: 300px;
-        border: 1px solid gray;
+        height: 250px;
+        width: 400px;
         margin: auto 10px;
         padding: 10px;
         background: white;
+        box-shadow: 10px 10px 20px 0px #D1D9E6, -10px -10px 20px 0px #FFFFFF;
+        display: flex;
+        overflow: auto;
     }
+   
+     .an p{
+        text-align: left;
+        
+    }
+    .titre_annonce{
+        width: max-content;
+        margin-bottom: 10px;
+    }
+    .titre{
+        margin-bottom: 10px;
+        flex-direction: row;
+    }
+    .description{
+        font-weight: 300;
+    }
+    hr{
+        border: 1px solid #9C9C9C;
+    }
+    .image_annonce {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin: auto;
+        filter : drop-shadow(2px 3px 4px black);
 
+    }
+    .titre_gauche{
+        text-align: right;
+    }
     .prod{
         height: 150px;
         width: 300px;
@@ -133,12 +283,24 @@
         padding: 10px;
         background: white;
     }
-    .titre_gauche{
-        text-align: right;
+    .prod_content{
+        display: flex;
+        flex-direction: row;
+        line-height: 50px;
+        margin-bottom: 10px;
     }
-    .actus p{
-        text-align: center;
-        font-weight: bold;
+    .prod_content img{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+    .prod_content p{
+        margin-left: 20px;
+        width: max-content;
+    }
+    .prod p{
+        text-align: left;
+
     }
 </style>
 
