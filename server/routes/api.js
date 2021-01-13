@@ -47,6 +47,7 @@ Route à faire :
   - ajout annonce favoris
 */
 
+//Se connecter
 router.post('/login', async (req, res) => {
   const email = req.body.email
   const password = req.body.password
@@ -98,6 +99,7 @@ router.post('/login', async (req, res) => {
   }
 })
 
+//S'enregistrer en tant qu'acheteur
 router.post('/register', async (req, res) => {
   const email = req.body.email
   const password = req.body.password
@@ -129,6 +131,7 @@ router.post('/register', async (req, res) => {
   res.send('ok')
 })
 
+//S'enregistrer en tant que producteur
 router.post('/registerProducteur', async (req, res) => {
   const email = req.body.email
   const password = req.body.password
@@ -183,6 +186,7 @@ router.post('/registerProducteur', async (req, res) => {
   res.send('ok')
 })
 
+//Poster une annonce
 router.post('/annonce', async (req, res) => {
   const description = req.body.description
   const titre = req.body.titre
@@ -231,6 +235,43 @@ router.post('/annonce', async (req, res) => {
   res.send('ok')
 })
 
+//Poster un avis
+router.post('/avis', async (req, res) => {
+  const note = req.body.note
+  const contenu = req.body.contenu
+  const titre = req.body.titre
+  const id_producteur = req.body.id_producteur
+  const id_user = req.session.userId
+
+  if(typeof id_user === 'undefined'){
+    res.status(401).json({
+      message: 'you are not connected'
+    })
+    return
+  }
+
+  if(typeof note === 'undefined'
+    || typeof contenu === 'undefined'
+    || typeof titre === 'undefined'
+    || typeof id_producteur === 'undefined'){
+    res.status(401).json({
+      message: 'avis incomplet'
+    })
+    return
+  }
+
+  await client.query({
+    text: `INSERT INTO avis(note, contenu, titre, id_user, id_producteur)
+    VALUES ($1, $2, $3, $4, $5)
+    `,
+    values: [note, contenu, titre, id_user, id_producteur]
+  })
+  
+  res.send('ok')
+})
+
+
+//Obtenir toutes les annonces
 router.get('/annonce', async (req, res) => {
   const result = await client.query({
     text: 'SELECT * FROM annonces'
@@ -246,6 +287,7 @@ router.get('/annonce', async (req, res) => {
   res.send(result.rows)
 })
 
+//Obtenir une annonce en particulier
 router.get('/annonce/:id_annonce', async (req, res) => {
   const id_annonce = parseInt(req.params.id_annonce)
 
@@ -263,7 +305,8 @@ router.get('/annonce/:id_annonce', async (req, res) => {
 
   res.send(result.rows[0])
 })
-//Obtenir les annonces qui ont le label que l'on cherche
+
+//Obtenir les annonces par label
 router.get('/annonce/label/:id_label', async (req, res) => {
   const id_label = parseInt(req.params.id_label)
 
@@ -281,7 +324,8 @@ router.get('/annonce/label/:id_label', async (req, res) => {
 
   res.send(result.rows)
 })
-//Obtenir les annonces qui ont le produit que l'on cherche
+
+//Obtenir les annonces par produit
 router.get('/annonce/produit/:id_produit', async (req, res) => {
   const id_produit = parseInt(req.params.id_produit)
   const result = await client.query({
@@ -296,7 +340,8 @@ router.get('/annonce/produit/:id_produit', async (req, res) => {
     return
   }
 })
-//Obtenir les annonces qui ont la région que l'on cherche
+
+//Obtenir les annonces par région
 router.get('/annonce/region/:id_region', async (req, res) => {
   const id_region = parseInt(req.params.id_region)
   const result = await client.query({
@@ -314,6 +359,43 @@ router.get('/annonce/region/:id_region', async (req, res) => {
   res.send(result.rows)
 })
 
+//Obtenir les annonces par producteur
+router.get('/annonce/users/:id_user', async (req, res) => {
+  const id_user = parseInt(req.params.id_user)
+  const result = await client.query({
+    text: 'SELECT * FROM annonces WHERE id_user = $1',
+    values: [id_user]
+  })
+
+  if (result.rows.length <= 0) {
+    res.status(401).json({
+      message: 'il n\'y a pas d\'annonces avec ce producteur'
+    })
+    return
+  }
+
+  res.send(result.rows)
+})
+
+//Obtenir les avis par producteur
+router.get('/avis/users/:id_user', async (req, res) => {
+  const id_user = parseInt(req.params.id_user)
+  const result = await client.query({
+    text: 'SELECT * FROM avis WHERE id_user = $1',
+    values: [id_user]
+  })
+
+  if (result.rows.length <= 0) {
+    res.status(401).json({
+      message: 'il n\'y a pas d\'avis avec ce producteur'
+    })
+    return
+  }
+
+  res.send(result.rows)
+})
+
+//Obtenir tous les labels
 router.get('/labels', async (req, res) => {
   const result = await client.query({
     text: 'SELECT * FROM labels'
@@ -328,6 +410,7 @@ router.get('/labels', async (req, res) => {
   res.send(result.rows)
 })
 
+//Obtenir toutes les régions
 router.get('/regions', async (req, res) => {
   const result = await client.query({
     text: 'SELECT * FROM regions'
@@ -342,6 +425,7 @@ router.get('/regions', async (req, res) => {
   res.send(result.rows)
 })
 
+//Obtenir tous les départements
 router.get('/departements', async (req, res) => {
   const result = await client.query({
     text: 'SELECT * FROM departements'
@@ -356,6 +440,22 @@ router.get('/departements', async (req, res) => {
   res.send(result.rows)
 })
 
+//Obtenir tous les avis
+router.get('/avis', async (req, res) => {
+  const result = await client.query({
+    text: 'SELECT * FROM avis'
+  })
+
+  if (result.rows.length <= 0) {
+    res.status(401).json({
+      message: 'il n\'y a pas encore d\'avis'
+    })
+    return
+  }
+  res.send(result.rows)
+})
+
+//Obtenir tous les produits
 router.get('/produits', async(req, res)=> {
   const id_produit = req.body.id_produit
   
@@ -390,6 +490,7 @@ router.get('/produits', async(req, res)=> {
   
 })
 
+//Obtenir un user en particulier
 router.get('/users/:id_user', async (req, res) => {
   const id_user = parseInt(req.params.id_user)
 
