@@ -6,11 +6,13 @@
                 <h2 id="titre_annonce">{{annonce.titre}}</h2>
             </div>
             <div id="informations_annonce">
-                <p>Producteur :</p><router-link to='/profil_producteur'>M.Michel</router-link>
-                <p>Annonce mise en ligne le : 11/02/2020</p>
-                <p>Produit : Pomme ; Poire ; Pastèque</p>
-                <p>Quantité :</p>
-                <p>Label :</p> 
+                <p>Producteur :</p><router-link to='/profil_producteur'>{{user.prenom}} {{user.nom}}</router-link>
+                <p>Produit : {{produit.nom}}</p>
+                <p>Quantité :{{annonce.quantite}}</p>
+                <p>Label :{{label.nom}}</p> 
+                <p>
+                    <strong>Prix : </strong>{{annonce.prix}} <span v-if="annonce.in_kg">par piece</span><span v-if="!annonce.in_kg">au kilo</span>
+                </p>
             </div>
             <hr>
             <h3 class="titre">Description de l'annonce :</h3>
@@ -160,7 +162,10 @@
     module.exports = {
         data () {
             return {
-                annonce: {}
+                annonce: {},
+                user:{},
+                produit:{},
+                label:{}
             }
         },
         async mounted () {
@@ -168,7 +173,15 @@
         async created(){
             const result = await axios.get('/api/annonce/' + this.$route.query.id_annonce)
             this.annonce = result.data
-            console.log(this.annonce)
+
+            const result2 = await axios.get('/api/user/' + this.annonce.id_user)
+            this.user = result2.data
+            
+            const result3 = await axios.get('/api/produits/' + this.annonce.id_produit)
+            this.produit = result3.data
+
+            const result4 = await axios.get('/api/labels/' + this.annonce.id_label)
+            this.label = result4.data
         },
         methods: {
         }

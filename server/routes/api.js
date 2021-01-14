@@ -19,7 +19,7 @@ router.delete('/me', async (req, res) => {
     return
   }
 
-  delete req.session.userId
+  delete req.session
 
   res.send('ok')
 })
@@ -53,7 +53,7 @@ router.post('/login', async (req, res) => {
   const password = req.body.password
 
   const result = await client.query({
-    text: 'SELECT * FROM users WHERE email=$1',
+    text: 'SELECT * FROM users LEFT JOIN producteur ON users.id_user=producteur.id_user WHERE email=$1',
     values: [email]
   })
 
@@ -71,26 +71,19 @@ router.post('/login', async (req, res) => {
     req.session.userId = user.id_user
     req.session.email = user.email
     req.session.pseudo = user.pseudo
-    
-    //verifions si l'utilisateur est un producteur
-    const result2 = await client.query({
-      text: 'SELECT * FROM producteur WHERE id_user=$1',
-      values: [user.id_user]
-    })
-    
-    if(result2.rowCount>0){
-      const producteur = result2.rows[0]
+    req.session.isProducteur = false
+
+    if(user.id_producteur!==null){
       req.session.isProducteur = true
-      req.session.description = producteur.description
-    }else{
-      req.session.isProducteur = false
+      req.session.description = user.description
     }
 
     res.json({
       id: user.id_user,
-      isProducteur: user.isProducteur,
+      isProducteur: req.session.isProducteur,
       email: user.email
     })
+
   } else {
     res.status(401).json({
       message: 'bad password'

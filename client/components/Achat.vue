@@ -3,27 +3,21 @@
         <div class="option_recherche">
             <h2>Recherche rapide</h2>
             <div>
-                <form action="" method="post" id="options">
+                <form @submit.prevent="filter()">
                     <div class="select_produit">
-                        <select id="Produit" name="produit">
+                        <select id="Produit" name="produit" v-model="produit">
                             <option value="none" selected disabled hidden>Produit</option>
                             <option v-for="produit in produits" :key="produit.id_produit" :value="produit.id_produit">{{produit.nom}}</option>
                         </select>
                     </div>
                     <div class="select_label">
-                        <select id="Label" name="Label">
+                        <select id="Label" name="Label" v-model="label">
                             <option value="none" selected disabled hidden>Label</option>
                             <option v-for="label in labels" :key="label.id_label" :value="label.id_label">{{label.nom}}</option>
-                            <!--
-                            <option value="AOC">Appellation d'Origine Contrôlée</option>
-                            <option value="AOP">Appellation d'Origine Protégée</option>
-                            <option value="IGP">Indication Géographique Protégée</option>
-                            <option value="LR">Label Rouge</option>
-                            -->
                         </select>
                     </div>
                     <div class="select_région">
-                        <select id="Région" name="région">
+                        <select id="Région" name="région" v-model="region">
                             <option value="none" selected disabled hidden>Région</option>
                             <option v-for="region in regions" :key="region.id_region" :value="region.id_region">{{region.nom}}</option>
                         </select>
@@ -35,14 +29,6 @@
                         </select>
                     </div>
                     <div>
-                        <input v-model="titre" type="text" id="titre" name="titre" placeholder="Titre de l'annnonce">
-                    </div>
-                    <!--
-                    <div>
-                        <input type="text" id="localisation" name="localisation" placeholder="Localisation">
-                    </div>
-                    -->
-                    <div>
                         <input v-model="min" type="text" id="max" name="max" placeholder="Prix maximum">
                         <input v-model="max" type="text" id="min" name="min" placeholder="Prix minimum">
                     </div>
@@ -52,7 +38,6 @@
                 </form>
             </div>
         </div>
-        <hr>
         <div id="les_annonces">
             <div v-for="annonce in annonces" :key="annonce.id_annonce" class="annonce">
                 <img src="img/logo.png">
@@ -65,6 +50,12 @@
                         </p>
                         <p class="annonce_label">
                             <strong>Produit vendu : </strong>{{produits.find(x => x.id_produit === annonce.id_produit).nom}}
+                        </p>
+                        <p class="annonce_label">
+                            <strong>Prix : </strong>0 <span v-if="annonce.in_kg">par piece</span><span v-if="!annonce.in_kg">au kilo</span>
+                        </p>
+                        <p class="annonce_label">
+                            <strong>Localisation : </strong>{{regions.find(x => x.id_region === annonce.id_region).nom}}
                         </p>
                     </div>
                     <button @click="$router.push('/annonce_produit/?id_annonce='+annonce.id_annonce)">En savoir plus</button>
@@ -210,5 +201,17 @@
             const result5 = await axios.get('/api/departements', {})
             this.departements = result5.data
         },
+        methods: {
+            async filter(){
+                console.log(this.produit+" "+this.label+" "+this.region)
+                const result = await axios.get('/api/regions/filter', {
+                    produit: this.produit,
+                    label: this.label,
+                    region: this.region,
+                    min: parseInt(this.min),
+                    max: parseInt(this.max)
+                })
+            }
+        }
     }
 </script>
