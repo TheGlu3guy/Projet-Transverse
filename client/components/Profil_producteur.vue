@@ -98,8 +98,21 @@
 </template>
 
 <style scoped>
+    .clickable{
+        cursor: pointer;
+        width: 30px;
+    }
     hr{
         border: 1px solid #9C9C9C;
+    }
+    .créateur h3, .type_couleur h3{
+        display: inline;
+    }
+    .couleur{
+        display: block;
+    }
+    .titre_couleur, .text_couleur{
+        display: inline-block;
     }
     .commentaire h4{
         margin-bottom: 10px;
@@ -107,17 +120,18 @@
     .commentaire p{
         font-weight: 300;
     }
-    .profil{
+    .user_commentaire{
         display: flex;
         flex-direction: row;
         line-height: 50px;
         margin-bottom: 10px;
     }
-    .profil img{
-        width: 100px;
-        height: 60px;
+    .user_commentaire img{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
     }
-    .profil p{
+    .user_commentaire p{
         margin-left: 20px;
         width: max-content;
     }
@@ -126,17 +140,17 @@
         padding: 20px;
         margin-bottom: 20px;
     }
-    #form_commentaire button{
+    #form_avis button{
         background-color: #4D74FF;
         color: white;
         padding: 10px 20px;
         border-radius: 50px;
         border: none;
     }
-    #form_commentaire button:hover{
+    #form_avis button:hover{
         background-color: #416aff;
     }
-    #form_commentaire button:active{
+    #form_avis button:active{
         background-color: #416aff;
         box-shadow: inset 20px 20px 60px #375ad9, 
             inset -20px -20px 60px #4b7aff;
@@ -153,11 +167,11 @@
         height: 200px;
         resize: vertical;
     }
-    #commentaires{
+    #avis{
         padding-left: 20px;
         width: 480px;
     }
-    #form_commentaire{
+    #form_avis{
         box-shadow: 0px 0px 17px rgba(0, 0, 0, 0.25);
         padding: 20px;
         display: flex;
@@ -196,6 +210,7 @@
     #body{
         width: 800px;
         margin: 0 auto;
+        margin-bottom: 2em;
     }
     #image_annonce{
         object-fit: cover;
@@ -208,19 +223,21 @@
         width: max-content;
         margin-bottom: 10px;
     }
-    .note{
+    .note_créateur{
         display: flex;
         flex-direction: row;
         margin-left: auto;
     }
     .note h3{
         width: min-content;
+        line-height: 30px;
+        margin-right: 5px;
     }
     .star{
         height: 30px;
         width: 30px;
     }
-    #titre_note{
+    #titre_note, #user_note{
         margin-top: 20px;
         display: flex;
         flex-direction: row;
@@ -228,8 +245,19 @@
     hr{
         margin: 20px 0;
     }
-    .titre{
+    h3{
         margin-bottom: 10px;
+    }
+    #commentaire{
+        width: 450px;
+    }
+    #note{
+        display: flex;
+        flex-direction: row;
+        margin-left: auto;
+    }
+    #titre_commentaire h4{
+        margin-bottom: .3em;
     }
 </style>
 
