@@ -14,7 +14,7 @@
                 <div class="an">
                     <div class="titre">
                         <img src="img/logo.png">
-                        <h3> titre  hbbiubiojbjh</h3>
+                        <h3> titre  hkhbiboib  bkbkb </h3>
                     </div>
                     <div class="description">
                         <div>
@@ -77,7 +77,7 @@
 
 
             </div>
-
+            <hr>
             <h2 id="titre_gauche">... et des producteurs locaux. </h2>
             <div id="producteurs">
 
@@ -163,20 +163,9 @@
     font-family: 'Roboto', sans-serif;
     }
 
-    #tableau_de_bord{
-        width: 1000px;
-        margin: 0 auto;
-        padding: 0;
-        box-shadow: 10px 10px 20px 0px #cdd3dd;
-        display: flex;
-        flex-direction: column;
-
-    }
-    #tableau_de_bord h2{
-        padding: 20px;
-    }
+   
     
-    #bienvenue{
+    #bienvenue {
         margin-left: auto;
         margin-right: auto;
         width: 800px;
@@ -185,10 +174,27 @@
         background-color: #ECF0F3;
         border-radius: 10px;
         box-shadow: 10px 10px 20px 0px #cdd3dd;
+        border: solid 1px;
         padding: 10px;
     }
+
     #bienvenue h1{
         text-align: center;
+    }
+
+     #tableau_de_bord{
+        width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+        box-shadow: 10px 10px 20px 0px #cdd3dd;
+        border: solid 1px;
+        border-radius: 3px;
+        display: flex;
+        flex-direction: column;
+
+    }
+    #tableau_de_bord h2{
+        padding: 20px;
     }
 
     #ans{
@@ -201,9 +207,10 @@
         height: 200px;
         width: 400px;
         margin: 10px;
-        padding: 0px;
-        background: white;
+        padding: 5px;
         box-shadow: 10px 10px 20px 0px #D1D9E6, -10px -10px 20px 0px #FFFFFF;
+        border: solid 0.5px;
+        border-radius: 10px;
         display: flex;
         flex-direction: row;
         flex: none;
@@ -213,11 +220,17 @@
         
     .titre{
         flex-grow: 1;
+        max-width: 30%;
         padding: 10px;
-        width: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        
     }
     .titre h3{
         text-align: center;
+        padding: 10px;
     }
     .titre img{
         padding: 0px;
@@ -237,7 +250,7 @@
         flex-grow: 2;
         
     }
-    .description hr{
+    hr{
         border: 1px solid #9C9C9C;
     }
     .bouton_an {
@@ -268,6 +281,7 @@
         width: 300px;
         margin: auto 10px;
         padding: 10px;
+        border: solid 0.5px;
         box-shadow: 10px 10px 20px 0px #D1D9E6, -10px -10px 20px 0px #FFFFFF;
         display: block;
         flex-direction: column;
@@ -291,7 +305,7 @@
         flex: none;
         
     }
-    .prod hr{
+    hr{
         border: 1px solid grey;
     }
     .bouton_prod {
