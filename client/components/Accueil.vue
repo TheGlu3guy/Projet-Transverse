@@ -171,26 +171,28 @@
         width: 800px;
         height: 150px;
         margin-bottom: 2em;
-        background-color: #ECF0F3;
+        box-shadow: 10px 10px 20px 0px #79979e;
         border-radius: 10px;
-        box-shadow: 10px 10px 20px 0px #cdd3dd;
-        border: solid 1px;
+        margin-bottom: 2em;
         padding: 10px;
+        background-image: linear-gradient(120deg , #89c0a5 60%, rgb(125, 167, 165) 94%);
     }
 
     #bienvenue h1{
         text-align: center;
     }
 
-     #tableau_de_bord{
+    #tableau_de_bord{
         width: 1000px;
-        margin: 0 auto;
-        padding: 20px;
-        box-shadow: 10px 10px 20px 0px #cdd3dd;
-        border: solid 1px;
-        border-radius: 3px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+        box-shadow: 10px 10px 20px 0px #79979e;
+        border-radius: 10px;
+        margin-bottom: 2em;
         display: flex;
         flex-direction: column;
+        background-color: #DFDFDF;
 
     }
     #tableau_de_bord h2{
@@ -206,11 +208,12 @@
     .an{
         height: 200px;
         width: 400px;
-        margin: 10px;
+        margin: 0px ;
         padding: 5px;
-        box-shadow: 10px 10px 20px 0px #D1D9E6, -10px -10px 20px 0px #FFFFFF;
-        border: solid 0.5px;
+        box-shadow: 10px 10px 20px 0px rgb(131, 163, 168) ;
         border-radius: 10px;
+        border: solid 2px  rgb(89, 103, 105);
+        margin-bottom: 2em;
         display: flex;
         flex-direction: row;
         flex: none;
@@ -258,12 +261,17 @@
         display: flex;
         flex-direction: column;
         
+        
 
     }
     .bouton_an button {
-        align-self: center;
-        margin-top: 15px;
-        margin-bottom: 15px;
+        border-radius: 50px;
+        border: none;
+        background-color: #C4C4C4;
+        width: 150px;
+        height: 40px;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     #titre_gauche{
@@ -279,10 +287,12 @@
         
         height: 400px;
         width: 300px;
-        margin: auto 10px;
+        margin: 0px;
         padding: 10px;
-        border: solid 0.5px;
-        box-shadow: 10px 10px 20px 0px #D1D9E6, -10px -10px 20px 0px #FFFFFF;
+        border: solid 2px  rgb(89, 103, 105);
+        border-radius: 10px;
+        margin-bottom: 2em;
+        box-shadow: 10px 10px 20px 0px rgb(131, 163, 168);
         display: block;
         flex-direction: column;
         flex: none;
@@ -316,9 +326,13 @@
 
     }
     .bouton_prod button {
-        align-self: center;
-        margin-top: 15px;
-        margin-bottom: 15px;
+        border-radius: 50px;
+        border: none;
+        background-color: #C4C4C4;
+        width: 150px;
+        height: 40px;
+        margin-left: auto;
+        margin-right: auto;
     }
    
 
