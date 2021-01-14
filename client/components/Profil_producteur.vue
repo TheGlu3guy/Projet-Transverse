@@ -11,7 +11,7 @@
             <p>Actif depuis le : 11/12/2020</p>
             <hr>
             <h3 class="titre">Description du producteur:</h3>
-            <p id="description">{{user.description}}</p>
+            <p id="description">{{producteur.description}}</p>
             <hr>
             <div id="produits_producteur">
                 <h3 class="titre">Ses différentes produits :</h3>
@@ -268,18 +268,20 @@
                 user: {},
                 annonces: [],
                 avis: [],
+                id_user: 13,
+                producteur: {},
             }
         },
         async mounted() {
         },
         async created(){
-            const result = await axios.get('api/users/'+this.$route.query.id_user)
+            const result = await axios.get('/api/users/'+this.id_user)
             this.user = result.data
 
-            const result2 = await axios.get('api/annonce/users/' + this.id_user)
+            const result2 = await axios.get('/api/annonce/users/' + this.id_user)
             this.annonces = result2.data
 
-            const result3 = await axios.get('api/avis/users' + this.id_user)
+            const result3 = await axios.get('/api/avis/users/' + this.id_user)
             this.avis = result3.data
 
             const result4 = await axios.get('/api/average/avis/users/'+this.id_user)
@@ -289,6 +291,9 @@
             }else{
                 this.average_avis = avg.slice(0, 3)
             }
+
+            const result5 = await axios.get('/api/producteur/users/' + this.id_user)
+            this.producteur = result5.data
         },
         methods: {
             ouvrirAnnonce(id_annonce){

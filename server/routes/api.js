@@ -7,7 +7,7 @@ const { Client } = require('pg')
 const client = new Client({
  user: 'postgres',
  host: 'localhost',
- password: '123',
+ password: 'password',
  database: 'postgres'
 })
 
@@ -501,7 +501,7 @@ router.get('/users/:id_user', async (req, res) => {
 
   res.send(result.rows[0])
 })
-
+//Obtenir un produit en particulier
 router.get('/produits/:id_produit', async (req, res) => {
   const id_produit = parseInt(req.params.id_produit)
 
@@ -520,6 +520,7 @@ router.get('/produits/:id_produit', async (req, res) => {
   res.send(result.rows[0])
 })
 
+//Obtenir un label en particulier
 router.get('/labels/:id_label', async (req, res) => {
   const id_label = parseInt(req.params.id_label)
 
@@ -538,3 +539,22 @@ router.get('/labels/:id_label', async (req, res) => {
   res.send(result.rows[0])
 })
 module.exports = router
+
+//Obtenir les données d'un producteur
+router.get('/producteur/users/:id_user', async (req, res) => {
+  const id_user = parseInt(req.params.id_user)
+
+  const result = await client.query({
+    text: 'SELECT * FROM producteur WHERE id_user = $1',
+    values: [id_user]
+  })
+
+  if (result.rows.length <= 0) {
+    res.status(401).json({
+      message: 'il n\'y a pas d\'user avec cet id'
+    })
+    return
+  }
+
+  res.send(result.rows[0])
+})
