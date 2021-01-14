@@ -63,7 +63,7 @@ module.exports={
                 qty: 3
             },
             {
-                id: 2,
+                id: 3,
                 title: 'annonce',
                 date: 22+"/"+22+"/"+2222,
                 image: 'img/logo.png',
@@ -71,7 +71,7 @@ module.exports={
                 qty: 3
             },
             {
-                id: 2,
+                id: 4,
                 title: 'annonce',
                 date: 22+"/"+22+"/"+2222,
                 image: 'img/logo.png',
@@ -82,17 +82,7 @@ module.exports={
         userid:{ type: Number, default: 0 },
         articleid:{ type: Number, default: 0 },
     },
-    data () {
-        return {
-            newItem: {
-                title: '',
-                date: 0,
-                image: '',
-                price: 0,
-                qty: 0
-            }
-        }
-    },
+   
     methods: {
         deleteItem () {
           

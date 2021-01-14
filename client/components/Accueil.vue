@@ -9,203 +9,72 @@
         </div>
         <div id="tableau_de_bord">
             <h2>Des annonces proche de chez vous...</h2>
-            <div id="annonces">
-
-
-                <div class="an">
-                    <div class="titre">
-                        <img src="img/logo.png">
-                        <h3>vente de papataesss</h3>
-                    </div>
-                    <div class="description">
-                        <div>
-                            <p>Producteur :</p>
-                            <router-link to='/profil_producteur'>M.Michel</router-link>
-                        </div>
-                        <div>
-                            <p>Annonce mise en ligne le : 11/02/2020</p>
-                        </div>
-                        <div>
-                            <p>Produit : Pomme ; Poire ; Pastèque</p>
-                        </div>
-                        <div>
-                            <p>description de l'annonce de qualité uezbo    uvziubrizuvb    zbev    uib</p>
-                        </div>
-                        <div>
-                            <p>Label :</p> 
-                        </div>
-                        <div>
-                            <p>Quantité :</p>
-                        </div>
-                        <hr>
-                        <div class="bouton_an" >
-                            <button>Voir l'annonce</button>
-                        </div>
-                    </div>
-                </div>
-
+            <div id="ans">
 
                 <div class="an">
                     <div class="titre">
                         <img src="img/logo.png">
-                        <h3>vente de papataesss</h3>
+                        <h3> titre  hbbiubiojbjh</h3>
                     </div>
                     <div class="description">
                         <div>
                             <p>Producteur :</p>
-                            <router-link to='/profil_producteur'>M.Michel</router-link>
+                            <router-link to='/profil_producteur'>michel</router-link>
                         </div>
                         <div>
-                            <p>Annonce mise en ligne le : 11/02/2020</p>
+                            <p>Annonce mise en ligne le :  </p>
+                        </div>
+                        
+                        <div>
+                            <p>Description : </p>
                         </div>
                         <div>
-                            <p>Produit : Pomme ; Poire ; Pastèque</p>
+                            <p>Label : </p> 
                         </div>
                         <div>
-                            <p>description de l'annonce de qualité uezbo    uvziubrizuvb    zbev    uib</p>
+                            <p>Prix : $</p>
                         </div>
-                        <div>
-                            <p>Label :</p> 
-                        </div>
-                        <div>
-                            <p>Quantité :</p>
-                        </div>
+
                         <hr>
+
                         <div class="bouton_an" >
                             <button>Voir l'annonce</button>
                         </div>
                     </div>
                 </div>
-
-                <div class="an">
+                
+                <div class="an" v-for="an in annonces" :key="an.id" >
                     <div class="titre">
                         <img src="img/logo.png">
-                        <h3>vente de papataesss</h3>
+                        <h3> {{an.title}} </h3>
                     </div>
                     <div class="description">
                         <div>
                             <p>Producteur :</p>
-                            <router-link to='/profil_producteur'>M.Michel</router-link>
+                            <router-link to='/profil_producteur'>{{an.producteur}}</router-link>
                         </div>
                         <div>
-                            <p>Annonce mise en ligne le : 11/02/2020</p>
+                            <p>Annonce mise en ligne le : {{an.date}} </p>
+                        </div>
+                        
+                        <div>
+                            <p>Description : {{an.description}}</p>
                         </div>
                         <div>
-                            <p>Produit : Pomme ; Poire ; Pastèque</p>
+                            <p>Label : {{an.label}}</p> 
                         </div>
                         <div>
-                            <p>description de l'annonce de qualité uezbo    uvziubrizuvb    zbev    uib</p>
+                            <p>Prix : {{an.price}}$</p>
                         </div>
-                        <div>
-                            <p>Label :</p> 
-                        </div>
-                        <div>
-                            <p>Quantité :</p>
-                        </div>
+
                         <hr>
+
                         <div class="bouton_an" >
                             <button>Voir l'annonce</button>
                         </div>
                     </div>
                 </div>
 
-
-                                <div class="an">
-                    <div class="titre">
-                        <img src="img/logo.png">
-                        <h3>vente de papataesss</h3>
-                    </div>
-                    <div class="description">
-                        <div>
-                            <p>Producteur :</p>
-                            <router-link to='/profil_producteur'>M.Michel</router-link>
-                        </div>
-                        <div>
-                            <p>Annonce mise en ligne le : 11/02/2020</p>
-                        </div>
-                        <div>
-                            <p>Produit : Pomme ; Poire ; Pastèque</p>
-                        </div>
-                        <div>
-                            <p>description de l'annonce de qualité uezbo    uvziubrizuvb    zbev    uib</p>
-                        </div>
-                        <div>
-                            <p>Label :</p> 
-                        </div>
-                        <div>
-                            <p>Quantité :</p>
-                        </div>
-                        <hr>
-                        <div class="bouton_an" >
-                            <button>Voir l'annonce</button>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="an">
-                    <div class="titre">
-                        <img src="img/logo.png">
-                        <h3>vente de papataesss</h3>
-                    </div>
-                    <div class="description">
-                        <div>
-                            <p>Producteur :</p>
-                            <router-link to='/profil_producteur'>M.Michel</router-link>
-                        </div>
-                        <div>
-                            <p>Annonce mise en ligne le : 11/02/2020</p>
-                        </div>
-                        <div>
-                            <p>Produit : Pomme ; Poire ; Pastèque</p>
-                        </div>
-                        <div>
-                            <p>description de l'annonce de qualité uezbo    uvziubrizuvb    zbev    uib</p>
-                        </div>
-                        <div>
-                            <p>Label :</p> 
-                        </div>
-                        <div>
-                            <p>Quantité :</p>
-                        </div>
-                        <hr>
-                        <div class="bouton_an" >
-                            <button>Voir l'annonce</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="an">
-                    <div class="titre">
-                        <img src="img/logo.png">
-                        <h3>vente de papataesss</h3>
-                    </div>
-                    <div class="description">
-                        <div>
-                            <p>Producteur :</p>
-                            <router-link to='/profil_producteur'>M.Michel</router-link>
-                        </div>
-                        <div>
-                            <p>Annonce mise en ligne le : 11/02/2020</p>
-                        </div>
-                        <div>
-                            <p>Produit : Pomme ; Poire ; Pastèque</p>
-                        </div>
-                        <div>
-                            <p>description de l'annonce de qualité uezbo    uvziubrizuvb    zbev    uib</p>
-                        </div>
-                        <div>
-                            <p>Label :</p> 
-                        </div>
-                        <div>
-                            <p>Quantité :</p>
-                        </div>
-                        <hr>
-                        <div class="bouton_an" >
-                            <button>Voir l'annonce</button>
-                        </div>
-                    </div>
-                </div>
 
             </div>
 
@@ -224,42 +93,21 @@
                     </div>
                 </div>
 
-                <div class="prod">
+                <div class="prod" v-for="pr in producteurs" :key="pr.id">
                     <img src="img/logo.png">
-                    <h3><router-link to='/profil_producteur'>M.Michel</router-link></h3>
+                    <h3><router-link to='/profil_producteur'>{{ id.name }}</router-link></h3>
                     <hr>
                     <div> 
-                        <p>description du profil producteurdescription du profil producteurd<br />escription du profil producteurdescription du profil producteurdescription du <br />profil producteurdescription du profil producteurd<br />es<br />cription du profil producteurdescription<br /> du profil producteurdescription du profil producteurdescription du profil producteurdescription du profil produ<br />cteurdescription du profil producteurdescription du profil producteurd<br />escription du profil producteurdescription du profil producteurdescription du profil producteurdescription <br />du profil producteurdescription du profil producteurdescrip<br />tion du profil producteurdescription du profil<br /> producteurdescription du profil producteurdescription du profil producteurdescription du profil producteurdesc<br />ription du profil producteur</p>
+                        <p> Description du producteur : {{ pr.description }} </p>
+                        <p> Point de vente : {{ pr.location }} </p>
+                        <p> Label : {{ pr.label }} </p>
                     </div>
                     <div class="bouton_prod">
                         <button>En savoir plus</button>
                     </div>
                 </div>
 
-                 <div class="prod">
-                    <img src="img/logo.png">
-                    <h3><router-link to='/profil_producteur'>M.Michel</router-link></h3>
-                    <hr>
-                    <div> 
-                        <p>description du profil producteurdescription du profil producteurd<br />escription du profil producteurdescription du profil producteurdescription du <br />profil producteurdescription du profil producteurd<br />es<br />cription du profil producteurdescription<br /> du profil producteurdescription du profil producteurdescription du profil producteurdescription du profil produ<br />cteurdescription du profil producteurdescription du profil producteurd<br />escription du profil producteurdescription du profil producteurdescription du profil producteurdescription <br />du profil producteurdescription du profil producteurdescrip<br />tion du profil producteurdescription du profil<br /> producteurdescription du profil producteurdescription du profil producteurdescription du profil producteurdesc<br />ription du profil producteur</p>
-                    </div>
-                    <div class="bouton_prod">
-                        <button>En savoir plus</button>
-                    </div>
-                </div>
-
-                <div class="prod">
-                    <img src="img/logo.png">
-                    <h3><router-link to='/profil_producteur'>M.Michel</router-link></h3>
-                    <hr>
-                    <div> 
-                        <p>description du profil producteurdescription du profil producteurd<br />escription du profil producteurdescription du profil producteurdescription du <br />profil producteurdescription du profil producteurd<br />es<br />cription du profil producteurdescription<br /> du profil producteurdescription du profil producteurdescription du profil producteurdescription du profil produ<br />cteurdescription du profil producteurdescription du profil producteurd<br />escription du profil producteurdescription du profil producteurdescription du profil producteurdescription <br />du profil producteurdescription du profil producteurdescrip<br />tion du profil producteurdescription du profil<br /> producteurdescription du profil producteurdescription du profil producteurdescription du profil producteurdesc<br />ription du profil producteur</p>
-                    </div>
-                    <div class="bouton_prod">
-                        <button>En savoir plus</button>
-                    </div>
-                </div>
-    
+            
             </div>
 
 
@@ -276,21 +124,32 @@
             annonces: { type: Array, default: [
                 {
                     id: 1,
-                    title: 'annonce 1',
-                    date: 22+"/"+22+"/"+2222,
+                    title: 'titre annonce',
                     image: 'img/logo.png',
+                    producteur: 'M Michel',
+                    date: 22+"/"+22+"/"+2222,
+                    description: 'descriptul    zjebZBEFLZIEMncmoihygoiunkrveiuriuearnoaminoierhviubvjknmjkuafidaiunmkcnzmoivhmrbvmznv',
+                    label: '',
                     price: 1,
-                    qty: 3
-                },
+                },            
             ]},
             producteurs: { type: Array, default: [
                 {
                     id: 1,
                     name: 'producteur 1',
                     image: 'img/logo.png',
-                    location: '12 rue du col 85'
+                    description: 'lzebaizuvbpaiuzevapziuvbkjbkjouzbmvrnazmobviazubvmazn',
+                    location: '12 rue du col 85',
+                    label: ''
                 }
             ]}
+        },
+        data () {
+            return {
+                annonces,
+                producteurs,
+
+            }
         }
     }
 </script>
@@ -332,12 +191,10 @@
         text-align: center;
     }
 
-    #annonces{
+    #ans{
         display: flex;
         flex-direction: row;
         overflow: auto;
-        
-        
 
     }
     .an{
@@ -352,12 +209,12 @@
         flex: none;
    
     }
-    .description hr{
-        border: 1px solid #9C9C9C;
-    }
+   
         
     .titre{
+        flex-grow: 1;
         padding: 10px;
+        width: 80px;
     }
     .titre h3{
         text-align: center;
@@ -377,7 +234,11 @@
         padding: 5px;
         margin: 0px;
         overflow: auto;
+        flex-grow: 2;
         
+    }
+    .description hr{
+        border: 1px solid #9C9C9C;
     }
     .bouton_an {
         flex: none;
@@ -402,6 +263,7 @@
         
     }
     .prod{
+        
         height: 400px;
         width: 300px;
         margin: auto 10px;
