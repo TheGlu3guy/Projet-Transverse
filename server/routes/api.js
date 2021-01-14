@@ -501,4 +501,40 @@ router.get('/users/:id_user', async (req, res) => {
 
   res.send(result.rows[0])
 })
+
+router.get('/produits/:id_produit', async (req, res) => {
+  const id_produit = parseInt(req.params.id_produit)
+
+  const result = await client.query({
+    text: 'SELECT * FROM produits WHERE id_produit = $1',
+    values: [id_produit]
+  })
+
+  if (result.rows.length <= 0) {
+    res.status(401).json({
+      message: 'il n\'y a pas d\'annonces avec ce label'
+    })
+    return
+  }
+
+  res.send(result.rows[0])
+})
+
+router.get('/labels/:id_label', async (req, res) => {
+  const id_label = parseInt(req.params.id_label)
+
+  const result = await client.query({
+    text: 'SELECT * FROM labels WHERE id_label = $1',
+    values: [id_label]
+  })
+
+  if (result.rows.length <= 0) {
+    res.status(401).json({
+      message: 'il n\'y a pas d\'annonces avec ce label'
+    })
+    return
+  }
+
+  res.send(result.rows[0])
+})
 module.exports = router

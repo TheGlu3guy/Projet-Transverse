@@ -17,6 +17,12 @@
             <hr>
             <h3 class="titre">Description de l'annonce :</h3>
             <p id="description">{{annonce.description}}</p>
+
+            <form @submit.prevent="requestProduct()">
+                <h3>Je désire réserver une partie des produits disponibles.</h3>
+                <input type="range" id="quantite" name="quantite" min="0" :max="annonce.quantite" v-model="quantite">
+                <label for="quantite">Quantite : {{quantite}} <span v-if="annonce.in_kg">pièces</span><span v-if="!annonce.in_kg">kilos</span></label>
+            </form>
         </div>
     </div>
 </template>
@@ -165,7 +171,8 @@
                 annonce: {},
                 user:{},
                 produit:{},
-                label:{}
+                label:{},
+                quantite: 0
             }
         },
         async mounted () {
@@ -174,7 +181,7 @@
             const result = await axios.get('/api/annonce/' + this.$route.query.id_annonce)
             this.annonce = result.data
 
-            const result2 = await axios.get('/api/user/' + this.annonce.id_user)
+            const result2 = await axios.get('/api/users/' + this.annonce.id_user)
             this.user = result2.data
             
             const result3 = await axios.get('/api/produits/' + this.annonce.id_produit)
