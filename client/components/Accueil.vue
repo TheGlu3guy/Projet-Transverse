@@ -261,12 +261,18 @@
         display: flex;
         flex-direction: column;
         
+        
 
     }
     .bouton_an button {
         align-self: center;
         margin-top: 15px;
         margin-bottom: 15px;
+        padding: 10px;
+        border-radius: 5%;
+        border: solid 2px  rgb(89, 103, 105);
+        background-color: transparent;
+        vertical-align: middle;
     }
     
     #titre_gauche{
@@ -324,6 +330,11 @@
         align-self: center;
         margin-top: 15px;
         margin-bottom: 15px;
+        padding: 10px;
+        border-radius: 5%;
+        border: solid 2px  rgb(89, 103, 105);
+        background-color: transparent;
+        vertical-align: middle;
     }
    
 
