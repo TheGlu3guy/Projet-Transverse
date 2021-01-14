@@ -9,8 +9,8 @@
 
        
         <div id="historique">  
-            <h2 >historique de l'utilisateur</h2>  
-            <hr> 
+            <h2 >Historique de l'utilisateur</h2>  
+            
             <div id="annonces"> 
                 <article id="annonce" v-for="item in cart" :key="item.id">
                     <div class="column1">
@@ -18,8 +18,9 @@
                         <h3> {{ item.title }} </h3>
                     </div>
                     <div id="column2">
-                        <p> {{ item.date }} </p>
-                        <p>{{ item.price * item.qty }}$</p>
+                        <p> Date de récupération: {{ item.date }} </p>
+                        <p> Lieude la vente : {{ item.lieu }} </p>
+                        <p>Prix : {{ item.price * item.qty }}$</p>
                         
                     </div>
                     <div class="column1">
@@ -30,7 +31,7 @@
                 </article>
                 
             </div>
-            <hr>
+            
         </div>
 
 
@@ -50,6 +51,7 @@ module.exports={
                 id: 1,
                 title: 'annonce',
                 date: 22+"/"+22+"/"+2222,
+                lieu: '12 rue de la place 94800',
                 image: 'img/logo.png',
                 price: 1,
                 qty: 3
@@ -58,6 +60,7 @@ module.exports={
                 id: 2,
                 title: 'annonce',
                 date: 22+"/"+22+"/"+2222,
+                lieu: '12 rue de la place 94800',
                 image: 'img/logo.png',
                 price: 1,
                 qty: 3
@@ -66,6 +69,7 @@ module.exports={
                 id: 3,
                 title: 'annonce',
                 date: 22+"/"+22+"/"+2222,
+                lieu: '12 rue de la place 94800',
                 image: 'img/logo.png',
                 price: 1,
                 qty: 3
@@ -74,6 +78,7 @@ module.exports={
                 id: 4,
                 title: 'annonce',
                 date: 22+"/"+22+"/"+2222,
+                lieu: '12 rue de la place 94800',
                 image: 'img/logo.png',
                 price: 1,
                 qty: 3
@@ -103,7 +108,8 @@ module.exports={
         width: 1000px;
         margin: 0px auto;
         padding: 0px;
-        box-shadow: 10px 10px 20px 0px #cdd3dd;
+        box-shadow: 10px 10px 20px 0px #79979e;
+        background-color: #DFDFDF;
         display: flex;
         flex-direction: column;
         border-radius: 10px;
@@ -113,6 +119,8 @@ module.exports={
     #titre{
         
         padding-left: 20px;
+        padding-top: 30px;
+        padding-bottom: 20px;
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
@@ -127,7 +135,7 @@ module.exports={
         flex: none;
     }
     #titre h1{
-        align-self: center;
+        align-self: flex-end;
         padding: 20px;
     }
 
@@ -136,8 +144,11 @@ module.exports={
         width: 750px;
         height: 600px;
         margin: auto;
-        margin-bottom: 50px;
-        box-shadow: 10px 10px 20px 0px #cdd3dd;
+        
+        box-shadow: 10px 10px 20px 0px rgb(131, 163, 168) ;
+        border-radius: 10px;
+        
+        margin-bottom: 2em;
         display: block;
         flex-direction: column;
         
@@ -166,13 +177,28 @@ module.exports={
         padding: 10px;
         display: flex;
         flex-direction: row;
+        box-shadow: 10px 10px 20px 0px rgb(131, 163, 168) ;
+        border-radius: 10px;
+        border: solid 2px  rgb(89, 103, 105);
+        margin-bottom: 2em;
         
     }
     .column1 {
         flex-grow: 1;
         display: flex;
-        flex-direction: column
+        flex-direction: column;
+        justify-content: space-around;
+        align-content: flex-end;
 
+    }
+    .column1 button{
+        border-radius: 50px;
+        border: none;
+        background-color: #C4C4C4;
+        width: 150px;
+        height: 40px;
+        margin-left: auto;
+        margin-right: auto;
     }
     #column2 {
         flex-grow: 2;

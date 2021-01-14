@@ -192,7 +192,7 @@
         margin-bottom: 2em;
         display: flex;
         flex-direction: column;
-        background-image: linear-gradient(120deg , #89c0ae 60%, rgb(125, 161, 167) 94%);
+        background-color: #DFDFDF;
 
     }
     #tableau_de_bord h2{
@@ -265,14 +265,13 @@
 
     }
     .bouton_an button {
-        align-self: center;
-        margin-top: 15px;
-        margin-bottom: 15px;
-        padding: 10px;
-        border-radius: 5%;
-        border: solid 2px  rgb(89, 103, 105);
-        background-color: transparent;
-        vertical-align: middle;
+        border-radius: 50px;
+        border: none;
+        background-color: #C4C4C4;
+        width: 150px;
+        height: 40px;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     #titre_gauche{
@@ -327,14 +326,13 @@
 
     }
     .bouton_prod button {
-        align-self: center;
-        margin-top: 15px;
-        margin-bottom: 15px;
-        padding: 10px;
-        border-radius: 5%;
-        border: solid 2px  rgb(89, 103, 105);
-        background-color: transparent;
-        vertical-align: middle;
+        border-radius: 50px;
+        border: none;
+        background-color: #C4C4C4;
+        width: 150px;
+        height: 40px;
+        margin-left: auto;
+        margin-right: auto;
     }
    
 

@@ -78,7 +78,7 @@
         height: 330px;
         background-color: #DFDFDF;
         padding: 10px;
-        box-shadow: 10px 10px 20px 0px #cdd3dd;
+        box-shadow: 10px 10px 20px 0px #79979e;
         margin-left: auto;
         margin-right: auto;
         border-radius: 10px;
