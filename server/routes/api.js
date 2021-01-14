@@ -3,7 +3,6 @@ const router = express.Router()
 //const example = require('../data/example.js')
 const bcrypt = require('bcrypt')
 const { Client } = require('pg')
-const multer = require('multer')
 
 const client = new Client({
  user: 'postgres',
@@ -12,19 +11,9 @@ const client = new Client({
  database: 'postgres'
 })
 
-const upload = multer({
-  dest: './upload',
-})
 
 client.connect()
 
-router.post('/upload', upload.single('file'), (req, res)=>{
-  res.json({ file: req.file })
-})
-
-router.get('/upload', (req, res)=>{
-  res.download('./upload/1b96e3a244aab709e45e73ae8d72fb9f')
-})
 
 router.delete('/me', async (req, res) => {
   if (typeof req.session.userId === 'undefined') {
@@ -538,19 +527,16 @@ router.get('/demandes/:id_user', async (req, res) => {
   const id_user = parseInt(req.params.id_user)
 
   const result = await client.query({
-    text: 'SELECT * FROM demandes WHERE id_user = $1',
-    values: [id_produit]
+    text: `SELECT demandes.id_user, demandes.message, demandes.quantite, demandes.id_annonce, demandes.id_demande, annonces.id_user AS id_producteur 
+    FROM demandes LEFT JOIN annonces 
+    ON demandes.id_annonce = annonces.id_annonce
+    WHERE annonces.id_user = $1`,
+    values: [id_user]
   })
 
-  if (result.rows.length <= 0) {
-    res.status(401).json({
-      message: 'il n\'y a pas de demandes avec ce producteur'
-    })
-    return
-  }
-
-  res.send(result.rows[0])
+  res.send(result.rows)
 })
+
 
 //Obtenir un label en particulier
 router.get('/labels/:id_label', async (req, res) => {

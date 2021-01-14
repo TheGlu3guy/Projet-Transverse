@@ -1,19 +1,4 @@
 <template>
-<<<<<<< HEAD
-    <div>
-        <div id="producteur" v-if="user.isProducteur">
-            <div id="titre">
-                <img src="img/logo.png">
-                <h1>{{user.prenom}} {{user.nom}}</h1>
-            </div>
-            <div id="historique annonces">  
-                <h2 >Historique des annonces</h2>  
-                <hr> 
-                <div v-for="annonce in annonces" :key="annonce.id_user" class="annonce"> 
-                    <div class="annonce">
-                        <img src="./img/young1pact.jpg" alt="une annonce du producteur" @click="ouvrirAnnonce(creation.id_annonce)">
-                        <h3>{{annonce.titre}}</h3>
-=======
 
     <div id="tab">
         <div id="titre">
@@ -25,7 +10,7 @@
        
         <div id="historique">  
             <h2 >Historique de l'utilisateur</h2>  
-            
+            <!--
             <div id="annonces"> 
                 <article id="annonce" v-for="item in cart" :key="item.id">
                     <div class="column1">
@@ -37,94 +22,32 @@
                         <p> Lieude la vente : {{ item.lieu }} </p>
                         <p>Prix : {{ item.price * item.qty }}$</p>
                         
->>>>>>> 5fbcb6169ac1b1bd3a026582e297fe21c45761e5
                     </div>
-                        <button>Modifier</button>
-                        <button>Supprimer</button>
-                </div>
-                <hr>
-            </div> 
+                    <button>Modifier</button>
+                    <button>Supprimer</button>
+                </article>
+            </div>
+            <hr>
+            -->
+        </div> 
             <div id="historique des demandes">
                 <h2>Historique des demandes</h2>
-                <div v-for="demande in demandes" :key="demande.id_user" class="demande">
+                <div v-for="demande in demandes" :key="demande.id_demande" class="demande">
                     <div class="demande">
-                        <h3>{{demandes}}</h3>
-                        <p>{{demande.message}}</p>
-                        <p>{{demande.quantite}}</p>
-                        <p>{{demande.id_annonce}}
+                        <h3>DEMANDE :</h3>
+                        <p>Vous avez reçu une demande de la part de : {{demande.user.nom}}{{demande.user.prenom}}</p>
+                        <p>Il vous as laissé le message suivant :{{demande.message}}</p>
+                        <p>Quantite souhaitée : {{demande.quantite}}</p>
+                        <p>Annonce concernée :</p>
+                        <button @click="$router.push('/annonce_produit/?id_annonce='+demande.id_annonce)">En savoir plus</button>
                     </div>
-            </div>
-<<<<<<< HEAD
-        </div>   
+                </div>
+            </div>   
         <div id="acheteur">
-=======
-            
->>>>>>> 5fbcb6169ac1b1bd3a026582e297fe21c45761e5
         </div>
     </div>
 </template>
 
-<<<<<<< HEAD
-=======
-
-<script>
-module.exports={
-    props:{
-        
-    },
-    data(){
-        return{
-            cart: { type: Array, default: [
-            {
-                id: 1,
-                title: 'annonce',
-                date: 22+"/"+22+"/"+2222,
-                lieu: '12 rue de la place 94800',
-                image: 'img/logo.png',
-                price: 1,
-                qty: 3
-            },
-            {
-                id: 2,
-                title: 'annonce',
-                date: 22+"/"+22+"/"+2222,
-                lieu: '12 rue de la place 94800',
-                image: 'img/logo.png',
-                price: 1,
-                qty: 3
-            },
-            {
-                id: 3,
-                title: 'annonce',
-                date: 22+"/"+22+"/"+2222,
-                lieu: '12 rue de la place 94800',
-                image: 'img/logo.png',
-                price: 1,
-                qty: 3
-            },
-            {
-                id: 4,
-                title: 'annonce',
-                date: 22+"/"+22+"/"+2222,
-                lieu: '12 rue de la place 94800',
-                image: 'img/logo.png',
-                price: 1,
-                qty: 3
-            }
-        ]},
-        userid:{ type: Number, default: 0 },
-        articleid:{ type: Number, default: 0 },
-        }
-    },
-    methods: {
-        deleteItem () {
-          
-        }
-    }
-}
-</script>
-
->>>>>>> 5fbcb6169ac1b1bd3a026582e297fe21c45761e5
 <style scoped>
     html, body {
         margin: 0;
@@ -208,14 +131,10 @@ module.exports={
     .column1 {
         flex-grow: 1;
         display: flex;
-<<<<<<< HEAD
-        flex-direction: column
-=======
         flex-direction: column;
         justify-content: space-around;
         align-content: flex-end;
 
->>>>>>> 5fbcb6169ac1b1bd3a026582e297fe21c45761e5
     }
     .column1 button{
         border-radius: 50px;
@@ -253,21 +172,23 @@ module.exports={
         data () {
             return {
                 annonces: [],
-                user: {},
                 users: {},
-                demandes: {},
+                demandes: [],
             }
         },
         async created(){
             const result = await axios.get('/api/produits', {})
             this.produits = result.data
 
-            const result2 = await axios.get('/api/demandes/', + this.user.id_user)
-            this.labels = result2.data
+            const result2 = await axios.get('/api/demandes/' + this.user.id_user)
+            this.demandes = result2.data
 
-            const result3 = await axios.get('/api/annonces/users/' + this.user.id_user)
-            this.annonces = result3.data
-
+            var i
+            for(i=0; i<this.demandes.length; i++){
+                console.log(this.demandes[i])
+                var result3 = await axios.get('/api/users/' + this.demandes[i].id_user)
+                this.demandes[i].user = result3.data
+            }
         },
         methods: {
             deleteItem () {
