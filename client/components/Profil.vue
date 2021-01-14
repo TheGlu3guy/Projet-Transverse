@@ -1,34 +1,41 @@
 <template>
-    <div class="historique">
-        <div style="text-align: center">historique de l'utilisateur</div>
-                
- 
+
+    <div id="tab">
+        <div id="titre">
+            <img src="img/logo.png">
+            <h1>titre client</h1>
+        </div>
+
+
        
-        <article id="annonce" v-for="item in cart" :key="item.id">
-            <div  id="image_annonce" :style="{ backgroundImage: 'url(' + item.image + ')' }"></div>
-            <div id="titre">
-                <h2 id="titre_annonce"> {{ item.title }} </h2>
+        <div id="historique">  
+            <h2 >historique de l'utilisateur</h2>  
+            <hr> 
+            <div id="annonces"> 
+                <article id="annonce" v-for="item in cart" :key="item.id">
+                    <div class="column1">
+                        <div :style="{ backgroundImage: 'url(' + item.image + ')' }"></div>
+                        <h3> {{ item.title }} </h3>
+                    </div>
+                    <div id="column2">
+                        <p> {{ item.date }} </p>
+                        <p>{{ item.price * item.qty }}$</p>
+                        
+                    </div>
+                    <div class="column1">
+                        <button>Modifier</button>
+                        <button>Supprimer</button>
+                    </div>
+                    
+                </article>
+                
             </div>
-            <div v-if="editingItem.id !== item.id" >
-                <div class="raw">
-                    <p> {{ item.date }} </p>
-                    <p>{{ item.price * item.qty }}$</p>
-                    <button @click="editItem(item)">Modifier</button>
-                    <button @click="deleteItem(itemId)">Supprimer</button>
-                </div>
-            </div>
-            <div v-else>
-                <div>
-                    <h2>
-                        <input type="text" v-model="editingItem.name">-<input type="number" v-model="editingItem.price">
-                    </h2>
-            </div>
-            <div >
-                <button @click="sendEditItem()">Valider</button>
-                <button @click="abortEditItem()">Annuler</button>
-            </div>
-            <input type="text" v-model="editingItem.image" placeholder="Lien vers l'image">
-        </article> 
+            <hr>
+        </div>
+
+
+         
+         
 
     </div>
                 
@@ -41,6 +48,22 @@ module.exports={
         cart: { type: Array, default: [
             {
                 id: 1,
+                title: 'annonce',
+                date: 22+"/"+22+"/"+2222,
+                image: 'img/logo.png',
+                price: 1,
+                qty: 3
+            },
+            {
+                id: 2,
+                title: 'annonce',
+                date: 22+"/"+22+"/"+2222,
+                image: 'img/logo.png',
+                price: 1,
+                qty: 3
+            },
+            {
+                id: 2,
                 title: 'annonce',
                 date: 22+"/"+22+"/"+2222,
                 image: 'img/logo.png',
@@ -67,55 +90,105 @@ module.exports={
                 image: '',
                 price: 0,
                 qty: 0
-            },
-            editingItem: {
-                id: -1,
-                title: '',
-                date: 0,
-                qty: 0,
-                image: '',
-                price: 0,
-                qty: 0
-                
             }
         }
     },
     methods: {
         deleteItem () {
-            this.$emit('delete-item', itemId)
-        },
-        editItem (item) {
-            this.editingItem.id = item.id
-            this.editingItem.name = item.name
-            this.editingItem.image = item.image
-            this.editingItem.price = item.price
-        },
-        sendEditItem () {
-            this.$emit('update-item', this.editingItem)
-            this.abortEditItem()
-        },
-        abortEditItem () {
-            this.editingItem = {
-                id: -1,
-                name: '',
-                qty: '',
-                image: '',
-                price: 0,
-            }
+          
         }
     }
 }
 </script>
 
 <style scoped>
+    html, body {
+                margin: 0;
+                padding: 0;
+                font-family: 'Roboto', sans-serif;
+            }
+
+    #tab {
+        
+        width: 1000px;
+        margin: 0px auto;
+        padding: 0px;
+        box-shadow: 10px 10px 20px 0px #cdd3dd;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #titre{
+        
+        padding-left: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+    #titre img{
+        width: 100px;
+        height: 100px;
+        align-content: center;
+        border-radius: 50%;
+        background-color: grey;
+        filter : drop-shadow(1px 2px 3px grey);
+        flex: none;
+    }
+    #titre h1{
+        align-self: center;
+        padding: 20px;
+    }
+
+    #historique {
+        flex: none;
+        width: 750px;
+        height: 600px;
+        margin: auto;
+        margin-bottom: 50px;
+        box-shadow: 10px 10px 20px 0px #cdd3dd;
+        display: block;
+        flex-direction: column;
+        
+    }
+    #historique h2 {
+        text-align: center;
+        flex: none;
+    }
+    #annonces {
+        flex: none;
+        max-height: 500px;
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+        
+    }
+    hr {
+        border: 1px solid grey;
+    }
 
     #annonce {
-        width: 800px;
-        margin: 0 auto;
-        border: solid;
+        flex: none;
+        width: 700px;
+        margin: 15px auto;
+        box-shadow: 10px 10px 20px 0px #cdd3dd;
         padding: 10px;
+        display: flex;
+        flex-direction: row;
+        
     }
-     #image_annonce{
+    .column1 {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column
+
+    }
+    #column2 {
+        flex-grow: 2;
+        display: flex;
+        flex-direction: column
+
+    }
+    #image_annonce{
         object-fit: cover;
         width: 150px;
         height: 150px;
@@ -127,12 +200,6 @@ module.exports={
         width: max-content;
         margin-bottom: 10px;
     }
-    .titre{
-        margin-bottom: 10px;
-    }
-    .row{
-        display: flex;
-        flex-flow: inherit;
-    }
+    
    
 </style>
