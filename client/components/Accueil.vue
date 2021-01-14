@@ -38,6 +38,9 @@
                             <p>Quantité :</p>
                         </div>
                         <hr>
+                        <div class="bouton_an" >
+                            <button>Voir l'annonce</button>
+                        </div>
                     </div>
                 </div>
 
@@ -68,6 +71,9 @@
                             <p>Quantité :</p>
                         </div>
                         <hr>
+                        <div class="bouton_an" >
+                            <button>Voir l'annonce</button>
+                        </div>
                     </div>
                 </div>
 
@@ -97,6 +103,9 @@
                             <p>Quantité :</p>
                         </div>
                         <hr>
+                        <div class="bouton_an" >
+                            <button>Voir l'annonce</button>
+                        </div>
                     </div>
                 </div>
 
@@ -127,6 +136,9 @@
                             <p>Quantité :</p>
                         </div>
                         <hr>
+                        <div class="bouton_an" >
+                            <button>Voir l'annonce</button>
+                        </div>
                     </div>
                 </div>
 
@@ -157,6 +169,9 @@
                             <p>Quantité :</p>
                         </div>
                         <hr>
+                        <div class="bouton_an" >
+                            <button>Voir l'annonce</button>
+                        </div>
                     </div>
                 </div>
 
@@ -186,6 +201,9 @@
                             <p>Quantité :</p>
                         </div>
                         <hr>
+                        <div class="bouton_an" >
+                            <button>Voir l'annonce</button>
+                        </div>
                     </div>
                 </div>
 
@@ -201,6 +219,9 @@
                     <div> 
                         <p>description du profil producteurdescription du profil producteurd<br />escription du profil producteurdescription du profil producteurdescription du <br />profil producteurdescription du profil producteurd<br />es<br />cription du profil producteurdescription<br /> du profil producteurdescription du profil producteurdescription du profil producteurdescription du profil produ<br />cteurdescription du profil producteurdescription du profil producteurd<br />escription du profil producteurdescription du profil producteurdescription du profil producteurdescription <br />du profil producteurdescription du profil producteurdescrip<br />tion du profil producteurdescription du profil<br /> producteurdescription du profil producteurdescription du profil producteurdescription du profil producteurdesc<br />ription du profil producteur</p>
                     </div>
+                    <div class="bouton_prod">
+                        <button>En savoir plus</button>
+                    </div>
                 </div>
 
                 <div class="prod">
@@ -209,6 +230,9 @@
                     <hr>
                     <div> 
                         <p>description du profil producteurdescription du profil producteurd<br />escription du profil producteurdescription du profil producteurdescription du <br />profil producteurdescription du profil producteurd<br />es<br />cription du profil producteurdescription<br /> du profil producteurdescription du profil producteurdescription du profil producteurdescription du profil produ<br />cteurdescription du profil producteurdescription du profil producteurd<br />escription du profil producteurdescription du profil producteurdescription du profil producteurdescription <br />du profil producteurdescription du profil producteurdescrip<br />tion du profil producteurdescription du profil<br /> producteurdescription du profil producteurdescription du profil producteurdescription du profil producteurdesc<br />ription du profil producteur</p>
+                    </div>
+                    <div class="bouton_prod">
+                        <button>En savoir plus</button>
                     </div>
                 </div>
 
@@ -219,6 +243,9 @@
                     <div> 
                         <p>description du profil producteurdescription du profil producteurd<br />escription du profil producteurdescription du profil producteurdescription du <br />profil producteurdescription du profil producteurd<br />es<br />cription du profil producteurdescription<br /> du profil producteurdescription du profil producteurdescription du profil producteurdescription du profil produ<br />cteurdescription du profil producteurdescription du profil producteurd<br />escription du profil producteurdescription du profil producteurdescription du profil producteurdescription <br />du profil producteurdescription du profil producteurdescrip<br />tion du profil producteurdescription du profil<br /> producteurdescription du profil producteurdescription du profil producteurdescription du profil producteurdesc<br />ription du profil producteur</p>
                     </div>
+                    <div class="bouton_prod">
+                        <button>En savoir plus</button>
+                    </div>
                 </div>
 
                 <div class="prod">
@@ -227,6 +254,9 @@
                     <hr>
                     <div> 
                         <p>description du profil producteurdescription du profil producteurd<br />escription du profil producteurdescription du profil producteurdescription du <br />profil producteurdescription du profil producteurd<br />es<br />cription du profil producteurdescription<br /> du profil producteurdescription du profil producteurdescription du profil producteurdescription du profil produ<br />cteurdescription du profil producteurdescription du profil producteurd<br />escription du profil producteurdescription du profil producteurdescription du profil producteurdescription <br />du profil producteurdescription du profil producteurdescrip<br />tion du profil producteurdescription du profil<br /> producteurdescription du profil producteurdescription du profil producteurdescription du profil producteurdesc<br />ription du profil producteur</p>
+                    </div>
+                    <div class="bouton_prod">
+                        <button>En savoir plus</button>
                     </div>
                 </div>
     
@@ -349,6 +379,18 @@
         overflow: auto;
         
     }
+    .bouton_an {
+        flex: none;
+        display: flex;
+        flex-direction: column;
+        
+
+    }
+    .bouton_an button {
+        align-self: center;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
     
     #titre_gauche{
         text-align: right;
@@ -389,6 +431,18 @@
     }
     .prod hr{
         border: 1px solid grey;
+    }
+    .bouton_prod {
+        flex: none;
+        display: flex;
+        flex-direction: column;
+        
+
+    }
+    .bouton_prod button {
+        align-self: center;
+        margin-top: 15px;
+        margin-bottom: 15px;
     }
    
 
