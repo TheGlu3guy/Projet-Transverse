@@ -52,7 +52,7 @@
                             <strong>Produit vendu : </strong>{{produits.find(x => x.id_produit === annonce.id_produit).nom}}
                         </p>
                         <p class="annonce_label">
-                            <strong>Prix : </strong>0 <span v-if="annonce.in_kg">par piece</span><span v-if="!annonce.in_kg">au kilo</span>
+                            <strong>Prix : </strong>{{annonce.prix}} <span v-if="annonce.in_kg">par piece</span><span v-if="!annonce.in_kg">au kilo</span>
                         </p>
                         <p class="annonce_label">
                             <strong>Localisation : </strong>{{regions.find(x => x.id_region === annonce.id_region).nom}}

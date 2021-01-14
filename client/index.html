@@ -164,6 +164,7 @@
             const Annonce_produit = window.httpVueLoader('./components/Annonce_produit.vue')
             const Profil_producteur = window.httpVueLoader('./components/Profil_producteur.vue')
             const Mon_compte = window.httpVueLoader('./components/Profil.vue')
+            const Test = window.httpVueLoader('./components/Test.vue')
             const routes = [
                 { path: '/', component: Accueil, meta: {title: 'Accueil'} },
                 { path: '/vente', component: Vente, meta: {title: 'Vente'} },
@@ -176,8 +177,8 @@
                 { path: '/notre_histoire', component: Notre_histoire, meta: {title: 'Notre histoire'}},
                 { path: '/annonce_produit', component: Annonce_produit, meta: {title: 'Produit'}},
                 { path: '/profil_producteur', component: Profil_producteur, meta: {title: 'Profil producteur'}},
-                { path: '/compte', component: Mon_compte, meta: {title: 'Mon compte'}}
-                
+                { path: '/compte', component: Mon_compte, meta: {title: 'Mon compte'}},
+                { path: '/test', component: Test}
             ]
             const router = new VueRouter({
                 routes

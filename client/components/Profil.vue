@@ -70,7 +70,11 @@
 <script>
 module.exports={
     props:{
-        cart: { type: Array, default: [
+        
+    },
+    data(){
+        return{
+            cart: { type: Array, default: [
             {
                 id: 1,
                 title: 'annonce',
@@ -110,8 +114,8 @@ module.exports={
         ]},
         userid:{ type: Number, default: 0 },
         articleid:{ type: Number, default: 0 },
+        }
     },
-   
     methods: {
         deleteItem () {
           

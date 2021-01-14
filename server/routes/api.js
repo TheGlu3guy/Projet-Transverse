@@ -3,6 +3,7 @@ const router = express.Router()
 //const example = require('../data/example.js')
 const bcrypt = require('bcrypt')
 const { Client } = require('pg')
+const multer = require('multer')
 
 const client = new Client({
  user: 'postgres',
@@ -11,7 +12,19 @@ const client = new Client({
  database: 'postgres'
 })
 
+const upload = multer({
+  dest: './upload',
+})
+
 client.connect()
+
+router.post('/upload', upload.single('file'), (req, res)=>{
+  res.json({ file: req.file })
+})
+
+router.get('/upload', (req, res)=>{
+  res.download('./upload/1b96e3a244aab709e45e73ae8d72fb9f')
+})
 
 router.delete('/me', async (req, res) => {
   if (typeof req.session.userId === 'undefined') {
