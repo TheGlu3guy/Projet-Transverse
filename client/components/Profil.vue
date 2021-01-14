@@ -106,6 +106,8 @@ module.exports={
         box-shadow: 10px 10px 20px 0px #cdd3dd;
         display: flex;
         flex-direction: column;
+        border-radius: 10px;
+        margin-bottom: 2em;
     }
 
     #titre{
