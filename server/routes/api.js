@@ -53,7 +53,7 @@ router.post('/login', async (req, res) => {
   const password = req.body.password
 
   const result = await client.query({
-    text: 'SELECT * FROM users LEFT JOIN producteur ON users.id_user=producteur.id_user WHERE email=$1',
+    text: 'SELECT users.id_user, users.email, users.password, users.nom, users.prenom, producteur.description, producteur.id_producteur FROM users LEFT JOIN producteur ON users.id_user=producteur.id_user WHERE email=$1',
     values: [email]
   })
 
@@ -537,6 +537,45 @@ router.get('/labels/:id_label', async (req, res) => {
   }
 
   res.send(result.rows[0])
+})
+
+router.post('/demandes', async (req, res) => {
+  const id_user = req.session.userId
+
+  if(typeof id_user === 'undefined'){
+    res.status(401).json({
+      message: 'you are not connected'
+    })
+    return
+  }
+
+  const message = req.body.message
+  const quantite = req.body.quantite
+  const id_annonce = req.body.id_annonce
+
+  if(typeof message === 'undefined'
+    || typeof quantite === 'undefined'
+    || typeof id_annonce === 'undefined'){
+    res.status(401).json({
+      message: 'demande incomplète'
+    })
+    return
+  }
+
+  await client.query({
+    text: `INSERT INTO demandes(id_user, message, quantite, id_annonce)
+    VALUES ($1, $2, $3, $4)
+    `,
+    values: [id_user, message, quantite, id_annonce]
+  })
+
+  await client.query({
+    text: `UPDATE annonces SET quantite = quantite - $1 
+    WHERE id_annonce = $2`,
+    values: [quantite, id_annonce]
+  })
+  
+  res.send('ok')
 })
 module.exports = router
 

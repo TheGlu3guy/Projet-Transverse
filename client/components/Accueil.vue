@@ -146,8 +146,8 @@
         },
         data () {
             return {
-                annonces,
-                producteurs,
+                annonces:[],
+                producteurs:[],
 
             }
         }

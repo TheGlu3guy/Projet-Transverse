@@ -8,7 +8,7 @@
             <div id="informations_annonce">
                 <p>Producteur :</p><router-link to='/profil_producteur'>{{user.prenom}} {{user.nom}}</router-link>
                 <p>Produit : {{produit.nom}}</p>
-                <p>Quantité :{{annonce.quantite}}</p>
+                <p>Quantité disponible:{{annonce.quantite}}</p>
                 <p>Label :{{label.nom}}</p> 
                 <p>
                     <strong>Prix : </strong>{{annonce.prix}} <span v-if="annonce.in_kg">par piece</span><span v-if="!annonce.in_kg">au kilo</span>
@@ -18,16 +18,56 @@
             <h3 class="titre">Description de l'annonce :</h3>
             <p id="description">{{annonce.description}}</p>
 
-            <form @submit.prevent="requestProduct()">
+            <h3 v-if="!isConnected">Vous souhaitez ce produit ? Connectez vous et vous pourrez en réserver !</h3>
+            <form v-if="isConnected" @submit.prevent="requestProduct()">
                 <h3>Je désire réserver une partie des produits disponibles.</h3>
+                <p v-for="error in errors" :key="error" class="error">erreur :{{error}}</p>
+                <p v-for="suc in sucess" :key="suc" class="sucess">{{suc}}</p>
                 <input type="range" id="quantite" name="quantite" min="0" :max="annonce.quantite" v-model="quantite">
-                <label for="quantite">Quantite : {{quantite}} <span v-if="annonce.in_kg">pièces</span><span v-if="!annonce.in_kg">kilos</span></label>
+                <label for="quantite">Quantité: {{quantite}} <span v-if="annonce.in_kg">pièces</span><span v-if="!annonce.in_kg">kilos</span></label>
+                <p>Cela revient à un prix de : {{price}}€</p>
+                <p>Laissez un message :</p>
+                <textarea v-model="message" id="comments" name="comments"
+                        rows="5" placeholder="Bonjour, j'ai hâte de faire cet échange avec vous">
+                </textarea>
+                <div id='submit'><input type="submit" value="Réserver"></div>
             </form>
         </div>
     </div>
 </template>
 
 <style scoped>  
+    .sucess{
+        color: rgb(73, 170, 34)
+    }
+    .error{
+        color: rgb(170, 34, 34)
+    }
+    form{
+        width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        box-shadow: rgb(209, 217, 230) 10px 10px 20px 0px, 
+                    rgb(255, 255, 255) -10px -10px 20px 0px;
+        display: flex;
+        flex-direction: column;
+    }
+    #comments{
+        resize: vertical;
+    }
+    #submit{
+        display: flex;
+    }
+    #submit input{
+        border-radius: 50px;
+        border: none;
+        background-color: rgb(196, 196, 196);
+        width: 150px;
+        height: 40px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+    }
     hr{
         border: 1px solid #9C9C9C;
     }
@@ -166,13 +206,19 @@
 
 <script>
     module.exports = {
+        props: {
+            isConnected: { type: Boolean}
+        },
         data () {
             return {
                 annonce: {},
                 user:{},
                 produit:{},
                 label:{},
-                quantite: 0
+                quantite: 0,
+                message:"",
+                errors:[],
+                sucess:[]
             }
         },
         async mounted () {
@@ -191,6 +237,24 @@
             this.label = result4.data
         },
         methods: {
+            async requestProduct(){
+                this.errors = []
+                if(this.quantite>0){
+                    await axios.post('/api/demandes/', {
+                        message: this.message,
+                        quantite: this.quantite,
+                        id_annonce: this.annonce.id_annonce
+                    })
+                    this.sucess.push("Demande envoyée, Vous recevrez une réponse d'ici peu.")
+                }else{
+                    this.errors.push("Choississez une quantité non nulle")
+                }
+            }
+        },
+        computed :{
+            price(){
+                return this.quantite*this.annonce.prix
+            }
         }
     }
 </script>
