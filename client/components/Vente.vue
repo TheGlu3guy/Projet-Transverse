@@ -9,14 +9,14 @@
                         <div class="field_produit">
                             <label for="produit">Produit :</label>
                             <select id="Produit" name="Produit" v-model="produit">
-                                <option value="none" selected disabled hidden>Produit</option>
+                                <option value="" selected disabled hidden>Produit</option>
                                 <option v-for="produit in produits" :key="produit.id_produit" :value="produit.id_produit">{{produit.nom}}</option>
                             </select>
                         </div>
                         <div class="field_label">
                             <label for="label">Label :</label>
                             <select id="Label" name="Label" v-model="label">
-                                <option value="none" selected disabled hidden>Label</option>
+                                <option value="" selected disabled hidden>Label</option>
                                 <option v-for="label in labels" :key="label.id_label" :value="label.id_label">{{label.nom}}</option>
                             </select>
                         </div>
@@ -24,7 +24,7 @@
                             <label for="prix">Prix :</label>
                             <input type="text" id="prix" name="prix" placeholder="Veuillez saisir un prix" required v-model="prix">
                             <select id="Prix" name="Prix" required v-model="en_kg">
-                                <option value="none" selected disabled hidden>Prix</option>
+                                <option value="" selected disabled hidden>Prix</option>
                                 <option :value="true">Prix/kg</option>
                                 <option :value="false">Prix/unité</option>
                             </select>
@@ -39,20 +39,20 @@
                         <div class="field_region">
                             <label for="region">Région :</label>
                             <select id="Region" name="Region" v-model="region">
-                                <option value="none" selected disabled hidden>Région</option>
+                                <option value="" selected disabled hidden>Région</option>
                                 <option v-for="region in regions" :key="region.id_region" :value="region.id_region">{{region.nom}}</option>
                             </select>
                         </div>
                         <div class="field_departement">
                             <label for="departement">Département :</label>
                             <select id="departement" name="departement" v-model="departement">
-                                <option value="none" selected disabled hidden>Département</option>
+                                <option value="" selected disabled hidden>Département</option>
                                 <option v-for="departement in departements" :key="departement.id_departement" :value="departement.id_departement">{{departement.nom}}</option>
                             </select>
                         </div>
                         <div class="field_ville">
                             <label for="code_postal">Code postal :</label>
-                            <input type="number" id="code_postal" name="quantité" placeholder="Code postal" required v-model="code_postal">
+                            <input type="number" id="code_postal" name="quantité" placeholder="Veuillez saisir un code postal" required v-model="code_postal">
                         </div>
                         <div class="field_adresse">
                             <label for="adresse">Adresse de retrait :</label>
@@ -63,11 +63,11 @@
                         <p> Informations générales de l'annonce</p>
                         <div class="field_titre">
                             <label for="titre">Titre :</label>
-                            <input type="text" id="titre" name="titre" placeholder="Titre" required v-model="titre">
+                            <input type="text" id="titre" name="titre" placeholder="Veuillez saisir un titre" required v-model="titre">
                         </div>
                         <div class="field_description">
                             <label for="description">Description :</label>
-                            <input type="text" id="description" name="description" placeholder="Description" required v-model="description">
+                            <input type="text" id="description" name="description" placeholder="Veuillez saisir une description" required v-model="description">
                         </div>
                         <div class="field_photo">
                             <label for="photo">Photo :</label>
@@ -83,7 +83,6 @@
                 </div>
                 <div class="bottom">
                     <button type="submit" id='ajouter'>Ajouter mon produit à la vente</button>
-                    <button id='supprimer' onclick="supprimer_element()">Tout supprimer</button>
                 </div>
             </form>
         </div>
@@ -93,7 +92,8 @@
 <style scoped>
     select{
         border: none;
-        height: 25px;
+        height: 26px;
+        width: 180px;
     }
     .nouveau_produit{
         margin-left: auto;
@@ -120,11 +120,13 @@
     }
     h2{
         text-align: center;
+        margin-bottom: 1em;;
     }
     .bottom{
         margin-left: auto;
         margin-right: auto;
         width: max-content;
+        margin-top: 1.5em;
     }
     .field_titre, .field_label, .field_prix, .field_quantité, .field_photo, .field_produit, .field_adresse, .field_region, .field_departement, .field_description, .field_ville{
         margin-bottom: .9em;
@@ -157,12 +159,21 @@
         border-bottom: 1px solid black;
         margin-left: auto;
         margin-right: auto;
-        margin-bottom: .5em;
         height: 25px;
+        width: 190px;
     }
     hr{
         width: 520px;
         margin: 0 auto;
+    }
+    button{
+        border-radius: 50px;
+        border: none;
+        background-color: #C4C4C4;
+        width: 150px;
+        height: 40px;
+        margin-left: auto;
+        margin-right: auto;
     }
 </style>
 
@@ -187,6 +198,12 @@
                 region: 0,
                 departements: [],
                 departement: 0,
+                departement: '',
+                region: '',
+                produit: '',
+                label: '',
+                prix: '',
+                en_kg: '',
             }
         },
         async mounted () {

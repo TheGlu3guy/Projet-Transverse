@@ -5,26 +5,26 @@
             <div id="rechercher">
                 <form @submit.prevent="filter()">
                     <div class="select_produit">
-                        <select id="Produit" name="produit" v-model="produit">
-                            <option value="none" selected disabled hidden>Produit</option>
+                        <select id="" name="produit" v-model="produit">
+                            <option value="" selected disabled hidden>Produit</option>
                             <option v-for="produit in produits" :key="produit.id_produit" :value="produit.id_produit">{{produit.nom}}</option>
                         </select>
                     </div>
                     <div class="select_label">
-                        <select id="Label" name="Label" v-model="label">
-                            <option value="none" selected disabled hidden>Label</option>
+                        <select id="label" name="label" v-model="label">
+                            <option value="" selected disabled hidden>Label</option>
                             <option v-for="label in labels" :key="label.id_label" :value="label.id_label">{{label.nom}}</option>
                         </select>
                     </div>
                     <div class="select_région">
-                        <select id="Région" name="région" v-model="region">
-                            <option value="none" selected disabled hidden>Région</option>
+                        <select id="region" name="region" v-model="region">
+                            <option value="" selected disabled hidden>Région</option>
                             <option v-for="region in regions" :key="region.id_region" :value="region.id_region">{{region.nom}}</option>
                         </select>
                     </div>
                     <div class="select_departement">
-                        <select id="departement" name="departement">
-                            <option value="none" selected disabled hidden>Département</option>
+                        <select id="departement" name="departement" v-model="departement">
+                            <option value="" selected disabled hidden>Département</option>
                             <option v-for="departement in departements" :key="departement.id_departement" :value="departement.id_departement">{{departement.nom}}</option>
                         </select>
                     </div>
@@ -72,7 +72,7 @@
     }
     .option_recherche{
         width: 900px;
-        height: 330px;
+        height: 300px;
         background-color: #DFDFDF;
         padding: 10px;
         box-shadow: 10px 10px 20px 0px #79979e;
@@ -139,7 +139,7 @@
         display: flex;
         flex-direction: row;
         margin : 20px auto;
-        height: fit-content;
+        height: 240px;;
         box-shadow: 10px 10px 20px 0px #D1D9E6, -10px -10px 20px 0px #FFFFFF;
     }
     .annonce img{
@@ -161,7 +161,7 @@
     }
     #rechercher{
         text-align: center;
-        margin-top: .6em;
+        margin-top: 1em;
     }
 </style>
 
@@ -181,6 +181,10 @@
                 region: 0,
                 departements: [],
                 departement: 0,
+                label: '',
+                produit: '',
+                departement: '',
+                region: '',
             }
         },
         async mounted () {

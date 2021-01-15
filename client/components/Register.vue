@@ -38,7 +38,7 @@
         margin-left: auto;
         margin-right: auto;
         width: 520px;
-        height: 270px;
+        height: 280px;
         background-color: #ECF0F3;
         border-radius: 10px;
         box-shadow: 10px 10px 20px 0px #cdd3dd;
