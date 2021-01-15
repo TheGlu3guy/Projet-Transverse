@@ -6,7 +6,7 @@
                 <h2 id="titre_annonce">{{annonce.titre}}</h2>
             </div>
             <div id="informations_annonce">
-                <p>Producteur :</p><router-link to='/profil_producteur'>{{user.prenom}} {{user.nom}}</router-link>
+                <p>Producteur :</p><p @click="openProducteur()">{{user.prenom}} {{user.nom}}</p>
                 <p>Produit : {{produit.nom}}</p>
                 <p>Quantité disponible:{{annonce.quantite}}</p>
                 <p>Label :{{label.nom}}</p> 
@@ -249,6 +249,9 @@
                 }else{
                     this.errors.push("Choississez une quantité non nulle")
                 }
+            },
+            openProducteur(){
+                this.$router.push('/profil_producteur/?id_user='+this.user.id_user)
             }
         },
         computed :{

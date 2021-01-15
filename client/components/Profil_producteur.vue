@@ -233,10 +233,13 @@
                 user: {},
                 annonces: [],
                 avis: [],
-                id_user: 13,
+                id_user:  this.$route.query.id_user,
                 producteur: {},
                 producteur: [],
                 producteur: 0,
+                note: 0,
+                contenu: "",
+                titre: ""
             }
         },
         async mounted() {
