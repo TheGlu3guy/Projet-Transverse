@@ -27,8 +27,8 @@
 </template>
 
 <style scoped>
-    p{
-        font-family: Helvetica, sans-serif;
+    html, body{
+        font-family: Georgia, Helvetica, sans-serif;
     }
 </style>
 

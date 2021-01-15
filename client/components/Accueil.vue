@@ -10,8 +10,12 @@
             <p>
         </div>
         <div id="photos">
-            <img id="fruits" src="img/fruits.jpg">
-            <img id="légumes" src="img/légumes.jpg">
+            <div id="fruits">
+                <img class="fruits" src="img/fruits.jpg">
+            </div>
+            <div id="légumes">
+                <img class="légumes" src="img/légumes.jpg">
+            </div>
         </div>
     </div>
 </template>
@@ -35,20 +39,19 @@
         background-color:#DFDFDF;
     }
     #photos{
-        justify-content: space-between;
         display: inline;
-        text-align: center;
     }
-    #fruits{
+    .fruits{
         width: 30%;
-        text-align: center;
     }
-    #légumes{
+    .légumes{
         width: 28.7%;
-        text-align: center;
     }
     p{
         font-size: 1.1em;
+    }
+    #fruits, #légumes{
+        display: flex;
     }
 </style>
 

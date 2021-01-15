@@ -1,34 +1,15 @@
 <template>
-
     <div id="tab">
         <div id="titre">
             <img src="img/logo.png">
-            <h1>titre client</h1>
+            <h1>{{user.prenom}} {{user.nom}}</h1>
         </div>
-
-
-       
-        <div id="historique">  
-            <h2 >Historique de l'utilisateur</h2>  
-            <!--
-            <div id="annonces"> 
-                <article id="annonce" v-for="item in cart" :key="item.id">
-                    <div class="column1">
-                        <div :style="{ backgroundImage: 'url(' + item.image + ')' }"></div>
-                        <h3> {{ item.title }} </h3>
-                    </div>
-                    <div id="column2">
-                        <p> Date de récupération: {{ item.date }} </p>
-                        <p> Lieude la vente : {{ item.lieu }} </p>
-                        <p>Prix : {{ item.price * item.qty }}$</p>
-                        
-                    </div>
-                    <button>Modifier</button>
-                    <button>Supprimer</button>
-                </article>
+        <div id="historique des annonces">  
+            <h2 >Historique des annonces en ligne</h2>  
+            <div v-for="annonce in annonces" :key="annonce.id_annonce">
+                <p>Titre de votre annonce : {{annonce.titre}}</p>
+                <p>Contenu de votre annonce : {{annonce.contenu}}</p>
             </div>
-            <hr>
-            -->
         </div> 
             <div id="historique des demandes">
                 <h2>Historique des demandes</h2>
@@ -174,6 +155,7 @@
                 annonces: [],
                 users: {},
                 demandes: [],
+                user: {},
             }
         },
         async created(){
@@ -189,6 +171,8 @@
                 var result3 = await axios.get('/api/users/' + this.demandes[i].id_user)
                 this.demandes[i].user = result3.data
             }
+
+
         },
         methods: {
             deleteItem () {

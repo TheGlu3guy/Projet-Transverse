@@ -87,27 +87,6 @@
                 </div>
             </form>
         </div>
-        <hr>
-        <div class="mes_produits">
-            <h2>Mes produits en vente</h2>
-            <div class="produits_en_vente">
-                <div>
-                    <div class="produit_en_vente">
-                    </div>
-                    <p>Produit2</p>
-                </div>
-                <div>
-                    <div class="produit_en_vente">
-                    </div>
-                    <p>Produit2</p>
-                </div>
-                                <div>
-                    <div class="produit_en_vente">
-                    </div>
-                    <p>Produit3</p>
-                </div>
-            </div>
-        </div>
     </div>
 </template>
 
@@ -154,7 +133,7 @@
         font-weight: bold;
     }
     .ajouter_produit{
-        margin-top: .3em;
+        margin-top: .6em;
     }
     .produits_en_vente{
         display: flex;
