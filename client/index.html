@@ -2,7 +2,7 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <title>Frais et bio</title>
+        <title>Local&Frais</title>
         <!-- Load Vue followed by Vue Router -->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/http-vue-loader/src/httpVueLoader.js"></script>
@@ -15,7 +15,6 @@
                 margin: 0;
                 padding: 0;
                 font-family: 'Roboto', sans-serif;
-                
             }
             header #logo{
                 width: 100px;
@@ -58,9 +57,11 @@
             header a:not(:last-child) {
                 margin-right: 12px;
             }
+            /*
             header a:last-child{
                 width: 25px;
             }
+            */
             header #search_icon, #achat_icon, #profil_icon, #accueil_icon, #vente_icon, #login_icon{
                 width: 20px;
                 height: 20px; 
@@ -119,8 +120,9 @@
                     <router-link to='/'><img id="accueil_icon" src="img/accueil.png"> Accueil</router-link>
                     <router-link to='/achat'><img id="achat_icon" src="img/achat.png"> Achat</router-link>
                     <router-link v-if="user.isProducteur" to='/vente'><img id="vente_icon" src="img/vente.png"> Vente</router-link>
-                    <router-link v-if="!isConnected" to='/compte'><img id="profil_icon" src="img/profil.png"> Mon compte</router-link>
-                    <router-link v-if="!isConnected" to='/register'><img id="login_icon" src="img/login.png"></router-link>
+                    <router-link v-if="user.isProducteur" to='/compte_producteur'><img id="profil_icon" src="img/profil.png"> Mon compte</router-link>
+                    <router-link v-if="isConnected" to='/compte_acheteur'><img id="profil_icon" src="img/profil.png"> Mon compte</router-link>
+                    <router-link v-if="!isConnected" to='/register'><img id="login_icon" src="img/login.png"> Se connecter</router-link>
                     <img v-if="isConnected" id="deconnect_icon" src="img/logout.png" v-on:click="deconnect()">
 
                 </nav>
@@ -162,7 +164,8 @@
             const Notre_histoire = window.httpVueLoader('./components/Notre_histoire.vue')
             const Annonce_produit = window.httpVueLoader('./components/Annonce_produit.vue')
             const Profil_producteur = window.httpVueLoader('./components/Profil_producteur.vue')
-            const Mon_compte = window.httpVueLoader('./components/Profil.vue')
+            const Compte_producteur = window.httpVueLoader('./components/Compte_producteur.vue')
+            const Compte_acheteur = window.httpVueLoader('./components/Compte_acheteur.vue')
             const Test = window.httpVueLoader('./components/Test.vue')
             const routes = [
                 { path: '/', component: Accueil, meta: {title: 'Accueil'} },
@@ -176,7 +179,8 @@
                 { path: '/notre_histoire', component: Notre_histoire, meta: {title: 'Notre histoire'}},
                 { path: '/annonce_produit', component: Annonce_produit, meta: {title: 'Produit'}},
                 { path: '/profil_producteur', component: Profil_producteur, meta: {title: 'Profil producteur'}},
-                { path: '/compte', component: Mon_compte, meta: {title: 'Mon compte'}},
+                { path: '/compte_producteur', component: Compte_producteur, meta: {title: 'Mon compte'}},
+                { path: '/compte_acheteur', component: Compte_acheteur, meta: {title: 'Mon compte'}},
                 { path: '/test', component: Test}
             ]
             const router = new VueRouter({
