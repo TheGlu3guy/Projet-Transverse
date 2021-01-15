@@ -84,7 +84,7 @@
     }
     h2{
         text-align: center;
-        color: black;
+        color: #004079;
     }
     .select_civilité, .field_lastname, .field_firstname, .field_mail, .field_password, .field_cpassword{
         display: block;
