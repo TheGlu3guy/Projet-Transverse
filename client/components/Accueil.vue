@@ -37,15 +37,17 @@
         width: fit-content;
         margin: 0 auto;                             
     }
-    #fruits{
+    .fruits{
         width: 30%;
-        text-align: center;
     }
     #légumes{
         text-align: center;
     }
     p{
         font-size: 1.1em;
+    }
+    #fruits, #légumes{
+        display: flex;
     }
 </style>
 

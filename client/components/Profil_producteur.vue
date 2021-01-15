@@ -1,14 +1,12 @@
 <template>
     <div>
         <div id="body">
-            <img id="image_créateur" src="img/young1pact.jpeg">
             <div id="nom_note">
                 <h2 id="nom_créateur">{{user.prenom}} {{user.nom}}</h2>
                 <div class="note_créateur">
                     <h3>4.2 </h3><img class="star" src="img/star.svg" alt="little star">
                 </div>
             </div>
-            <p>Actif depuis le : 11/12/2020</p>
             <hr>
             <h3 class="titre">Description du producteur:</h3>
             <p id="description">{{producteur.description}}</p>
@@ -16,49 +14,16 @@
             <div id="produits_producteur">
                 <h3 class="titre">Ses différentes produits :</h3>
                 <div v-for="annonce in annonces" :key="annonce.id_user" class="produit">
-                    <img src="./img/young1pact.jpg" alt="une annonce du producteur" @click="ouvrirAnnonce(creation.id_annonce)">
-                    <h3>{{annonce.titre}}</h3>
+                    <div id="annonce">
+                        <p>{{annonce.titre}}</p>
+                        <p>{{annonce.contenu}}</p>
+                        <button @click="ouvrirAnnonce(creation.id_annonce)">En savoir plus</button>
+                    </div>
                 </div>
             <hr>
-            <div class="row">
-                <div id="notes">
-                    <h3 class="titre">Avis :</h3>
-                    <div id="moyenne">
-                        <img class="star" src="img/star.svg">
-                        <img class="star" src="img/star.svg">
-                        <img class="star" src="img/star.svg">
-                        <img class="star" src="img/star.svg">
-                        <img class="star" src="img/star.svg">
-                        <p>4,2 sur 5</p>
-                    </div>
-                    <div class="pourcentage">
-                        <p>5 étoiles</p>
-                        <div class="barre"></div>
-                        <p>81%</p>
-                    </div>
-                    <div class="pourcentage">
-                        <p>4 étoiles</p>
-                        <div class="barre"></div>
-                        <p>81%</p>
-                    </div>
-                    <div class="pourcentage">
-                        <p>3 étoiles</p>
-                        <div class="barre"></div>
-                        <p>81%</p>
-                    </div>
-                    <div class="pourcentage">
-                        <p>2 étoiles</p>
-                        <div class="barre"></div>
-                        <p>81%</p>
-                    </div>
-                    <div class="pourcentage">
-                        <p>1 étoiles</p>
-                        <div class="barre"></div>
-                        <p>81%</p>
-                    </div>
-                </div>
-            </div>
+
             <div id="avis">
+                <h3>Avis :</h3>
                 <div id="form_avis">
                     <div id="note">
                         <img @click="setNote(1)" class="clickable star" :src="'img/'+isEmpty(1)">
@@ -270,6 +235,8 @@
                 avis: [],
                 id_user: 13,
                 producteur: {},
+                producteur: [],
+                producteur: 0,
             }
         },
         async mounted() {
@@ -284,6 +251,9 @@
             const result3 = await axios.get('/api/avis/users/' + this.id_user)
             this.avis = result3.data
 
+            const result5 = await axios.get('/api/producteur/' + this.id_user)
+            this.producteur = result5.data
+
             const result4 = await axios.get('/api/average/avis/users/'+this.id_user)
             var avg = result4.data.avg
             if(avg === null){
@@ -292,8 +262,6 @@
                 this.average_avis = avg.slice(0, 3)
             }
 
-            const result5 = await axios.get('/api/producteur/users/' + this.id_user)
-            this.producteur = result5.data
         },
         methods: {
             ouvrirAnnonce(id_annonce){

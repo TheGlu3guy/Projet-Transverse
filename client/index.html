@@ -118,8 +118,8 @@
                 <nav id="barreOutils">
                     <router-link to='/'><img id="accueil_icon" src="img/accueil.png"> Accueil</router-link>
                     <router-link to='/achat'><img id="achat_icon" src="img/achat.png"> Achat</router-link>
-                    <router-link  to='/vente'><img id="vente_icon" src="img/vente.png"> Vente</router-link>
-                    <router-link to='/compte'><img id="profil_icon" src="img/profil.png"> Mon compte</router-link>
+                    <router-link v-if="user.isProducteur" to='/vente'><img id="vente_icon" src="img/vente.png"> Vente</router-link>
+                    <router-link v-if="!isConnected" to='/compte'><img id="profil_icon" src="img/profil.png"> Mon compte</router-link>
                     <router-link v-if="!isConnected" to='/register'><img id="login_icon" src="img/login.png"></router-link>
                     <img v-if="isConnected" id="deconnect_icon" src="img/logout.png" v-on:click="deconnect()">
 

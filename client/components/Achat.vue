@@ -1,8 +1,8 @@
 <template>
     <div id="vm">
         <div class="option_recherche">
-            <h2>Recherche rapide</h2>
-            <div>
+            <h2>Rechercher un produit</h2>
+            <div id="rechercher">
                 <form @submit.prevent="filter()">
                     <div class="select_produit">
                         <select id="Produit" name="produit" v-model="produit">
@@ -158,6 +158,10 @@
         background-color: #C4C4C4;
         width: 150px;
         height: 40px;
+    }
+    #rechercher{
+        text-align: center;
+        margin-top: .6em;
     }
 </style>
 
