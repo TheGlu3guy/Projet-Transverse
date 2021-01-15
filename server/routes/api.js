@@ -8,7 +8,7 @@ const client = new Client({
  user: 'postgres',
  host: 'localhost',
  password: '123',
- database: 'postgres'
+ database: 'tmp'
 })
 
 
@@ -527,10 +527,13 @@ router.get('/demandes/:id_user', async (req, res) => {
   const id_user = parseInt(req.params.id_user)
 
   const result = await client.query({
-    text: `SELECT demandes.id_user, demandes.message, demandes.quantite, demandes.id_annonce, demandes.id_demande, annonces.id_user AS id_producteur 
+    text: `SELECT demandes.id_user, demandes.message, demandes.quantite, demandes.id_annonce, demandes.id_demande, annonces.id_user AS id_producteur, users.nom, users.prenom 
     FROM demandes LEFT JOIN annonces 
     ON demandes.id_annonce = annonces.id_annonce
-    WHERE annonces.id_user = $1`,
+	  JOIN users
+	  ON demandes.id_user = users.id_user
+    WHERE annonces.id_user = $1
+	`,
     values: [id_user]
   })
 

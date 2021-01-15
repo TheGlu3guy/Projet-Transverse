@@ -32,14 +32,14 @@
         </div> 
             <div id="historique des demandes">
                 <h2>Historique des demandes</h2>
-                <div v-for="demande in demandes" :key="demande.id_demande" class="demande">
+                <div v-for="demande in demandes" :key="demande.id_demande" class="demandes">
                     <div class="demande">
                         <h3>DEMANDE :</h3>
-                        <p>Vous avez reçu une demande de la part de : {{demande.user.nom}}{{demande.user.prenom}}</p>
+                        <p>Vous avez reçu une demande de la part de : {{demande.nom}} {{demande.prenom}}</p>
                         <p>Il vous as laissé le message suivant :{{demande.message}}</p>
                         <p>Quantite souhaitée : {{demande.quantite}}</p>
                         <p>Annonce concernée :</p>
-                        <button @click="$router.push('/annonce_produit/?id_annonce='+demande.id_annonce)">En savoir plus</button>
+                        <button @click="$router.push('/annonce_produit/?id_annonce='+demande.id_annonce)">Aller vers l'annonce</button>
                     </div>
                 </div>
             </div>   
@@ -49,6 +49,12 @@
 </template>
 
 <style scoped>
+    .demande{
+        margin: 20px auto;
+        padding: 20px;
+        width: 400px;
+        border: solid black;
+    }
     html, body {
         margin: 0;
         padding: 0;
@@ -176,19 +182,12 @@
                 demandes: [],
             }
         },
-        async created(){
+        async mounted(){
             const result = await axios.get('/api/produits', {})
             this.produits = result.data
 
             const result2 = await axios.get('/api/demandes/' + this.user.id_user)
             this.demandes = result2.data
-
-            var i
-            for(i=0; i<this.demandes.length; i++){
-                console.log(this.demandes[i])
-                var result3 = await axios.get('/api/users/' + this.demandes[i].id_user)
-                this.demandes[i].user = result3.data
-            }
         },
         methods: {
             deleteItem () {

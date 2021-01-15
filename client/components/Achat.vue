@@ -46,9 +46,6 @@
                     <div class="annonce_texte"> 
                         <p><strong>Description : </strong>{{annonce.description}}</p>
                         <p class="annonce_label">
-                            <strong>Labels du produit : </strong>{{labels.find(x => x.id_label === annonce.id_label).nom}}
-                        </p>
-                        <p class="annonce_label">
                             <strong>Produit vendu : </strong>{{produits.find(x => x.id_produit === annonce.id_produit).nom}}
                         </p>
                         <p class="annonce_label">
@@ -197,6 +194,7 @@
 
             const result4 = await axios.get('/api/regions', {})
             this.regions = result4.data
+            
 
             const result5 = await axios.get('/api/departements', {})
             this.departements = result5.data

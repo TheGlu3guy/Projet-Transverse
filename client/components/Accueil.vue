@@ -10,7 +10,6 @@
             <p>
         </div>
         <div id="photos">
-            <img id="fruits" src="img/fruits.jpg">
             <img id="légumes" src="img/légumes.jpg">
         </div>
     </div>
@@ -32,19 +31,17 @@
         border-radius: 10px;
         margin-bottom: 2em;
         padding: 10px;
-        background-color:#DFDFDF;
     }
     #photos{
-        justify-content: space-between;
-        display: inline;
-        text-align: center;
+        display: flex;
+        width: fit-content;
+        margin: 0 auto;                             
     }
     #fruits{
         width: 30%;
         text-align: center;
     }
     #légumes{
-        width: 28.7%;
         text-align: center;
     }
     p{
