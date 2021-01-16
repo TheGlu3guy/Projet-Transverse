@@ -121,7 +121,7 @@
                     <router-link to='/achat'><img id="achat_icon" src="img/achat.png"> Achat</router-link>
                     <router-link v-if="user.isProducteur" to='/vente'><img id="vente_icon" src="img/vente.png"> Vente</router-link>
                     <router-link v-if="user.isProducteur" to='/compte_producteur'><img id="profil_icon" src="img/profil.png"> Mon compte</router-link>
-                    <router-link v-if="isConnected" v-if="!user.isProducteur" to='/compte_acheteur'><img id="profil_icon" src="img/profil.png"> Mon compte</router-link>
+                    <router-link v-if="isConnected&&!user.isProducteur" to='/compte_acheteur'><img id="profil_icon" src="img/profil.png"> Mon compte</router-link>
                     <router-link v-if="!isConnected" to='/register'><img id="login_icon" src="img/login.png"> Se connecter</router-link>
                     <img v-if="isConnected" id="deconnect_icon" src="img/logout.png" v-on:click="deconnect()">
 
