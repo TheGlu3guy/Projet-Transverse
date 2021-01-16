@@ -7,8 +7,8 @@ const { Client } = require('pg')
 const client = new Client({
  user: 'postgres',
  host: 'localhost',
- password: '123',
- database: 'tmp'
+ password: 'password',
+ database: 'ProjetTransverse'
 })
 
 
@@ -617,4 +617,28 @@ router.get('/producteur/users/:id_user', async (req, res) => {
   }
 
   res.send(result.rows[0])
+})
+
+//Obtenir les annonces par filtre
+router.get('/annonce/filter', async (req, res) => {
+  const id_region = parseInt(req.params.id_region)
+  const id_departement = parseInt(req.params.id_departement)
+  const id_produit = parseInt(req.params.id_produit)
+  const id_label = parseInt(req.params.id_label)
+  const prix_min = parseInt(req.params.prix_min)
+  const prix_max = parseInt(req.params.prix_max)
+
+  const result = await client.query({
+    text: 'SELECT * FROM annonces WHERE id_region = $1 AND id_departement = $2 AND id_produit = $3 AND id_label = $4 AND $5 <= prix AND prix <= $6',
+    values: [id_region, id_departement, id_produit, id_label, prix_min, prix_max]
+  })
+
+  if (result.rows.length <= 0) {
+    res.status(401).json({
+      message: 'il n\'y a pas d\'annonces avec cette region'
+    })
+    return
+  }
+
+  res.send(result.rows)
 })

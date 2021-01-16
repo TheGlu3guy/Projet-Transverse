@@ -209,11 +209,12 @@
         },
         methods: {
             async filter(){
-                console.log(this.produit+" "+this.label+" "+this.region)
-                const result = await axios.get('/api/regions/filter', {
+                console.log(this.produit+" "+this.label+" "+this.region+""+this.departement)
+                const result = await axios.get('/api/annonce/filter', {
+                    region: this.region,
+                    departement: this.departement,
                     produit: this.produit,
                     label: this.label,
-                    region: this.region,
                     min: parseInt(this.min),
                     max: parseInt(this.max)
                 })
